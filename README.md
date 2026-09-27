@@ -1,5 +1,5 @@
 # superintelligencesg.org
 
-Public learning and discussion space: clear questions and expandable field-guide prompts. It does not claim charitable status, active programs, partners or published research.
+The public Commons for learning and conversation about intelligent futures. The homepage includes an open organization directory. Organizations can voluntarily submit their logo, name, founder and core work; accepted fields are published immediately without review. Logos are limited to PNG, JPEG or WebP images up to 2 MB.
 
-This is an independent static site in the Superintelligence SG three-domain concept. Review any organization-specific public claims before adding them.
+The `.org` worker serves the site and its organization-directory API. D1 stores public organization details and short-lived hashed-IP rate-limit records; R2 stores logos. Public listings can be corrected or removed by contacting superintelligencesg@gmail.com.
