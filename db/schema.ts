@@ -1,0 +1,4 @@
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+export const organizations=sqliteTable("organizations",{id:text("id").primaryKey(),name:text("name").notNull(),founder:text("founder").notNull(),business:text("business").notNull(),logoKey:text("logo_key").notNull().unique(),createdAt:integer("created_at").notNull()});
+export const organizationRateLimits=sqliteTable("organization_rate_limits",{id:integer("id").primaryKey({autoIncrement:true}),ipHash:text("ip_hash").notNull(),createdAt:integer("created_at").notNull()});
+
