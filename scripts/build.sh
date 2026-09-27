@@ -9,9 +9,11 @@ import { readFile, writeFile, copyFile } from "node:fs/promises";
 import path from "node:path";
 const root = process.argv[2];
 const html = await readFile(path.join(root, "dist-source/index.html"), "utf8");
+const organizationsHtml = await readFile(path.join(root, "dist-source/organizations.html"), "utf8");
 const worker = await readFile(path.join(root, "worker/index.js"), "utf8");
 if (!worker.includes('"__SITE_HTML__"')) throw new Error("Worker HTML placeholder is missing.");
-await writeFile(path.join(root, "dist/server/index.js"), worker.replace('"__SITE_HTML__"', JSON.stringify(html)));
+if (!worker.includes('"__ORGANIZATIONS_HTML__"')) throw new Error("Organizations HTML placeholder is missing.");
+await writeFile(path.join(root, "dist/server/index.js"), worker.replace('"__SITE_HTML__"', JSON.stringify(html)).replace('"__ORGANIZATIONS_HTML__"', JSON.stringify(organizationsHtml)));
 await copyFile(path.join(root, ".openai/hosting.json"), path.join(root, "dist/.openai/hosting.json"));
 NODE
 echo "Built $dist_root"
