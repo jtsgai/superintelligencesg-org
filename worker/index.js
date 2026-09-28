@@ -1,6 +1,6 @@
 const PAGE_HTML = "__SITE_HTML__";
 const ORGANIZATIONS_HTML = "__ORGANIZATIONS_HTML__";
-const ALLOWED_ORIGINS = new Set(["https://superintelligencesg.org","https://www.superintelligencesg.org","https://superintelligencesg.com","https://www.superintelligencesg.com","https://superintelligence-sg-org.red-fun-plan-2664.chatgpt.site"]);
+const ALLOWED_ORIGINS = new Set(["https://superintelligencesg.org","https://www.superintelligencesg.org","https://superintelligencesg.com","https://www.superintelligencesg.com","https://api.superintelligencesg.org"]);
 function headers(origin){const h=new Headers({"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store","X-Content-Type-Options":"nosniff"});if(origin&&ALLOWED_ORIGINS.has(origin)){h.set("Access-Control-Allow-Origin",origin);h.set("Access-Control-Allow-Methods","GET, POST, OPTIONS");h.set("Access-Control-Allow-Headers","Content-Type");h.set("Vary","Origin");}return h}
 function json(d,s,o){return new Response(JSON.stringify(d),{status:s,headers:headers(o)})}
 function validImage(b,t){if(t==="image/png")return b.length>=8&&b[0]===137&&b[1]===80&&b[2]===78&&b[3]===71;if(t==="image/jpeg")return b.length>=3&&b[0]===255&&b[1]===216&&b[2]===255;if(t==="image/webp")return b.length>=12&&String.fromCharCode(...b.slice(0,4))==="RIFF"&&String.fromCharCode(...b.slice(8,12))==="WEBP";return false}
