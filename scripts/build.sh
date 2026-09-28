@@ -8,7 +8,8 @@ node --input-type=module - "$project_root" <<'NODE'
 import { readFile, writeFile, copyFile } from "node:fs/promises";
 import path from "node:path";
 const root = process.argv[2];
-const html = await readFile(path.join(root, "dist-source/index.html"), "utf8");
+const hero = (await readFile(path.join(root, "assets/org-hero-v2.jpg"))).toString("base64");
+const html = (await readFile(path.join(root, "dist-source/index.html"), "utf8")).replace("__HERO_IMAGE__", hero);
 const organizationsHtml = await readFile(path.join(root, "dist-source/organizations.html"), "utf8");
 const worker = await readFile(path.join(root, "worker/index.js"), "utf8");
 if (!worker.includes('"__SITE_HTML__"')) throw new Error("Worker HTML placeholder is missing.");
