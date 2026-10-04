@@ -1,5 +1,5 @@
 (() => {
-'use strict';const $=s=>document.querySelector(s);const API='https://superintelligence-sg-org.red-fun-plan-2664.chatgpt.site';
+'use strict';const $=s=>document.querySelector(s);const API='https://api.superintelligencesg.org';
 function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n}
 function a(text,href,cls='product-button'){const n=el('a',text,cls);n.href=href;return n}
 const slug=v=>v.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
