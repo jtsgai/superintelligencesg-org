@@ -9,6 +9,7 @@ const ORIGINS = new Set([
 
 const CATEGORIES = ['Organization', 'Research', 'Applied research', 'Education & research', 'Company', 'Health AI', 'Ecosystem', 'Governance', 'Public capability'];
 const REVIEW_STATUSES = ['received', 'in_review', 'accepted', 'rejected', 'resolved'];
+let sourceDeskReviewColumnsReady = false;
 const PUBLIC_SELECT = `SELECT o.id,o.name,o.founder,o.business,o.logo_key,o.created_at,d.website_url,d.location,d.category,d.collaboration,d.collaboration_note,d.contact_url,d.updated_at,d.verification_status,d.verified_domain,d.verified_at FROM organizations o LEFT JOIN organization_details d ON d.organization_id=o.id`;
 
 function headers(origin, type = 'application/json; charset=utf-8') {
@@ -208,8 +209,24 @@ async function requireSourceDeskAdmin(request, env) {
   if (difference !== 0) fail('Source Desk admin authorization is required.', 401);
 }
 
+async function ensureSourceDeskReviewColumns(env) {
+  if (sourceDeskReviewColumnsReady) return;
+  for (const statement of [
+    'ALTER TABLE source_desk_submissions ADD COLUMN review_note TEXT DEFAULT \'\' NOT NULL',
+    'ALTER TABLE source_desk_submissions ADD COLUMN reviewed_at INTEGER',
+  ]) {
+    try {
+      await env.DB.prepare(statement).run();
+    } catch (error) {
+      if (!/duplicate column name/i.test(String(error?.message || error))) throw error;
+    }
+  }
+  sourceDeskReviewColumnsReady = true;
+}
+
 async function sourceDeskQueue(request, env, origin) {
   await requireSourceDeskAdmin(request, env);
+  await ensureSourceDeskReviewColumns(env);
   const url = new URL(request.url);
   const status = url.searchParams.get('status') || '';
   const limit = Math.min(Math.max(Number(url.searchParams.get('limit') || 50), 1), 100);
@@ -222,6 +239,7 @@ async function sourceDeskQueue(request, env, origin) {
 
 async function reviewSourceSuggestion(request, env, origin, id) {
   await requireSourceDeskAdmin(request, env);
+  await ensureSourceDeskReviewColumns(env);
   const data = await bodyJSON(request);
   const status = text(data.status, 20, true);
   if (!REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
