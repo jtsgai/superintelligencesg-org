@@ -38,6 +38,8 @@ const endpoints = [
   { url: 'https://superintelligencesg.com/source-desk.html', type: 'page' },
   { url: 'https://superintelligencesg.com/source-desk-admin.html', type: 'page' },
   { url: 'https://superintelligencesg.com/changelog.html', type: 'page' },
+  { url: 'https://superintelligencesg.com/source-radar.html', type: 'page' },
+  { url: 'https://raw.githubusercontent.com/jtsgai/superintelligencesg-org/main/assets/product/source-radar.json', type: 'radar' },
   { url: 'https://superintelligencesg.org/organizations.html', type: 'page' },
   { url: 'https://superintelligencesg.ai/field-notes/', type: 'page' },
   { url: 'https://data.superintelligencesg.org/directory/api/health', type: 'health' },
@@ -52,6 +54,7 @@ const health = await batch(endpoints, async endpoint => {
   if (endpoint.type === 'page') passed = result.ok && /<title>[^<]*superintelligence/i.test(result.body);
   if (endpoint.type === 'health') passed = result.ok && data?.ok === true && data?.database === 'ok';
   if (endpoint.type === 'organizations') passed = result.ok && Array.isArray(data?.organizations);
+  if (endpoint.type === 'radar') passed = result.ok && data?.version === 1 && Array.isArray(data?.items) && Number.isFinite(Date.parse(data?.checked_at));
   if (endpoint.type === 'updates') passed = result.ok && Array.isArray(data?.updates);
   if (endpoint.type === 'private') passed = result.status === 401;
   return { url: endpoint.url, status: result.status, passed, error: result.error || (result.blocked ? 'automated access blocked' : ''), ...(endpoint.type === 'organizations' && Array.isArray(data?.organizations) ? { count: data.organizations.length } : {}) };
