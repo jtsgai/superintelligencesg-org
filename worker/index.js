@@ -196,6 +196,15 @@ async function submitSourceSuggestion(request, env, origin) {
   return json({ ok: true, status: 'received' }, 201, origin);
 }
 
+async function health(env, origin) {
+  try {
+    await env.DB.prepare('SELECT 1').first();
+    return json({ ok: true, service: 'commons-api', database: 'ok', timestamp: now() }, 200, origin);
+  } catch {
+    return json({ ok: false, service: 'commons-api', database: 'error', timestamp: now() }, 503, origin);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -205,6 +214,7 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status: ORIGINS.has(origin) ? 204 : 403, headers: headers(origin) });
     if (origin && !ORIGINS.has(origin)) return json({ error: 'This origin is not allowed.' }, 403, origin);
     try {
+      if (path === '/api/health' && request.method === 'GET') return health(env, origin);
       if (path === '/api/organizations' && request.method === 'GET') {
         const result = await env.DB.prepare(`${PUBLIC_SELECT} WHERE COALESCE(d.published,1)=1 ORDER BY o.created_at DESC LIMIT 500`).all();
         return json({ organizations: (result.results || []).map(publicRow) }, 200, origin);
