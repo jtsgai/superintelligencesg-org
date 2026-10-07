@@ -1,4 +1,12 @@
 {
   "version": 1,
-  "decisions": []
+  "decisions": [
+    {
+      "id": "official_source_discovery:bf597cc9f2cfc2685996",
+      "revision": "5b74d817902172f4baa7fdc4d0839491a418505c5ddc9943b153929854a44be8",
+      "status": "not_actionable",
+      "at": "2026-10-07T18:31:30.645666+00:00",
+      "note": "Official article shows original publication on 12 November 2019 and modification on 26 September 2026. Do not treat the sitemap modification as a new launch announcement. Retain the source as history."
+    }
+  ]
 }

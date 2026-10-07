@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   collect:
+    outputs:
+      collected: ${{ steps.check.outcome == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -64,3 +66,30 @@ jobs:
             Growth/operations/work-queue.json
           if-no-files-found: error
           retention-days: 7
+
+  publish-radar:
+    needs: collect
+    if: needs.collect.outputs.collected == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - name: Read scoped public radar writer
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: superintelligencesg.org
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+      - name: Read this run's public report
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --name ecosystem-maintenance-state --dir Growth/operations
+      - name: Publish and read back official source links
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node superintelligencesg.org/scripts/publish-source-radar.mjs
