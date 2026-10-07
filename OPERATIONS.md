@@ -31,3 +31,41 @@ The key is intentionally not stored in GitHub, the website, or the iCloud websit
 ## D1 deployment note
 
 The `drizzle/` files in this repository are schema history and maintenance reference. The live Sites runtime uses the existing D1 schema and compatibility initialization; do not replay historical `ALTER TABLE` files against the production database.
+
+## Ongoing ecosystem maintenance
+
+The goal is a source-transparent Singapore AI resource: `.com` Navigator, `.org` Commons and `.ai` Lab. Routine maintenance and evidence-supported editorial updates are authorised. Keep the existing Sites projects and D1 database.
+
+### Daily check — 09:00 Asia/Singapore
+
+Run `node scripts/maintain-ecosystem.mjs` from this `.org` repository. It checks core pages, public API response shapes, the private queue's unauthenticated 401, all external sources cited by existing Lab HTML notes, and a rotating batch of 20 public Navigator links. It saves the latest report and source snapshots under the sibling `Growth/operations/` directory. The first successful source snapshot is a baseline, not proof that claims have been verified.
+
+Read `Growth/operations/latest.json` and `latest.md`. A source change, redirect, short response or bot challenge requires review. Failed requests retain the prior successful snapshot. Changed hashes remain pending until an editor checks the change; after checking a source, update its `watch-state.json` entry to the reviewed observed hash and clear the pending fields. Never publish from a hash comparison alone.
+
+Confirm service failures with a second request before modifying code. Resolve reproducible, small defects in the existing authorised workflow. Keep unrelated edits. For code changes run focused checks; for page changes check the content, internal links and mobile layout. Use current Sites skills and exact pushed commits for deployment. Recheck affected public behaviour after deployment. If a repair fails, revert only that repair where safe, preserve evidence and request needed access.
+
+### Weekly editorial update — Thursday 10:00 Asia/Singapore
+
+Research original public sources from IMDA, MDDI, Smart Nation, AI Singapore, Singapore universities, A*STAR, CSA and AI Verify Foundation. Start with changed and inaccessible sources in the report, then inspect recent official announcements. Record publication dates, source URLs, access method and what is actually new. Search results can locate sources; cached text and blocked requests cannot establish current programme availability. Use an official mirror or browser where appropriate.
+
+Publish a small coherent update only when it improves the existing material: update Signals across relevant sites, refresh one Field Note, link relevant Navigator records, or correct a confirmed public index error. Separate facts and editorial interpretation. Keep original publication dates and record substantive changes in version history. Synchronise article HTML, citation text and PDF. Avoid creating duplicate articles or entries simply to show activity. New public index entries require the same source and duplicate checks as the manual merge flow.
+
+Preserve existing organization records, including Red Fun Planet and JT M&C, and user submissions. Do not mark organization ownership or consent on anyone's behalf. Source Desk requests remain in the review workflow. Recurring X publication from the official Superintelligence SG account is now authorised. After a substantive website update is confirmed live, publish one concise English post linking the updated page. Use a short thread only when needed. If there is no new update in a week, publish one useful source-supported research or resource introduction on Thursday. Keep email and LinkedIn as drafts unless separately authorised.
+
+### Implementation and publication
+
+Authoritative local roots: `/Users/apple/Website Studio/01_In Progress/Superintelligence SG/superintelligencesg.com`, `.org`, `.ai`. Read each site's `.openai/hosting.json` and current source before publishing. The `.org` Sites project owns the existing API/D1; retain its working runtime source. Keep `drizzle/` as local schema history; do not replay historical migrations on the existing D1 or copy them into the working Sites runtime.
+
+Local GitHub source and Sites deployment source are separate. Commit and push the exact required files, save the matching Sites version, deploy, and verify success and affected behaviour. Do not commit `.DS_Store`, `node_modules/`, temporary reports or secrets. Keep known tracked static `dist` files consistent; never indiscriminately stage build output. Preserve current audiences. New direct Cloudflare work uses `superintelligencesg@gmail.com`; do not migrate accounts or data as part of routine maintenance.
+
+After source changes, sync the entire Website Studio three-site source directory to `/Users/apple/Library/Mobile Documents/com~apple~CloudDocs/RFP Team/Jerry个人/Website Studio/01_In Progress/Superintelligence SG/`, excluding `.git/`, `.DS_Store`, `node_modules/`, `dist/` and keys. Check the sync exit code and changed files. Local checks are not proof of a live deployment.
+
+### Records and notices
+
+Save concise dated run records under `Growth/operations/runs/`: findings, verified sources, changes or no-change decision, Git commits, saved versions, deployment results and backup outcome. Keep unresolved items retrievable. Stay quiet when nothing meaningful changes; notify only on a useful published update, a failure, or needed user action. Account login, payment, schema migration, deleting organization data, personal consent and substantial positioning changes require user handling or specific authorisation. These Codex heartbeat schedules run on the user's local host; they are not an independent 24/7 cloud service.
+
+### X publication checks
+
+Use the official `@SuperIntelSG` account only, verifying the active composer identity every time. Never use Red Fun Planet or a personal account. Inspect recent and scheduled posts before sending, preserve the existing scheduled posts, and avoid repeating a topic or link without new substance. Combine same-day changes into one post where possible. Keep the main post under 280 weighted characters, preferably in English for the Singapore audience, and link the live updated page.
+
+Read back the posted text and save the actual permalink, date, topic and source/site link under `Growth/operations/`. If the send outcome is unknown, inspect the profile before retrying. A saved draft, a click or a scheduled task is not evidence that a post was published. Login, account switching requiring credentials, CAPTCHAs or a platform block require user handling; keep the verified draft and notify the user rather than using another account.
