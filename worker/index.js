@@ -9,6 +9,7 @@ const ORIGINS = new Set([
 
 const CATEGORIES = ['Organization', 'Research', 'Applied research', 'Education & research', 'Company', 'Health AI', 'Ecosystem', 'Governance', 'Public capability'];
 const REVIEW_STATUSES = ['received', 'in_review', 'accepted', 'rejected', 'resolved'];
+const NAVIGATOR_CANDIDATE_STATUSES = ['none', 'draft', 'ready'];
 let sourceDeskReviewColumnsReady = false;
 const PUBLIC_SELECT = `SELECT o.id,o.name,o.founder,o.business,o.logo_key,o.created_at,d.website_url,d.location,d.category,d.collaboration,d.collaboration_note,d.contact_url,d.updated_at,d.verification_status,d.verified_domain,d.verified_at FROM organizations o LEFT JOIN organization_details d ON d.organization_id=o.id`;
 
@@ -216,11 +217,18 @@ async function ensureSourceDeskReviewStorage(env) {
     'ALTER TABLE source_desk_submissions ADD COLUMN reviewed_at INTEGER',
     'CREATE TABLE IF NOT EXISTS source_desk_review_events (id TEXT PRIMARY KEY NOT NULL, submission_id TEXT NOT NULL, from_status TEXT NOT NULL, to_status TEXT NOT NULL, review_note TEXT DEFAULT \'\' NOT NULL, public_summary TEXT DEFAULT \'\' NOT NULL, publish_changelog INTEGER DEFAULT 0 NOT NULL, created_at INTEGER NOT NULL)',
     'CREATE TABLE IF NOT EXISTS source_desk_public_updates (id TEXT PRIMARY KEY NOT NULL, submission_id TEXT NOT NULL UNIQUE, request_type TEXT NOT NULL, subject_name TEXT NOT NULL, subject_url TEXT DEFAULT \'\' NOT NULL, source_url TEXT NOT NULL, public_summary TEXT NOT NULL, published_at INTEGER NOT NULL)',
+    'ALTER TABLE source_desk_submissions ADD COLUMN navigator_candidate_status TEXT DEFAULT \'none\' NOT NULL',
+    'ALTER TABLE source_desk_submissions ADD COLUMN navigator_candidate_name TEXT DEFAULT \'\' NOT NULL',
+    'ALTER TABLE source_desk_submissions ADD COLUMN navigator_candidate_founder TEXT DEFAULT \'\' NOT NULL',
+    'ALTER TABLE source_desk_submissions ADD COLUMN navigator_candidate_description TEXT DEFAULT \'\' NOT NULL',
+    'ALTER TABLE source_desk_submissions ADD COLUMN navigator_candidate_kind TEXT DEFAULT \'Organization\' NOT NULL',
+    'ALTER TABLE source_desk_submissions ADD COLUMN navigator_candidate_logo_url TEXT DEFAULT \'\' NOT NULL',
+    'ALTER TABLE source_desk_submissions ADD COLUMN navigator_candidate_updated_at INTEGER',
   ]) {
     try {
       await env.DB.prepare(statement).run();
     } catch (error) {
-      if (!/duplicate column name/i.test(String(error?.message || error))) throw error;
+      if (!/duplicate column name|duplicate column/i.test(String(error?.message || error))) throw error;
     }
   }
   sourceDeskReviewColumnsReady = true;
@@ -233,7 +241,7 @@ async function sourceDeskQueue(request, env, origin) {
   const status = url.searchParams.get('status') || '';
   const limit = Math.min(Math.max(Number(url.searchParams.get('limit') || 50), 1), 100);
   if (status && !REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
-  const select = 'SELECT s.id,s.request_type,s.subject_name,s.subject_url,s.source_url,s.details,s.contact_email,s.status,s.review_note,s.reviewed_at,s.created_at,s.updated_at,COALESCE(p.public_summary,\'\') AS public_summary,p.published_at FROM source_desk_submissions s LEFT JOIN source_desk_public_updates p ON p.submission_id=s.id';
+  const select = 'SELECT s.id,s.request_type,s.subject_name,s.subject_url,s.source_url,s.details,s.contact_email,s.status,s.review_note,s.reviewed_at,s.created_at,s.updated_at,s.navigator_candidate_status,s.navigator_candidate_name,s.navigator_candidate_founder,s.navigator_candidate_description,s.navigator_candidate_kind,s.navigator_candidate_logo_url,s.navigator_candidate_updated_at,COALESCE(p.public_summary,\'\') AS public_summary,p.published_at FROM source_desk_submissions s LEFT JOIN source_desk_public_updates p ON p.submission_id=s.id';
   const result = status
     ? await env.DB.prepare(`${select} WHERE s.status=? ORDER BY s.created_at DESC LIMIT ?`).bind(status, limit).all()
     : await env.DB.prepare(`${select} ORDER BY s.created_at DESC LIMIT ?`).bind(limit).all();
@@ -252,7 +260,7 @@ async function reviewSourceSuggestion(request, env, origin, id) {
   await requireSourceDeskAdmin(request, env);
   await ensureSourceDeskReviewStorage(env);
   if (!/^[a-f0-9-]{36}$/.test(id)) fail('This Source Desk submission is unavailable.', 404);
-  const current = await env.DB.prepare('SELECT id,request_type,subject_name,subject_url,source_url,status FROM source_desk_submissions WHERE id=?').bind(id).first();
+  const current = await env.DB.prepare('SELECT id,request_type,subject_name,subject_url,source_url,status,navigator_candidate_status,navigator_candidate_name,navigator_candidate_founder,navigator_candidate_description,navigator_candidate_kind,navigator_candidate_logo_url FROM source_desk_submissions WHERE id=?').bind(id).first();
   if (!current) fail('This Source Desk submission is unavailable.', 404);
   const published = await env.DB.prepare('SELECT public_summary FROM source_desk_public_updates WHERE submission_id=?').bind(id).first();
   const data = await bodyJSON(request);
@@ -260,13 +268,30 @@ async function reviewSourceSuggestion(request, env, origin, id) {
   if (!REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
   const reviewNote = text(data.review_note, 2000);
   const publicSummary = typeof data.public_summary === 'undefined' ? String(published?.public_summary || '') : text(data.public_summary, 500);
+  const candidate = typeof data.navigator_candidate === 'undefined' ? {
+    status: current.navigator_candidate_status || 'none',
+    name: current.navigator_candidate_name || '',
+    founder: current.navigator_candidate_founder || '',
+    description: current.navigator_candidate_description || '',
+    kind: current.navigator_candidate_kind || 'Organization',
+    logo_url: current.navigator_candidate_logo_url || '',
+  } : data.navigator_candidate || {};
+  const candidateStatus = text(candidate.status, 20) || 'none';
+  if (!NAVIGATOR_CANDIDATE_STATUSES.includes(candidateStatus)) fail('Choose a valid Navigator candidate status.');
+  if (candidateStatus !== 'none' && !['accepted', 'resolved'].includes(status)) fail('Only accepted or resolved reviews can create a Navigator draft.');
+  const candidateName = candidateStatus === 'none' ? '' : text(candidate.name, 160, true);
+  const candidateFounder = candidateStatus === 'none' ? '' : text(candidate.founder, 160);
+  const candidateDescription = candidateStatus === 'none' ? '' : text(candidate.description, 600, true);
+  const candidateKind = candidateStatus === 'none' ? 'Organization' : text(candidate.kind, 50, true);
+  if (candidateStatus !== 'none' && !CATEGORIES.includes(candidateKind)) fail('Choose a valid Navigator candidate category.');
+  const candidateLogoURL = candidateStatus === 'none' ? '' : website(text(candidate.logo_url, 500));
   if (typeof data.publish_changelog !== 'undefined' && typeof data.publish_changelog !== 'boolean') fail('Choose whether to publish this decision.');
   let publishChangelog = typeof data.publish_changelog === 'boolean' ? data.publish_changelog : Boolean(published);
   if (!['accepted', 'resolved'].includes(status)) publishChangelog = false;
   if (publishChangelog && !publicSummary) fail('Add a public summary before publishing this decision.');
   const timestamp = now();
   await env.DB.batch([
-    env.DB.prepare('UPDATE source_desk_submissions SET status=?,review_note=?,reviewed_at=?,updated_at=? WHERE id=?').bind(status, reviewNote, timestamp, timestamp, id),
+    env.DB.prepare('UPDATE source_desk_submissions SET status=?,review_note=?,reviewed_at=?,updated_at=?,navigator_candidate_status=?,navigator_candidate_name=?,navigator_candidate_founder=?,navigator_candidate_description=?,navigator_candidate_kind=?,navigator_candidate_logo_url=?,navigator_candidate_updated_at=? WHERE id=?').bind(status, reviewNote, timestamp, timestamp, candidateStatus, candidateName, candidateFounder, candidateDescription, candidateKind, candidateLogoURL, candidateStatus === 'none' ? null : timestamp, id),
     env.DB.prepare('INSERT INTO source_desk_review_events(id,submission_id,from_status,to_status,review_note,public_summary,publish_changelog,created_at) VALUES(?,?,?,?,?,?,?,?)').bind(crypto.randomUUID(), id, current.status, status, reviewNote, publicSummary, publishChangelog ? 1 : 0, timestamp),
   ]);
   if (publishChangelog) {

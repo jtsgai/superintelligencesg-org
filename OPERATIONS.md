@@ -11,6 +11,10 @@
 
 Requests remain private until the final publish step. Contact emails and private review notes are never sent to the public endpoints.
 
+## Navigator candidate drafts
+
+For an accepted or resolved addition, use the Navigator candidate fields in the same review card. `Save as draft` keeps the proposed record private. `Ready for manual merge` marks it for an editor to add to the curated `organizations.json` index after checking the logo, category, description and source. Saving a candidate never publishes it automatically.
+
 ## Key rotation
 
 Rotate the Sites secret only when there is a reason to do so or after an authorised administrator change. Keep the current key available until the replacement is confirmed.

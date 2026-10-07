@@ -57,6 +57,7 @@ if (token) {
   check(queue.response.status === 200, 'authenticated review queue returns HTTP 200');
   check(Array.isArray(queue.data?.submissions), 'authenticated review queue returns submissions array');
   check(queue.data.submissions.every((item) => 'review_note' in item && 'published_at' in item), 'review queue includes review and publication fields');
+  check(queue.data.submissions.every((item) => 'navigator_candidate_status' in item && 'navigator_candidate_description' in item), 'review queue includes private Navigator candidate fields');
 
   const first = queue.data.submissions[0];
   if (first?.id) {
