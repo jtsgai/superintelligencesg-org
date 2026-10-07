@@ -8,6 +8,7 @@ const ORIGINS = new Set([
 ]);
 
 const CATEGORIES = ['Organization', 'Research', 'Applied research', 'Education & research', 'Company', 'Health AI', 'Ecosystem', 'Governance', 'Public capability'];
+const REVIEW_STATUSES = ['received', 'in_review', 'accepted', 'rejected', 'resolved'];
 const PUBLIC_SELECT = `SELECT o.id,o.name,o.founder,o.business,o.logo_key,o.created_at,d.website_url,d.location,d.category,d.collaboration,d.collaboration_note,d.contact_url,d.updated_at,d.verification_status,d.verified_domain,d.verified_at FROM organizations o LEFT JOIN organization_details d ON d.organization_id=o.id`;
 
 function headers(origin, type = 'application/json; charset=utf-8') {
@@ -19,7 +20,7 @@ function headers(origin, type = 'application/json; charset=utf-8') {
   });
   if (ORIGINS.has(origin)) {
     result.set('Access-Control-Allow-Origin', origin);
-    result.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    result.set('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
     result.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     result.set('Vary', 'Origin');
   }
@@ -196,6 +197,41 @@ async function submitSourceSuggestion(request, env, origin) {
   return json({ ok: true, status: 'received' }, 201, origin);
 }
 
+async function requireSourceDeskAdmin(request, env) {
+  await limited(request, env, 'source-desk-admin', 30);
+  const expected = String(env.SOURCE_DESK_ADMIN_TOKEN || '').trim();
+  const authorization = request.headers.get('Authorization') || '';
+  const provided = authorization.startsWith('Bearer ') ? authorization.slice(7) : '';
+  if (!expected || provided.length !== expected.length) fail('Source Desk admin authorization is required.', 401);
+  let difference = 0;
+  for (let index = 0; index < expected.length; index += 1) difference |= provided.charCodeAt(index) ^ expected.charCodeAt(index);
+  if (difference !== 0) fail('Source Desk admin authorization is required.', 401);
+}
+
+async function sourceDeskQueue(request, env, origin) {
+  await requireSourceDeskAdmin(request, env);
+  const url = new URL(request.url);
+  const status = url.searchParams.get('status') || '';
+  const limit = Math.min(Math.max(Number(url.searchParams.get('limit') || 50), 1), 100);
+  if (status && !REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
+  const result = status
+    ? await env.DB.prepare('SELECT id,request_type,subject_name,subject_url,source_url,details,contact_email,status,review_note,reviewed_at,created_at,updated_at FROM source_desk_submissions WHERE status=? ORDER BY created_at DESC LIMIT ?').bind(status, limit).all()
+    : await env.DB.prepare('SELECT id,request_type,subject_name,subject_url,source_url,details,contact_email,status,review_note,reviewed_at,created_at,updated_at FROM source_desk_submissions ORDER BY created_at DESC LIMIT ?').bind(limit).all();
+  return json({ submissions: result.results || [] }, 200, origin);
+}
+
+async function reviewSourceSuggestion(request, env, origin, id) {
+  await requireSourceDeskAdmin(request, env);
+  const data = await bodyJSON(request);
+  const status = text(data.status, 20, true);
+  if (!REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
+  const reviewNote = text(data.review_note, 2000);
+  const timestamp = now();
+  const result = await env.DB.prepare('UPDATE source_desk_submissions SET status=?,review_note=?,reviewed_at=?,updated_at=? WHERE id=?').bind(status, reviewNote, timestamp, timestamp, id).run();
+  if (Number(result.meta?.changes || 0) !== 1) fail('This Source Desk submission is unavailable.', 404);
+  return json({ ok: true, id, status, review_note: reviewNote, reviewed_at: timestamp }, 200, origin);
+}
+
 async function health(env, origin) {
   try {
     await env.DB.prepare('SELECT 1').first();
@@ -225,6 +261,8 @@ export default {
         if (!row) fail('This shortlist is unavailable.', 404);
         return json({ ids: JSON.parse(row.entry_ids), created_at: row.created_at }, 200, origin);
       }
+      if (path === '/api/source-suggestions' && request.method === 'GET') return await sourceDeskQueue(request, env, origin);
+      if (path.startsWith('/api/source-suggestions/') && request.method === 'PATCH') return await reviewSourceSuggestion(request, env, origin, path.split('/').pop());
       if (request.method !== 'POST') return json({ error: 'Not found' }, 404, origin);
       if (!ORIGINS.has(origin)) fail('Open this form from a Superintelligence SG website.', 403);
       if (path === '/api/source-suggestions') return submitSourceSuggestion(request, env, origin);
