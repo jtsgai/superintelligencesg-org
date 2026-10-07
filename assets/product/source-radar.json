@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-10-07T18:33:48.781Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37667753182",
+  "checked_at": "2026-10-07T18:45:09.985Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37669202783",
   "notice": "Automatically discovered official source links. Discovery is not editorial verification; page modification is not publication.",
   "items": [
     {
@@ -38,6 +38,24 @@
       "published_at": null,
       "source_updated_at": "2026-10-01T02:59:22.532Z",
       "discovered_at": "2026-10-07T18:33:48.781Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "Opening Address by SMS Tan Kiat How at UOB FinLab AI Ready Changemakers Summit | Ministry of Digital Development and…",
+      "url": "https://www.mddi.gov.sg/newsroom/opening-address-by-sms-tan-kiat-how-at-uob-finlab-ai-ready-changemakers-summit-/",
+      "published_at": null,
+      "source_updated_at": "2026-10-01T02:57:31.907Z",
+      "discovered_at": "2026-10-07T18:45:09.985Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "Address by SMS Tan Kiat How at NVIDIA AI Day Singapore | Ministry of Digital Development and Information",
+      "url": "https://www.mddi.gov.sg/newsroom/address-by-sms-tan-kiat-how-at-nvidia-ai-day-singapore/",
+      "published_at": null,
+      "source_updated_at": "2026-09-23T08:27:39.340Z",
+      "discovered_at": "2026-10-07T18:45:09.985Z",
       "status": "automatically_discovered"
     }
   ]
