@@ -1,0 +1,9 @@
+{
+  "name": "superintelligencesg-commons-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bash scripts/build.sh",
+    "test": "node scripts/validate-worker.mjs"
+  }
+}
