@@ -209,11 +209,13 @@ async function requireSourceDeskAdmin(request, env) {
   if (difference !== 0) fail('Source Desk admin authorization is required.', 401);
 }
 
-async function ensureSourceDeskReviewColumns(env) {
+async function ensureSourceDeskReviewStorage(env) {
   if (sourceDeskReviewColumnsReady) return;
   for (const statement of [
     'ALTER TABLE source_desk_submissions ADD COLUMN review_note TEXT DEFAULT \'\' NOT NULL',
     'ALTER TABLE source_desk_submissions ADD COLUMN reviewed_at INTEGER',
+    'CREATE TABLE IF NOT EXISTS source_desk_review_events (id TEXT PRIMARY KEY NOT NULL, submission_id TEXT NOT NULL, from_status TEXT NOT NULL, to_status TEXT NOT NULL, review_note TEXT DEFAULT \'\' NOT NULL, public_summary TEXT DEFAULT \'\' NOT NULL, publish_changelog INTEGER DEFAULT 0 NOT NULL, created_at INTEGER NOT NULL)',
+    'CREATE TABLE IF NOT EXISTS source_desk_public_updates (id TEXT PRIMARY KEY NOT NULL, submission_id TEXT NOT NULL UNIQUE, request_type TEXT NOT NULL, subject_name TEXT NOT NULL, subject_url TEXT DEFAULT \'\' NOT NULL, source_url TEXT NOT NULL, public_summary TEXT NOT NULL, published_at INTEGER NOT NULL)',
   ]) {
     try {
       await env.DB.prepare(statement).run();
@@ -226,28 +228,59 @@ async function ensureSourceDeskReviewColumns(env) {
 
 async function sourceDeskQueue(request, env, origin) {
   await requireSourceDeskAdmin(request, env);
-  await ensureSourceDeskReviewColumns(env);
+  await ensureSourceDeskReviewStorage(env);
   const url = new URL(request.url);
   const status = url.searchParams.get('status') || '';
   const limit = Math.min(Math.max(Number(url.searchParams.get('limit') || 50), 1), 100);
   if (status && !REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
+  const select = 'SELECT s.id,s.request_type,s.subject_name,s.subject_url,s.source_url,s.details,s.contact_email,s.status,s.review_note,s.reviewed_at,s.created_at,s.updated_at,COALESCE(p.public_summary,\'\') AS public_summary,p.published_at FROM source_desk_submissions s LEFT JOIN source_desk_public_updates p ON p.submission_id=s.id';
   const result = status
-    ? await env.DB.prepare('SELECT id,request_type,subject_name,subject_url,source_url,details,contact_email,status,review_note,reviewed_at,created_at,updated_at FROM source_desk_submissions WHERE status=? ORDER BY created_at DESC LIMIT ?').bind(status, limit).all()
-    : await env.DB.prepare('SELECT id,request_type,subject_name,subject_url,source_url,details,contact_email,status,review_note,reviewed_at,created_at,updated_at FROM source_desk_submissions ORDER BY created_at DESC LIMIT ?').bind(limit).all();
+    ? await env.DB.prepare(`${select} WHERE s.status=? ORDER BY s.created_at DESC LIMIT ?`).bind(status, limit).all()
+    : await env.DB.prepare(`${select} ORDER BY s.created_at DESC LIMIT ?`).bind(limit).all();
   return json({ submissions: result.results || [] }, 200, origin);
+}
+
+async function sourceDeskEvents(request, env, origin, id) {
+  await requireSourceDeskAdmin(request, env);
+  await ensureSourceDeskReviewStorage(env);
+  if (!/^[a-f0-9-]{36}$/.test(id)) fail('This Source Desk submission is unavailable.', 404);
+  const result = await env.DB.prepare('SELECT id,submission_id,from_status,to_status,review_note,public_summary,publish_changelog,created_at FROM source_desk_review_events WHERE submission_id=? ORDER BY created_at DESC LIMIT 100').bind(id).all();
+  return json({ events: result.results || [] }, 200, origin);
 }
 
 async function reviewSourceSuggestion(request, env, origin, id) {
   await requireSourceDeskAdmin(request, env);
-  await ensureSourceDeskReviewColumns(env);
+  await ensureSourceDeskReviewStorage(env);
+  if (!/^[a-f0-9-]{36}$/.test(id)) fail('This Source Desk submission is unavailable.', 404);
+  const current = await env.DB.prepare('SELECT id,request_type,subject_name,subject_url,source_url,status FROM source_desk_submissions WHERE id=?').bind(id).first();
+  if (!current) fail('This Source Desk submission is unavailable.', 404);
+  const published = await env.DB.prepare('SELECT public_summary FROM source_desk_public_updates WHERE submission_id=?').bind(id).first();
   const data = await bodyJSON(request);
   const status = text(data.status, 20, true);
   if (!REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
   const reviewNote = text(data.review_note, 2000);
+  const publicSummary = typeof data.public_summary === 'undefined' ? String(published?.public_summary || '') : text(data.public_summary, 500);
+  if (typeof data.publish_changelog !== 'undefined' && typeof data.publish_changelog !== 'boolean') fail('Choose whether to publish this decision.');
+  let publishChangelog = typeof data.publish_changelog === 'boolean' ? data.publish_changelog : Boolean(published);
+  if (!['accepted', 'resolved'].includes(status)) publishChangelog = false;
+  if (publishChangelog && !publicSummary) fail('Add a public summary before publishing this decision.');
   const timestamp = now();
-  const result = await env.DB.prepare('UPDATE source_desk_submissions SET status=?,review_note=?,reviewed_at=?,updated_at=? WHERE id=?').bind(status, reviewNote, timestamp, timestamp, id).run();
-  if (Number(result.meta?.changes || 0) !== 1) fail('This Source Desk submission is unavailable.', 404);
-  return json({ ok: true, id, status, review_note: reviewNote, reviewed_at: timestamp }, 200, origin);
+  await env.DB.batch([
+    env.DB.prepare('UPDATE source_desk_submissions SET status=?,review_note=?,reviewed_at=?,updated_at=? WHERE id=?').bind(status, reviewNote, timestamp, timestamp, id),
+    env.DB.prepare('INSERT INTO source_desk_review_events(id,submission_id,from_status,to_status,review_note,public_summary,publish_changelog,created_at) VALUES(?,?,?,?,?,?,?,?)').bind(crypto.randomUUID(), id, current.status, status, reviewNote, publicSummary, publishChangelog ? 1 : 0, timestamp),
+  ]);
+  if (publishChangelog) {
+    await env.DB.prepare('INSERT INTO source_desk_public_updates(id,submission_id,request_type,subject_name,subject_url,source_url,public_summary,published_at) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(submission_id) DO UPDATE SET request_type=excluded.request_type,subject_name=excluded.subject_name,subject_url=excluded.subject_url,source_url=excluded.source_url,public_summary=excluded.public_summary,published_at=excluded.published_at').bind(crypto.randomUUID(), id, current.request_type, current.subject_name, current.subject_url, current.source_url, publicSummary, timestamp).run();
+  } else if (published) {
+    await env.DB.prepare('DELETE FROM source_desk_public_updates WHERE submission_id=?').bind(id).run();
+  }
+  return json({ ok: true, id, status, review_note: reviewNote, public_summary: publicSummary, published_at: publishChangelog ? timestamp : null, reviewed_at: timestamp }, 200, origin);
+}
+
+async function sourceUpdates(env, origin) {
+  await ensureSourceDeskReviewStorage(env);
+  const result = await env.DB.prepare('SELECT id,submission_id,request_type,subject_name,subject_url,source_url,public_summary,published_at FROM source_desk_public_updates ORDER BY published_at DESC LIMIT 30').all();
+  return json({ updates: result.results || [] }, 200, origin);
 }
 
 async function health(env, origin) {
@@ -269,6 +302,7 @@ export default {
     if (origin && !ORIGINS.has(origin)) return json({ error: 'This origin is not allowed.' }, 403, origin);
     try {
       if (path === '/api/health' && request.method === 'GET') return health(env, origin);
+      if (path === '/api/source-updates' && request.method === 'GET') return await sourceUpdates(env, origin);
       if (path === '/api/organizations' && request.method === 'GET') {
         const result = await env.DB.prepare(`${PUBLIC_SELECT} WHERE COALESCE(d.published,1)=1 ORDER BY o.created_at DESC LIMIT 500`).all();
         return json({ organizations: (result.results || []).map(publicRow) }, 200, origin);
@@ -280,6 +314,7 @@ export default {
         return json({ ids: JSON.parse(row.entry_ids), created_at: row.created_at }, 200, origin);
       }
       if (path === '/api/source-suggestions' && request.method === 'GET') return await sourceDeskQueue(request, env, origin);
+      if (path.startsWith('/api/source-suggestions/') && path.endsWith('/events') && request.method === 'GET') return await sourceDeskEvents(request, env, origin, path.split('/').slice(-2)[0]);
       if (path.startsWith('/api/source-suggestions/') && request.method === 'PATCH') return await reviewSourceSuggestion(request, env, origin, path.split('/').pop());
       if (request.method !== 'POST') return json({ error: 'Not found' }, 404, origin);
       if (!ORIGINS.has(origin)) fail('Open this form from a Superintelligence SG website.', 403);
