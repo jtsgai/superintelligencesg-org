@@ -299,7 +299,7 @@ async function reviewSourceSuggestion(request, env, origin, id) {
   } else if (published) {
     await env.DB.prepare('DELETE FROM source_desk_public_updates WHERE submission_id=?').bind(id).run();
   }
-  return json({ ok: true, id, status, review_note: reviewNote, public_summary: publicSummary, published_at: publishChangelog ? timestamp : null, reviewed_at: timestamp }, 200, origin);
+  return json({ ok: true, id, status, review_note: reviewNote, public_summary: publicSummary, navigator_candidate_status: candidateStatus, published_at: publishChangelog ? timestamp : null, reviewed_at: timestamp }, 200, origin);
 }
 
 async function sourceUpdates(env, origin) {

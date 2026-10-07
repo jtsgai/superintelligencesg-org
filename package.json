@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "bash scripts/build.sh",
-    "test": "node scripts/validate-worker.mjs",
+    "test": "node scripts/validate-worker.mjs && node scripts/validate-candidate-workflow.mjs",
     "check:production": "node scripts/check-production.mjs"
   }
 }
