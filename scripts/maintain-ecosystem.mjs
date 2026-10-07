@@ -73,7 +73,7 @@ const sources = await batch([...sourceURLs].sort(), async url => {
   if (content.length < 120) return { url, status: result.status, outcome: 'review_needed', reason: 'Too little text to establish a trustworthy source snapshot.' };
   const hash = createHash('sha256').update(content).digest('hex');
   const prior = previous.sources[url];
-  return { url, status: result.status, final_url: result.final_url, title: result.body.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim() || '', hash, outcome: prior?.hash ? (hash === prior.hash ? 'unchanged' : 'changed_review_required') : 'baseline', checked_at: checkedAt };
+  return { url, status: result.status, final_url: result.final_url, title: result.body.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim() || '', excerpt: content.slice(0, 240), hash, outcome: prior?.hash ? (hash === prior.hash ? 'unchanged' : 'changed_review_required') : 'baseline', checked_at: checkedAt };
 });
 const organizations = JSON.parse(await readFile(join(root, 'superintelligencesg.com', 'assets', 'product', 'organizations.json'), 'utf8'));
 const cursor = (previous.reference_cursor || 0) % Math.max(organizations.length, 1);
@@ -94,7 +94,7 @@ for (const item of sources) if (item.hash) {
     ? { ...prior, observed_hash: item.hash, checked_at: checkedAt, review_required: true }
     : { hash: item.hash, checked_at: checkedAt };
 }
-const report = { checked_at: checkedAt, health, sources, references, pending_references: Object.values(pendingReferences), summary: {
+const report = { checked_at: checkedAt, execution: process.env.GITHUB_ACTIONS === 'true' ? { platform: 'github_actions', run_id: process.env.GITHUB_RUN_ID, run_url: 'https://github.com/' + process.env.GITHUB_REPOSITORY + '/actions/runs/' + process.env.GITHUB_RUN_ID } : { platform: 'local' }, health, sources, references, pending_references: Object.values(pendingReferences), summary: {
   health_passed: health.filter(item => item.passed).length,
   health_total: health.length,
   source_changes: sources.filter(item => item.outcome === 'changed_review_required').length,

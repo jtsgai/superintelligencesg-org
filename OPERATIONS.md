@@ -36,11 +36,21 @@ The `drizzle/` files in this repository are schema history and maintenance refer
 
 The goal is a source-transparent Singapore AI resource: `.com` Navigator, `.org` Commons and `.ai` Lab. Routine maintenance and evidence-supported editorial updates are authorised. Keep the existing Sites projects and D1 database.
 
-### Daily check — 10:00 Asia/Singapore
+### Cloud collection — daily 10:00, fallback 11:00 Asia/Singapore
+
+GitHub Actions in `jtsgai/superintelligencesg-org` runs `.github/workflows/ecosystem-maintenance.yml` on a hosted Ubuntu runner, independently of the local computer. It reads the three public source repositories, checks the existing live pages/API and collects titles, short excerpts and hashes of cited public sources. It checks 20 Navigator links per run. It has only repository-content and Actions read permissions; no admin key, connected user apps, database writes, deployment credentials or X posting credentials are used.
+
+Before a run, `scripts/prepare-cloud-run.mjs` downloads the newest available `ecosystem-maintenance-state` artifact from this workflow. It restores `watch-state.json`, the reference cursor and pending issues. Scheduled invocations skip collection if the restored report already passed all core checks after 10:00 on the current Singapore date. Thus 11:00 is a fallback when 10:00 failed or did not run. Manual dispatch deliberately runs another diagnostic check.
+
+Each real run keeps `latest.json`, `latest.md` and `watch-state.json` as an artifact for seven days, and puts the readable report in the run summary. These artifacts contain only public monitoring data. Core-check failures fail the run; external redirects, blocked requests and incomplete source text remain review items. The first source snapshot is an unverified baseline. GitHub scheduling can be delayed and can disable schedules after 60 days without repository activity; monitor the workflow status. There is no new Cloudflare account or D1 migration in this step.
+
+Local maintenance should download the newest cloud artifact to a temporary directory, confirm `execution.platform=github_actions`, its timestamp and same-day applicability, then copy the verified report/state to `Growth/operations/` for review. If the 10:00 cloud run is still pending, the local 10:00 check waits for the 11:00 fallback instead of immediately repeating collection. If no usable current-day cloud report exists at 11:00, use the existing local collector. Code fixes, editorial verification, publication, X drafting/sending and iCloud synchronization remain local until their cloud write access is explicitly implemented and verified.
+
+### Daily local review — 10:00 Asia/Singapore
 
 At 11:00, run a fallback check only if that Singapore date’s daily maintenance did not run or remains incomplete. Read `Growth/operations/daily-run-state.json` and the report before proceeding; record running/completed/failed state and the report path. If the daily run is already complete, end quietly without another check or post. Resume incomplete steps and verify X history before any retry. If both times are missed while the computer or app is unavailable, catch-up is not guaranteed.
 
-Run `node scripts/maintain-ecosystem.mjs` from this `.org` repository. It checks core pages, public API response shapes, the private queue's unauthenticated 401, all external sources cited by existing Lab HTML notes, and a rotating batch of 20 public Navigator links. It saves the latest report and source snapshots under the sibling `Growth/operations/` directory. The first successful source snapshot is a baseline, not proof that claims have been verified.
+For a local fallback, run `node scripts/maintain-ecosystem.mjs` from this `.org` repository. It checks core pages, public API response shapes, the private queue's unauthenticated 401, all external sources cited by existing Lab HTML notes, and a rotating batch of 20 public Navigator links. It saves the latest report and source snapshots under the sibling `Growth/operations/` directory. The first successful source snapshot is a baseline, not proof that claims have been verified.
 
 Read `Growth/operations/latest.json` and `latest.md`. A source change, redirect, short response or bot challenge requires review. Failed requests retain the prior successful snapshot. Changed hashes remain pending until an editor checks the change; after checking a source, update its `watch-state.json` entry to the reviewed observed hash and clear the pending fields. Never publish from a hash comparison alone.
 
@@ -64,7 +74,7 @@ After source changes, sync the entire Website Studio three-site source directory
 
 ### Records and notices
 
-Save concise dated run records under `Growth/operations/runs/`: findings, verified sources, changes or no-change decision, Git commits, saved versions, deployment results and backup outcome. Keep unresolved items retrievable. Stay quiet when nothing meaningful changes; notify only on a useful published update, a failure, or needed user action. Account login, payment, schema migration, deleting organization data, personal consent and substantial positioning changes require user handling or specific authorisation. These Codex heartbeat schedules run on the user's local host; they are not an independent 24/7 cloud service.
+Save concise dated run records under `Growth/operations/runs/`: findings, verified sources, changes or no-change decision, Git commits, saved versions, deployment results and backup outcome. Keep unresolved items retrievable. Stay quiet when nothing meaningful changes; notify only on a useful published update, a failure, or needed user action. Account login, payment, schema migration, deleting organization data, personal consent and substantial positioning changes require user handling or specific authorisation. The Codex heartbeat reviews run on the user's local host. The GitHub collection workflow runs in the cloud; it does not supply unattended website editing or X publishing.
 
 ### X publication checks
 
