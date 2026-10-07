@@ -59,6 +59,12 @@ if (token) {
   check(queue.data.submissions.every((item) => 'review_note' in item && 'published_at' in item), 'review queue includes review and publication fields');
   check(queue.data.submissions.every((item) => 'navigator_candidate_status' in item && 'navigator_candidate_description' in item), 'review queue includes private Navigator candidate fields');
 
+  const candidateFiltered = await request(`${apiOrigin}/directory/api/source-suggestions?candidate_status=none`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  check(candidateFiltered.response.status === 200, 'candidate status filter returns HTTP 200');
+  check(candidateFiltered.data?.submissions?.every((item) => item.navigator_candidate_status === 'none'), 'candidate status filter returns only matching submissions');
+
   const first = queue.data.submissions[0];
   if (first?.id) {
     const events = await request(`${apiOrigin}/directory/api/source-suggestions/${encodeURIComponent(first.id)}/events`, {

@@ -239,12 +239,17 @@ async function sourceDeskQueue(request, env, origin) {
   await ensureSourceDeskReviewStorage(env);
   const url = new URL(request.url);
   const status = url.searchParams.get('status') || '';
+  const candidateStatus = url.searchParams.get('candidate_status') || '';
   const limit = Math.min(Math.max(Number(url.searchParams.get('limit') || 50), 1), 100);
   if (status && !REVIEW_STATUSES.includes(status)) fail('Choose a valid Source Desk status.');
+  if (candidateStatus && !NAVIGATOR_CANDIDATE_STATUSES.includes(candidateStatus)) fail('Choose a valid Navigator candidate status.');
   const select = 'SELECT s.id,s.request_type,s.subject_name,s.subject_url,s.source_url,s.details,s.contact_email,s.status,s.review_note,s.reviewed_at,s.created_at,s.updated_at,s.navigator_candidate_status,s.navigator_candidate_name,s.navigator_candidate_founder,s.navigator_candidate_description,s.navigator_candidate_kind,s.navigator_candidate_logo_url,s.navigator_candidate_updated_at,COALESCE(p.public_summary,\'\') AS public_summary,p.published_at FROM source_desk_submissions s LEFT JOIN source_desk_public_updates p ON p.submission_id=s.id';
-  const result = status
-    ? await env.DB.prepare(`${select} WHERE s.status=? ORDER BY s.created_at DESC LIMIT ?`).bind(status, limit).all()
-    : await env.DB.prepare(`${select} ORDER BY s.created_at DESC LIMIT ?`).bind(limit).all();
+  const filters = [];
+  const values = [];
+  if (status) { filters.push('s.status=?'); values.push(status); }
+  if (candidateStatus) { filters.push('s.navigator_candidate_status=?'); values.push(candidateStatus); }
+  const suffix = `${filters.length ? ` WHERE ${filters.join(' AND ')}` : ''} ORDER BY s.created_at DESC LIMIT ?`;
+  const result = await env.DB.prepare(select + suffix).bind(...values, limit).all();
   return json({ submissions: result.results || [] }, 200, origin);
 }
 
