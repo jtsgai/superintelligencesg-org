@@ -27,6 +27,10 @@ const directory = await request(`${apiOrigin}/directory/api/organizations`);
 check(directory.response.status === 200, 'directory API returns HTTP 200');
 check(Array.isArray(directory.data?.organizations), 'directory API returns organizations array');
 
+const health = await request(`${apiOrigin}/directory/api/health`);
+check(health.response.status === 200, 'Commons API health check returns HTTP 200');
+check(health.data?.ok === true && health.data?.database === 'ok', 'Commons API reports a healthy database');
+
 const updates = await request(`${apiOrigin}/directory/api/source-updates`);
 check(updates.response.status === 200, 'public Source Desk updates return HTTP 200');
 check(Array.isArray(updates.data?.updates), 'public Source Desk updates return updates array');
