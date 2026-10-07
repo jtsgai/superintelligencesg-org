@@ -36,7 +36,9 @@ The `drizzle/` files in this repository are schema history and maintenance refer
 
 The goal is a source-transparent Singapore AI resource: `.com` Navigator, `.org` Commons and `.ai` Lab. Routine maintenance and evidence-supported editorial updates are authorised. Keep the existing Sites projects and D1 database.
 
-### Daily check — 09:00 Asia/Singapore
+### Daily check — 10:00 Asia/Singapore
+
+At 11:00, run a fallback check only if that Singapore date’s daily maintenance did not run or remains incomplete. Read `Growth/operations/daily-run-state.json` and the report before proceeding; record running/completed/failed state and the report path. If the daily run is already complete, end quietly without another check or post. Resume incomplete steps and verify X history before any retry. If both times are missed while the computer or app is unavailable, catch-up is not guaranteed.
 
 Run `node scripts/maintain-ecosystem.mjs` from this `.org` repository. It checks core pages, public API response shapes, the private queue's unauthenticated 401, all external sources cited by existing Lab HTML notes, and a rotating batch of 20 public Navigator links. It saves the latest report and source snapshots under the sibling `Growth/operations/` directory. The first successful source snapshot is a baseline, not proof that claims have been verified.
 
