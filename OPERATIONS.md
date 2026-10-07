@@ -27,3 +27,7 @@ Rotate the Sites secret only when there is a reason to do so or after an authori
 6. Retire the old key only after the authenticated queue check succeeds.
 
 The key is intentionally not stored in GitHub, the website, or the iCloud website backup.
+
+## D1 deployment note
+
+The `drizzle/` files in this repository are schema history and maintenance reference. The live Sites runtime uses the existing D1 schema and compatibility initialization; do not replay historical `ALTER TABLE` files against the production database.
