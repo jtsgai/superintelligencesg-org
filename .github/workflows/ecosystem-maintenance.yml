@@ -61,5 +61,6 @@ jobs:
             Growth/operations/latest.json
             Growth/operations/latest.md
             Growth/operations/watch-state.json
+            Growth/operations/work-queue.json
           if-no-files-found: error
           retention-days: 7

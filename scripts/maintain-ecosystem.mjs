@@ -2,6 +2,8 @@ import { readFile, readdir, mkdir, writeFile, rename } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { discoverOfficialSources } from './discover-official-sources.mjs';
+import { buildWorkQueue } from './build-work-queue.mjs';
 
 const siteRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const root = dirname(siteRoot);
@@ -87,14 +89,15 @@ for (const item of references) {
   if (item.outcome === 'reachable') delete pendingReferences[item.id];
   else pendingReferences[item.id] = { ...item, first_seen: pendingReferences[item.id]?.first_seen || checkedAt, last_checked: checkedAt };
 }
-const nextState = { checked_at: checkedAt, sources: { ...previous.sources }, pending_references: pendingReferences, reference_cursor: (cursor + selected.length) % Math.max(organizations.length, 1) };
+const discovery = await discoverOfficialSources({ previous: previous.discovery, checkedAt, fetchPage, batch, knownURLs: sourceURLs });
+const nextState = { discovery: discovery.state, checked_at: checkedAt, sources: { ...previous.sources }, pending_references: pendingReferences, reference_cursor: (cursor + selected.length) % Math.max(organizations.length, 1) };
 for (const item of sources) if (item.hash) {
   const prior = previous.sources[item.url];
   nextState.sources[item.url] = item.outcome === 'changed_review_required'
     ? { ...prior, observed_hash: item.hash, checked_at: checkedAt, review_required: true }
     : { hash: item.hash, checked_at: checkedAt };
 }
-const report = { checked_at: checkedAt, execution: process.env.GITHUB_ACTIONS === 'true' ? { platform: 'github_actions', run_id: process.env.GITHUB_RUN_ID, run_url: 'https://github.com/' + process.env.GITHUB_REPOSITORY + '/actions/runs/' + process.env.GITHUB_RUN_ID } : { platform: 'local' }, health, sources, references, pending_references: Object.values(pendingReferences), summary: {
+const report = { checked_at: checkedAt, execution: process.env.GITHUB_ACTIONS === 'true' ? { platform: 'github_actions', run_id: process.env.GITHUB_RUN_ID, run_url: 'https://github.com/' + process.env.GITHUB_REPOSITORY + '/actions/runs/' + process.env.GITHUB_RUN_ID } : { platform: 'local' }, health, sources, references, discovery: { providers: discovery.providers, items: discovery.items }, pending_references: Object.values(pendingReferences), summary: {
   health_passed: health.filter(item => item.passed).length,
   health_total: health.length,
   source_changes: sources.filter(item => item.outcome === 'changed_review_required').length,
@@ -104,16 +107,32 @@ const report = { checked_at: checkedAt, execution: process.env.GITHUB_ACTIONS ==
   references_checked: references.length,
   reference_issues: references.filter(item => item.outcome !== 'reachable').length,
   outstanding_reference_issues: Object.keys(pendingReferences).length,
+  discovery_new_items: discovery.new_items,
+  discovery_total: discovery.items.length,
+  discovery_access_issues: discovery.providers.filter(item => item.outcome !== 'ok').length,
 } };
+let previousQueue = {};
+try { previousQueue = JSON.parse(await readFile(join(reportRoot, 'work-queue.json'), 'utf8')); }
+catch (error) { if (error.code !== 'ENOENT') throw error; }
+const ledger = JSON.parse(await readFile(join(siteRoot, 'operations', 'review-decisions.json'), 'utf8'));
+if (!Array.isArray(ledger.decisions)) throw new Error('Invalid review decisions ledger.');
+const workQueue = buildWorkQueue(report, previousQueue, ledger.decisions);
+report.summary.queue_pending = workQueue.pending;
+report.summary.queue_closed = workQueue.closed;
 async function saveJSON(path, value) { await writeFile(path + '.tmp', JSON.stringify(value, null, 2) + '\n'); await rename(path + '.tmp', path); }
 await mkdir(join(reportRoot, 'runs'), { recursive: true });
 await saveJSON(join(reportRoot, 'runs', checkedAt.replace(/[.:]/g, '-') + '.json'), report);
 await saveJSON(join(reportRoot, 'latest.json'), report);
 await saveJSON(statePath, nextState);
+await saveJSON(join(reportRoot, 'work-queue.json'), workQueue);
 const lines = [ '# Superintelligence SG maintenance', '', `Checked: ${checkedAt}`, '', `Website/API checks: ${report.summary.health_passed}/${report.summary.health_total} passed.`, `Sources: ${report.summary.source_changes} changed, ${report.summary.source_baselines} baselines, ${report.summary.source_access_issues} access issues.`, `Navigator: ${references.length} of ${organizations.length} references checked; ${report.summary.reference_issues} need review.`, '', '## Items to review', '' ];
 for (const item of health.filter(item => !item.passed)) lines.push(`- Website/API failed: ${item.url} (${item.status ?? item.error})`);
 for (const item of sources.filter(item => !['unchanged', 'baseline'].includes(item.outcome))) lines.push(`- Source ${item.outcome}: ${item.url}`);
 for (const item of Object.values(pendingReferences)) lines.push(`- Reference ${item.outcome}: ${item.name} — ${item.url}`);
+lines.push('', '## Official source discovery', '', `${discovery.new_items} newly discovered pages; ${discovery.items.length} retained candidates. Sitemap modification dates are not publication dates.`, '');
+for (const item of discovery.items) lines.push(`- ${item.provider}: ${item.title || item.url} — ${item.url} (published: ${item.published_at || 'unknown'}; ${item.freshness || item.outcome})`);
+lines.push('', '## Autonomous work queue', '', `${workQueue.pending} pending; ${workQueue.closed} have matching review decisions.`, '');
+for (const item of workQueue.items.filter(item => item.status === 'pending')) lines.push(`- Priority ${item.priority}: ${item.type} — ${item.evidence.url}`);
 lines.push('', 'A changed snapshot, redirect or blocked request needs editorial review. This run does not publish content or change organization records.', '');
 await writeFile(join(reportRoot, 'latest.md'), lines.join('\n'));
 console.log(JSON.stringify({ report: join(reportRoot, 'latest.md'), ...report.summary }, null, 2));

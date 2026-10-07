@@ -40,7 +40,7 @@ const singapore = date => {
 };
 const now = singapore(new Date());
 const previous = report ? singapore(new Date(report.checked_at)) : null;
-const alreadyCompleted = previous?.day === now.day && previous.hour >= 10 && report.health?.length > 0 && report.health.every(item => item.passed === true);
+const alreadyCompleted = previous?.day === now.day && previous.hour >= 10 && report.health?.length > 0 && report.health.every(item => item.passed === true) && report.discovery?.providers?.length > 0 && report.discovery.providers.every(item => item.outcome === 'ok');
 const skip = process.env.GITHUB_EVENT_NAME === 'schedule' && alreadyCompleted;
 await appendFile(process.env.GITHUB_OUTPUT, 'skip_daily=' + skip + '\n');
 if (skip) {
