@@ -19,21 +19,26 @@ const eligible = [...new Map([...discovered, ...cited].map(item => [item.url, it
   .sort((a, b) => (b.source_updated_at || '').localeCompare(a.source_updated_at || '') || a.url.localeCompare(b.url));
 
 // Keep the public radar useful as an ecosystem view: rotate through each
-// official provider before filling any remaining slots by recency.
+// official provider, with a two-item cap per provider for each publication.
 const providerOrder = ['MDDI', 'IMDA', 'AI Singapore', 'Smart Nation'];
+const providerCap = 2;
 const groups = new Map(providerOrder.map(provider => [provider, []]));
 for (const item of eligible) groups.get(item.provider)?.push(item);
 const selected = [];
-for (let round = 0; round < 3 && selected.length < 12; round += 1) {
+for (let round = 0; round < providerCap && selected.length < 12; round += 1) {
   for (const provider of providerOrder) {
     const item = groups.get(provider)?.[round];
     if (item) selected.push(item);
     if (selected.length === 12) break;
   }
 }
+const counts = new Map(providerOrder.map(provider => [provider, 0]));
+for (const item of selected) counts.set(item.provider, (counts.get(item.provider) || 0) + 1);
 for (const item of eligible) {
   if (selected.length === 12) break;
+  if ((counts.get(item.provider) || 0) >= providerCap) continue;
   if (!selected.includes(item)) selected.push(item);
+  counts.set(item.provider, (counts.get(item.provider) || 0) + 1);
 }
 
 const items = selected.map(item => {
