@@ -52,6 +52,14 @@
       "status": "reviewed",
       "at": "2026-10-08T03:19:08.292623+00:00",
       "note": "Independent current request returned HTTP 200 with an updates array after the first local batched check timed out. No persistent outage established; no runtime change."
+    },
+    {
+      "id": "reference_review:1b3f092e63edbe441ee3",
+      "revision": "6bc2b620d92fc08adffb38303ecd778356b4668873ed509fe7ea3db1440e0f7d",
+      "status": "reviewed",
+      "at": "2026-10-08T16:22:27.984503+00:00",
+      "note": "Independently followed the Singtel original document URL to cdn1.singteldigital.com: HTTP 200. Read NCS business highlights on printed page 22 of the report for the half year ended 30 September 2024; it supports the existing AI and Digital Resilience description. Valid publisher-document redirect, no new announcement or index change required.",
+      "public_url": "https://www.singtel.com/content/dam/singtel/investorRelations/stockExchange/2024/Halfyear-MDA.pdf"
     }
   ]
 }
