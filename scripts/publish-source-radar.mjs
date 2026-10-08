@@ -9,10 +9,14 @@ const report = JSON.parse(await readFile(resolve(operations, 'latest.json'), 'ut
 const queue = JSON.parse(await readFile(resolve(operations, 'work-queue.json'), 'utf8'));
 if (report.execution?.platform !== 'github_actions' || report.execution.run_id !== process.env.GITHUB_RUN_ID || !report.health?.length || !report.health.every(item => item.passed)) throw new Error('Expected the successful report from this hosted run.');
 const allowed = new Set(['www.mddi.gov.sg', 'www.imda.gov.sg', 'aisingapore.org', 'www.smartnation.gov.sg']);
-const eligible = report.discovery.items.filter(item => {
+const providerByHost = new Map([['www.mddi.gov.sg', 'MDDI'], ['www.imda.gov.sg', 'IMDA'], ['aisingapore.org', 'AI Singapore'], ['www.smartnation.gov.sg', 'Smart Nation']]);
+const discovered = report.discovery.items.filter(item => {
   const decision = queue.items.find(job => job.type === 'official_source_discovery' && job.evidence.url === item.url);
   return item.outcome === 'discovered_review_required' && !['older_article_recently_modified', 'future_publication_date_review_required'].includes(item.freshness) && decision?.status !== 'not_actionable' && allowed.has(new URL(item.url).hostname);
-}).sort((a, b) => b.source_updated_at.localeCompare(a.source_updated_at) || a.url.localeCompare(b.url));
+}).map(item => ({ ...item, radar_status: ['reviewed', 'published'].includes(queue.items.find(job => job.type === 'official_source_discovery' && job.evidence.url === item.url)?.status) ? 'source_reviewed' : 'automatically_discovered' }));
+const cited = report.sources.filter(item => ['baseline', 'unchanged'].includes(item.outcome) && item.title && allowed.has(new URL(item.url).hostname)).map(item => ({ provider: providerByHost.get(new URL(item.url).hostname), title: item.title, url: item.url, published_at: null, source_updated_at: null, first_seen: item.checked_at || report.checked_at, radar_status: 'cited_source' }));
+const eligible = [...new Map([...discovered, ...cited].map(item => [item.url, item])).values()]
+  .sort((a, b) => (b.source_updated_at || '').localeCompare(a.source_updated_at || '') || a.url.localeCompare(b.url));
 
 // Keep the public radar useful as an ecosystem view: rotate through each
 // official provider before filling any remaining slots by recency.
@@ -34,9 +38,9 @@ for (const item of eligible) {
 
 const items = selected.map(item => {
   const words = item.title.split(/\s+/);
-  return { provider: item.provider, title: words.slice(0, 20).join(' ') + (words.length > 20 ? '…' : ''), url: item.url, published_at: item.published_at, source_updated_at: item.source_updated_at, discovered_at: item.first_seen, status: ['reviewed', 'published'].includes(queue.items.find(job => job.type === 'official_source_discovery' && job.evidence.url === item.url)?.status) ? 'source_reviewed' : 'automatically_discovered' };
+  return { provider: item.provider, title: words.slice(0, 20).join(' ') + (words.length > 20 ? '…' : ''), url: item.url, published_at: item.published_at, source_updated_at: item.source_updated_at, discovered_at: item.first_seen, status: item.radar_status };
 });
-const snapshot = { version: 1, checked_at: report.checked_at, run_url: report.execution.run_url, notice: 'Automatically discovered official source links. Discovery is not editorial verification; page modification is not publication.', items };
+const snapshot = { version: 1, checked_at: report.checked_at, run_url: report.execution.run_url, notice: 'Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.', items };
 const encoded = Buffer.from(JSON.stringify(snapshot, null, 2) + '\n').toString('base64');
 const endpoint = 'https://api.github.com/repos/' + repository + '/contents/assets/product/source-radar.json';
 const headers = { Authorization: 'Bearer ' + process.env.GH_TOKEN, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
