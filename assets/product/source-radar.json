@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-10-08T10:15:53.102Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37762293191",
+  "checked_at": "2026-10-08T10:35:36.287Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37764454107",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "items": [
     {
@@ -19,7 +19,7 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-08T10:15:53.102Z",
+      "discovered_at": "2026-10-08T10:35:36.287Z",
       "status": "cited_source"
     },
     {
@@ -28,7 +28,7 @@
       "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-08T10:15:53.102Z",
+      "discovered_at": "2026-10-08T10:35:36.287Z",
       "status": "cited_source"
     },
     {
@@ -46,71 +46,8 @@
       "url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-08T10:15:53.102Z",
+      "discovered_at": "2026-10-08T10:35:36.287Z",
       "status": "cited_source"
-    },
-    {
-      "provider": "MDDI",
-      "title": "Speech by Minister Josephine Teo at the Asia Tech x Artificial Intelligence Conference | Ministry of Digital Development and Information",
-      "url": "https://www.mddi.gov.sg/newsroom/speech-by-minister-josephine-teo-at-the-asia-tech-x-ai-conference/",
-      "published_at": null,
-      "source_updated_at": "2026-10-06T07:04:51.017Z",
-      "discovered_at": "2026-10-07T18:33:48.781Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "AI Singapore",
-      "title": "100 Experiments - AI Singapore",
-      "url": "https://aisingapore.org/innovation/100e/",
-      "published_at": null,
-      "source_updated_at": null,
-      "discovered_at": "2026-10-08T10:15:53.102Z",
-      "status": "cited_source"
-    },
-    {
-      "provider": "MDDI",
-      "title": "Opening Address by SMS Tan Kiat How at the National Translation Committee (NTC) Conference 2026: Reimagining Translation In The Age…",
-      "url": "https://www.mddi.gov.sg/newsroom/opening-address-by-sms-tan-kiat-how-at-the-national-translation-committee--ntc--conference-2026--reimagining-translation-in-the-age-of-ai/",
-      "published_at": null,
-      "source_updated_at": "2026-10-01T02:59:22.532Z",
-      "discovered_at": "2026-10-07T18:33:48.781Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "Opening Address by SMS Tan Kiat How at UOB FinLab AI Ready Changemakers Summit | Ministry of Digital Development and…",
-      "url": "https://www.mddi.gov.sg/newsroom/opening-address-by-sms-tan-kiat-how-at-uob-finlab-ai-ready-changemakers-summit-/",
-      "published_at": null,
-      "source_updated_at": "2026-10-01T02:57:31.907Z",
-      "discovered_at": "2026-10-07T18:45:09.985Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "Address by SMS Tan Kiat How at NVIDIA AI Day Singapore | Ministry of Digital Development and Information",
-      "url": "https://www.mddi.gov.sg/newsroom/address-by-sms-tan-kiat-how-at-nvidia-ai-day-singapore/",
-      "published_at": null,
-      "source_updated_at": "2026-09-23T08:27:39.340Z",
-      "discovered_at": "2026-10-07T18:45:09.985Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "MCI's response to PQ on AI Governance | Ministry of Digital Development and Information",
-      "url": "https://www.mddi.gov.sg/newsroom/ai-governance/",
-      "published_at": null,
-      "source_updated_at": "2026-09-23T08:07:05.107Z",
-      "discovered_at": "2026-10-08T01:38:15.531Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "MCI's response to PQ on AI Impact on the Workforce | Ministry of Digital Development and Information",
-      "url": "https://www.mddi.gov.sg/newsroom/ai-impact-on-workforce/",
-      "published_at": null,
-      "source_updated_at": "2026-09-23T08:03:46.786Z",
-      "discovered_at": "2026-10-08T01:38:15.531Z",
-      "status": "automatically_discovered"
     }
   ]
 }
