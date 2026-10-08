@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "checked_at": "2026-10-08T09:25:47.014Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37756559589",
-  "notice": "Automatically discovered official source links. Discovery is not editorial verification; page modification is not publication.",
+  "checked_at": "2026-10-08T09:30:17.438Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37757065180",
+  "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "items": [
     {
       "provider": "MDDI",
@@ -14,6 +14,24 @@
       "status": "automatically_discovered"
     },
     {
+      "provider": "AI Singapore",
+      "title": "Home - AI Singapore",
+      "url": "https://aisingapore.org/",
+      "published_at": null,
+      "source_updated_at": null,
+      "discovered_at": "2026-10-08T09:30:17.438Z",
+      "status": "cited_source"
+    },
+    {
+      "provider": "Smart Nation",
+      "title": "National AI Strategy | Smart Nation Singapore",
+      "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
+      "published_at": null,
+      "source_updated_at": null,
+      "discovered_at": "2026-10-08T09:30:17.438Z",
+      "status": "cited_source"
+    },
+    {
       "provider": "MDDI",
       "title": "MDDI's Response to PQ on Impact of Foreign AI Chip Export Controls and Remote Computing Access Restrictions on Singapore's Data…",
       "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-impact-of-foreign-ai-chip-export-controls-and-remote-computing-access-restrictions-on-singapore-data-centre-and-cloud-services-sectors-and-mitigation-measures/",
@@ -23,13 +41,13 @@
       "status": "automatically_discovered"
     },
     {
-      "provider": "MDDI",
-      "title": "MDDI's Response to PQ on Providing Pre-Deployment Government Access to Frontier AI Models for Independent Evaluation of National Security Risks…",
-      "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-providing-pre-deployment-government-access-to-frontier-ai-models-for-independent-evaluation-of-national-security-risks-and-vulnerab/",
+      "provider": "AI Singapore",
+      "title": "How does an organisation apply for the 100 Experiments (100E)? - AI Singapore",
+      "url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/",
       "published_at": null,
-      "source_updated_at": "2026-10-07T04:21:17.477Z",
-      "discovered_at": "2026-10-07T18:24:05.382Z",
-      "status": "source_reviewed"
+      "source_updated_at": null,
+      "discovered_at": "2026-10-08T09:30:17.438Z",
+      "status": "cited_source"
     },
     {
       "provider": "MDDI",
@@ -39,6 +57,15 @@
       "source_updated_at": "2026-10-06T07:04:51.017Z",
       "discovered_at": "2026-10-07T18:33:48.781Z",
       "status": "automatically_discovered"
+    },
+    {
+      "provider": "AI Singapore",
+      "title": "100 Experiments - AI Singapore",
+      "url": "https://aisingapore.org/innovation/100e/",
+      "published_at": null,
+      "source_updated_at": null,
+      "discovered_at": "2026-10-08T09:30:17.438Z",
+      "status": "cited_source"
     },
     {
       "provider": "MDDI",
@@ -83,33 +110,6 @@
       "published_at": null,
       "source_updated_at": "2026-09-23T08:03:46.786Z",
       "discovered_at": "2026-10-08T01:38:15.531Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "Remarks by Minister Josephine Teo at Foreign Policy’s Tech & AI Forum @ UNGA81 | Ministry of Digital Development and…",
-      "url": "https://www.mddi.gov.sg/newsroom/remarks-by-minister-josephine-teo-at-foreign-policy-s-tech---ai-forum---unga81/",
-      "published_at": null,
-      "source_updated_at": "2026-09-23T04:18:26.291Z",
-      "discovered_at": "2026-10-08T01:40:48.820Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "MCI's response to PQ on Government's Approach On Governing Safe and Responsible AI Development | Ministry of Digital Development and…",
-      "url": "https://www.mddi.gov.sg/newsroom/pq-on-gov-approach-on-ai-development/",
-      "published_at": null,
-      "source_updated_at": "2026-09-22T09:50:37.993Z",
-      "discovered_at": "2026-10-08T01:40:48.820Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "MCI's Response to PQ on National AI Strategy vs Energy and Environmental Sustainability | Ministry of Digital Development and Information",
-      "url": "https://www.mddi.gov.sg/newsroom/national-ai-strategy-sustainability/",
-      "published_at": null,
-      "source_updated_at": "2026-09-21T06:31:00.937Z",
-      "discovered_at": "2026-10-08T01:41:28.668Z",
       "status": "automatically_discovered"
     }
   ]
