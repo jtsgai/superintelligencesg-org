@@ -17,12 +17,17 @@ const checkedAt = new Date().toISOString();
 const challenge = /verify (?:that )?you(?:'re| are|rself)|not a robot|access denied|captcha|just a moment|checking your browser|enable javascript and cookies|javascript is disabled|requires javascript/i;
 
 async function fetchPage(url) {
-  try {
-    const response = await fetch(url, { signal: AbortSignal.timeout(18000), redirect: 'follow', headers: { 'User-Agent': 'SuperintelligenceSG-Maintenance/1.0' } });
-    const body = await response.text();
-    const blocked = challenge.test(body.slice(0, 12000));
-    return { url, final_url: response.url, status: response.status, body, blocked, ok: response.ok && response.status !== 202 && !blocked, ...(response.status === 202 ? { error: 'HTTP 202 does not confirm a completed page response.' } : {}) };
-  } catch (error) { return { url, status: null, ok: false, blocked: false, error: error.name === 'TimeoutError' ? 'request timed out' : error.message }; }
+  async function request(headers) {
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(18000), redirect: 'follow', headers });
+      const body = await response.text();
+      const blocked = challenge.test(body.slice(0, 12000));
+      return { url, final_url: response.url, status: response.status, body, blocked, ok: response.ok && response.status !== 202 && !blocked, ...(response.status === 202 ? { error: 'HTTP 202 does not confirm a completed page response.' } : {}) };
+    } catch (error) { return { url, status: null, ok: false, blocked: false, error: error.name === 'TimeoutError' ? 'request timed out' : error.message }; }
+  }
+  const first = await request({ 'User-Agent': 'SuperintelligenceSG-Maintenance/1.0' });
+  if (first.status !== 202) return first;
+  return request({ 'User-Agent': 'Mozilla/5.0 (compatible; SuperintelligenceSG source monitor)', Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'Accept-Language': 'en-SG,en;q=0.9' });
 }
 async function batch(items, action) {
   const result = new Array(items.length);

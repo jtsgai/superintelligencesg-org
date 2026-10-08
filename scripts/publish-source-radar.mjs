@@ -45,7 +45,11 @@ const items = selected.map(item => {
   const words = item.title.split(/\s+/);
   return { provider: item.provider, title: words.slice(0, 20).join(' ') + (words.length > 20 ? '…' : ''), url: item.url, published_at: item.published_at, source_updated_at: item.source_updated_at, discovered_at: item.first_seen, status: item.radar_status };
 });
-const snapshot = { version: 1, checked_at: report.checked_at, run_url: report.execution.run_url, notice: 'Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.', items };
+const coverage = providerOrder.map(provider => {
+  const collection = report.discovery.providers.find(item => item.provider === provider);
+  return { provider, state: collection?.outcome === 'ok' ? 'checked' : 'unavailable', listed: items.filter(item => item.provider === provider).length };
+});
+const snapshot = { version: 1, checked_at: report.checked_at, run_url: report.execution.run_url, notice: 'Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.', coverage, items };
 const encoded = Buffer.from(JSON.stringify(snapshot, null, 2) + '\n').toString('base64');
 const endpoint = 'https://api.github.com/repos/' + repository + '/contents/assets/product/source-radar.json';
 const headers = { Authorization: 'Bearer ' + process.env.GH_TOKEN, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
