@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-10-08T01:38:15.531Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37713897848",
+  "checked_at": "2026-10-08T01:40:48.820Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37714107684",
   "notice": "Automatically discovered official source links. Discovery is not editorial verification; page modification is not publication.",
   "items": [
     {
@@ -74,6 +74,24 @@
       "published_at": null,
       "source_updated_at": "2026-09-23T08:03:46.786Z",
       "discovered_at": "2026-10-08T01:38:15.531Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "Remarks by Minister Josephine Teo at Foreign Policy’s Tech & AI Forum @ UNGA81 | Ministry of Digital Development and…",
+      "url": "https://www.mddi.gov.sg/newsroom/remarks-by-minister-josephine-teo-at-foreign-policy-s-tech---ai-forum---unga81/",
+      "published_at": null,
+      "source_updated_at": "2026-09-23T04:18:26.291Z",
+      "discovered_at": "2026-10-08T01:40:48.820Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "MCI's response to PQ on Government's Approach On Governing Safe and Responsible AI Development | Ministry of Digital Development and…",
+      "url": "https://www.mddi.gov.sg/newsroom/pq-on-gov-approach-on-ai-development/",
+      "published_at": null,
+      "source_updated_at": "2026-09-22T09:50:37.993Z",
+      "discovered_at": "2026-10-08T01:40:48.820Z",
       "status": "automatically_discovered"
     }
   ]
