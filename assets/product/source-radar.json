@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "checked_at": "2026-10-08T01:46:28.468Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37714568705",
+  "checked_at": "2026-10-08T08:37:47.620Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37751083556",
   "notice": "Automatically discovered official source links. Discovery is not editorial verification; page modification is not publication.",
   "items": [
     {
       "provider": "MDDI",
-      "title": "MDDI's Response to PQ on Providing Pre-Deployment Government Access to Frontier AI Models for Independent Evaluation of National Security Risks…",
-      "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-providing-pre-deployment-government-access-to-frontier-ai-models-for-independent-evaluation-of-national-security-risks-and-vulnerab/",
+      "title": "MDDI's Response to PQ on Adequacy of AI Computing Resources for Local Enterprises Through Domestic Facilities and Overseas Cloud Services…",
+      "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-adequacy-of-ai-computing-resources-for-local-enterprises-through-domestic-facilities-and-overseas-cloud-services/",
       "published_at": null,
-      "source_updated_at": "2026-10-07T04:21:17.477Z",
-      "discovered_at": "2026-10-07T18:24:05.382Z",
+      "source_updated_at": "2026-10-08T07:42:10.456Z",
+      "discovered_at": "2026-10-08T08:37:47.620Z",
       "status": "automatically_discovered"
     },
     {
@@ -18,9 +18,18 @@
       "title": "MDDI's Response to PQ on Impact of Foreign AI Chip Export Controls and Remote Computing Access Restrictions on Singapore's Data…",
       "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-impact-of-foreign-ai-chip-export-controls-and-remote-computing-access-restrictions-on-singapore-data-centre-and-cloud-services-sectors-and-mitigation-measures/",
       "published_at": null,
-      "source_updated_at": "2026-10-07T03:28:37.232Z",
+      "source_updated_at": "2026-10-08T07:31:08.500Z",
       "discovered_at": "2026-10-07T18:24:05.382Z",
       "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "MDDI's Response to PQ on Providing Pre-Deployment Government Access to Frontier AI Models for Independent Evaluation of National Security Risks…",
+      "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-providing-pre-deployment-government-access-to-frontier-ai-models-for-independent-evaluation-of-national-security-risks-and-vulnerab/",
+      "published_at": null,
+      "source_updated_at": "2026-10-07T04:21:17.477Z",
+      "discovered_at": "2026-10-07T18:24:05.382Z",
+      "status": "source_reviewed"
     },
     {
       "provider": "MDDI",
@@ -100,15 +109,6 @@
       "url": "https://www.mddi.gov.sg/newsroom/national-ai-strategy-sustainability/",
       "published_at": null,
       "source_updated_at": "2026-09-21T06:31:00.937Z",
-      "discovered_at": "2026-10-08T01:41:28.668Z",
-      "status": "automatically_discovered"
-    },
-    {
-      "provider": "MDDI",
-      "title": "New Institute of Digital Government to Build an AI-Ready Public Service | Ministry of Digital Development and Information",
-      "url": "https://www.mddi.gov.sg/newsroom/new-institute-of-digital-government-to-build-an-ai-ready-public-service/",
-      "published_at": null,
-      "source_updated_at": "2026-09-21T00:48:32.199Z",
       "discovered_at": "2026-10-08T01:41:28.668Z",
       "status": "automatically_discovered"
     }
