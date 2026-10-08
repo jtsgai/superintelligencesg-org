@@ -15,3 +15,5 @@ Push the precise files, publish the matching Sites version, inspect the affected
 ## Product delivery
 
 Turn the already verified adoption-route memo into a shareable PDF sample with explicit fact, interpretation and unknown labels. No new commercial claims, company registration or outreach are part of this iteration.
+
+The first hosted readback exposed an existing false positive: HTTP 202 was counted as reachable through response.ok. Exclude 202 from successful page reads; keep it pending and verify the correction in a second hosted run.

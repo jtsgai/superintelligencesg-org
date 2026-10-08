@@ -21,7 +21,7 @@ async function fetchPage(url) {
     const response = await fetch(url, { signal: AbortSignal.timeout(18000), redirect: 'follow', headers: { 'User-Agent': 'SuperintelligenceSG-Maintenance/1.0' } });
     const body = await response.text();
     const blocked = challenge.test(body.slice(0, 12000));
-    return { url, final_url: response.url, status: response.status, body, blocked, ok: response.ok && !blocked };
+    return { url, final_url: response.url, status: response.status, body, blocked, ok: response.ok && response.status !== 202 && !blocked, ...(response.status === 202 ? { error: 'HTTP 202 does not confirm a completed page response.' } : {}) };
   } catch (error) { return { url, status: null, ok: false, blocked: false, error: error.name === 'TimeoutError' ? 'request timed out' : error.message }; }
 }
 async function batch(items, action) {
