@@ -82,7 +82,10 @@ const sources = await batch([...sourceURLs].sort(), async url => {
 });
 const organizations = JSON.parse(await readFile(join(root, 'superintelligencesg.com', 'assets', 'product', 'organizations.json'), 'utf8'));
 const cursor = (previous.reference_cursor || 0) % Math.max(organizations.length, 1);
-const selected = organizations.slice(cursor, cursor + 20);
+const rotating = organizations.slice(cursor, cursor + 20);
+// Recheck corrected pending URLs immediately instead of waiting for the rotation.
+const corrected = organizations.filter(item => previous.pending_references?.[item.id] && previous.pending_references[item.id].url !== item.url).slice(0, 20);
+const selected = [...new Map([...corrected, ...rotating].map(item => [item.id, item])).values()];
 const references = await batch(selected, async item => {
   const result = await fetchPage(item.url);
   return { id: item.id, name: item.name, url: item.url, status: result.status, final_url: result.final_url, outcome: result.ok ? (result.final_url === item.url ? 'reachable' : 'redirect_review_required') : (result.blocked ? 'fetch_blocked' : 'unavailable'), error: result.error || '' };
@@ -93,7 +96,7 @@ for (const item of references) {
   else pendingReferences[item.id] = { ...item, first_seen: pendingReferences[item.id]?.first_seen || checkedAt, last_checked: checkedAt };
 }
 const discovery = await discoverOfficialSources({ previous: previous.discovery, checkedAt, fetchPage, batch, knownURLs: sourceURLs });
-const nextState = { discovery: discovery.state, checked_at: checkedAt, sources: { ...previous.sources }, pending_references: pendingReferences, reference_cursor: (cursor + selected.length) % Math.max(organizations.length, 1) };
+const nextState = { discovery: discovery.state, checked_at: checkedAt, sources: { ...previous.sources }, pending_references: pendingReferences, reference_cursor: (cursor + rotating.length) % Math.max(organizations.length, 1) };
 for (const item of sources) if (item.hash) {
   const prior = previous.sources[item.url];
   nextState.sources[item.url] = item.outcome === 'changed_review_required'
