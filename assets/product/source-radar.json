@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-10-08T01:40:48.820Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37714107684",
+  "checked_at": "2026-10-08T01:41:28.668Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37714141279",
   "notice": "Automatically discovered official source links. Discovery is not editorial verification; page modification is not publication.",
   "items": [
     {
@@ -92,6 +92,24 @@
       "published_at": null,
       "source_updated_at": "2026-09-22T09:50:37.993Z",
       "discovered_at": "2026-10-08T01:40:48.820Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "MCI's Response to PQ on National AI Strategy vs Energy and Environmental Sustainability | Ministry of Digital Development and Information",
+      "url": "https://www.mddi.gov.sg/newsroom/national-ai-strategy-sustainability/",
+      "published_at": null,
+      "source_updated_at": "2026-09-21T06:31:00.937Z",
+      "discovered_at": "2026-10-08T01:41:28.668Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "New Institute of Digital Government to Build an AI-Ready Public Service | Ministry of Digital Development and Information",
+      "url": "https://www.mddi.gov.sg/newsroom/new-institute-of-digital-government-to-build-an-ai-ready-public-service/",
+      "published_at": null,
+      "source_updated_at": "2026-09-21T00:48:32.199Z",
+      "discovered_at": "2026-10-08T01:41:28.668Z",
       "status": "automatically_discovered"
     }
   ]
