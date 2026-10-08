@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-10-07T18:45:09.985Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37669202783",
+  "checked_at": "2026-10-08T01:38:15.531Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/37713897848",
   "notice": "Automatically discovered official source links. Discovery is not editorial verification; page modification is not publication.",
   "items": [
     {
@@ -56,6 +56,24 @@
       "published_at": null,
       "source_updated_at": "2026-09-23T08:27:39.340Z",
       "discovered_at": "2026-10-07T18:45:09.985Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "MCI's response to PQ on AI Governance | Ministry of Digital Development and Information",
+      "url": "https://www.mddi.gov.sg/newsroom/ai-governance/",
+      "published_at": null,
+      "source_updated_at": "2026-09-23T08:07:05.107Z",
+      "discovered_at": "2026-10-08T01:38:15.531Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "MDDI",
+      "title": "MCI's response to PQ on AI Impact on the Workforce | Ministry of Digital Development and Information",
+      "url": "https://www.mddi.gov.sg/newsroom/ai-impact-on-workforce/",
+      "published_at": null,
+      "source_updated_at": "2026-09-23T08:03:46.786Z",
+      "discovered_at": "2026-10-08T01:38:15.531Z",
       "status": "automatically_discovered"
     }
   ]
