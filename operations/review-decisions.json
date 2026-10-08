@@ -15,6 +15,14 @@
       "at": "2026-10-08T01:48:49.377094+00:00",
       "note": "Replaced the broken SGDI link with the browser-verified A*STAR IAIC homepage. The live Navigator renders the new URL and 8 October review date. Hosted HTTP 202 at the new URL remains an unresolved automated-read issue; this decision closes only the old-link correction.",
       "public_url": "https://superintelligencesg.com/directory.html?q=Institute%20of%20Advanced%20Intelligence"
+    },
+    {
+      "id": "official_source_discovery:48680bec5c02a8aa4e1e",
+      "revision": "d75c1d78f8c00c0b88943dd8d1a71c58d7fc27b7efe6d96f55571ce7beac4ba1",
+      "status": "published",
+      "at": "2026-10-08T02:10:15.809250+00:00",
+      "note": "Read the ministry original: parliamentary sitting and publication 6 October 2026, distinct from sitemap modification 7 October. Added a bounded safeguards observation to existing Field Note 03 v1.1; preserved 28 September publication. Live HTML, citation and PDF checked on 8 October. No system certification or achieved deployment outcome is implied.",
+      "public_url": "https://superintelligencesg.ai/field-notes/trusted-deployment.html#agent-safeguards"
     }
   ]
 }
