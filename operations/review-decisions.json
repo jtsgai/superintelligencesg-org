@@ -23,6 +23,14 @@
       "at": "2026-10-08T02:10:15.809250+00:00",
       "note": "Read the ministry original: parliamentary sitting and publication 6 October 2026, distinct from sitemap modification 7 October. Added a bounded safeguards observation to existing Field Note 03 v1.1; preserved 28 September publication. Live HTML, citation and PDF checked on 8 October. No system certification or achieved deployment outcome is implied.",
       "public_url": "https://superintelligencesg.ai/field-notes/trusted-deployment.html#agent-safeguards"
+    },
+    {
+      "id": "reference_review:2b4cd734cd1b65619a8c",
+      "revision": "b7baee657a13608790e284412761d33ce2ece2c4862f93ce48e7fbfea0b90c0b",
+      "status": "reviewed",
+      "at": "2026-10-08T02:36:54.656162+00:00",
+      "note": "Independently followed the existing AI Singapore URL on 8 October: HTTP 200 at https://sea-lion.ai/. Read the current official About page, which identifies SEA-LION as anchored by AI Singapore. This is a valid project-domain redirect, not a broken reference; existing Navigator description remains accurate. No new launch or performance claim published.",
+      "public_url": "https://sea-lion.ai/about/"
     }
   ]
 }
