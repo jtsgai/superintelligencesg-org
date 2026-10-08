@@ -7,6 +7,14 @@
       "status": "not_actionable",
       "at": "2026-10-07T18:31:30.645666+00:00",
       "note": "Official article shows original publication on 12 November 2019 and modification on 26 September 2026. Do not treat the sitemap modification as a new launch announcement. Retain the source as history."
+    },
+    {
+      "id": "reference_review:dfc0339fd0dab972089f",
+      "revision": "5c73df082504d515092380c01464048eb6712668f5eb20b3f0b8cdaaa0e63a0d",
+      "status": "published",
+      "at": "2026-10-08T01:48:49.377094+00:00",
+      "note": "Replaced the broken SGDI link with the browser-verified A*STAR IAIC homepage. The live Navigator renders the new URL and 8 October review date. Hosted HTTP 202 at the new URL remains an unresolved automated-read issue; this decision closes only the old-link correction.",
+      "public_url": "https://superintelligencesg.com/directory.html?q=Institute%20of%20Advanced%20Intelligence"
     }
   ]
 }
