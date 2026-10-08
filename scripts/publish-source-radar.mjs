@@ -9,10 +9,30 @@ const report = JSON.parse(await readFile(resolve(operations, 'latest.json'), 'ut
 const queue = JSON.parse(await readFile(resolve(operations, 'work-queue.json'), 'utf8'));
 if (report.execution?.platform !== 'github_actions' || report.execution.run_id !== process.env.GITHUB_RUN_ID || !report.health?.length || !report.health.every(item => item.passed)) throw new Error('Expected the successful report from this hosted run.');
 const allowed = new Set(['www.mddi.gov.sg', 'www.imda.gov.sg', 'aisingapore.org', 'www.smartnation.gov.sg']);
-const items = report.discovery.items.filter(item => {
+const eligible = report.discovery.items.filter(item => {
   const decision = queue.items.find(job => job.type === 'official_source_discovery' && job.evidence.url === item.url);
   return item.outcome === 'discovered_review_required' && !['older_article_recently_modified', 'future_publication_date_review_required'].includes(item.freshness) && decision?.status !== 'not_actionable' && allowed.has(new URL(item.url).hostname);
-}).sort((a, b) => b.source_updated_at.localeCompare(a.source_updated_at)).slice(0, 12).map(item => {
+}).sort((a, b) => b.source_updated_at.localeCompare(a.source_updated_at) || a.url.localeCompare(b.url));
+
+// Keep the public radar useful as an ecosystem view: rotate through each
+// official provider before filling any remaining slots by recency.
+const providerOrder = ['MDDI', 'IMDA', 'AI Singapore', 'Smart Nation'];
+const groups = new Map(providerOrder.map(provider => [provider, []]));
+for (const item of eligible) groups.get(item.provider)?.push(item);
+const selected = [];
+for (let round = 0; round < 3 && selected.length < 12; round += 1) {
+  for (const provider of providerOrder) {
+    const item = groups.get(provider)?.[round];
+    if (item) selected.push(item);
+    if (selected.length === 12) break;
+  }
+}
+for (const item of eligible) {
+  if (selected.length === 12) break;
+  if (!selected.includes(item)) selected.push(item);
+}
+
+const items = selected.map(item => {
   const words = item.title.split(/\s+/);
   return { provider: item.provider, title: words.slice(0, 20).join(' ') + (words.length > 20 ? '…' : ''), url: item.url, published_at: item.published_at, source_updated_at: item.source_updated_at, discovered_at: item.first_seen, status: ['reviewed', 'published'].includes(queue.items.find(job => job.type === 'official_source_discovery' && job.evidence.url === item.url)?.status) ? 'source_reviewed' : 'automatically_discovered' };
 });
