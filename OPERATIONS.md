@@ -76,6 +76,10 @@ After source changes, sync the entire Website Studio three-site source directory
 
 Save concise dated run records under `Growth/operations/runs/`: findings, verified sources, changes or no-change decision, Git commits, saved versions, deployment results and backup outcome. Keep unresolved items retrievable. Stay quiet when nothing meaningful changes; notify only on a useful published update, a failure, or needed user action. Account login, payment, schema migration, deleting organization data, personal consent and substantial positioning changes require user handling or specific authorisation. The Codex heartbeat reviews run on the user's local host. The GitHub collection workflow runs in the cloud; it does not supply unattended website editing or X publishing.
 
+### UX path review
+
+For a meaningful public update, review three anonymous paths before closing the run: a casual visitor should discover at least one additional useful page; an interested visitor should find the existing Navigator save, compare, copy-share and download controls without a forced account; and a potential collaborator should see a clear research-brief route with a structured question template. Check visible hero or cross-site links, desktop and 390px mobile layout, and the real custom-domain response after GitHub Pages propagation. Do not submit forms with invented data or add account collection unless a real product requirement has been established. Record the observed paths and any gap under `Growth/operations/runs/`.
+
 ### X publication checks
 
 Use the official `@SI_Singapore` account only, verifying the active composer identity every time. Never use Red Fun Planet or a personal account. Inspect recent and scheduled posts before sending, preserve the existing scheduled posts, and avoid repeating a topic or link without new substance. Combine same-day changes into one post where possible. Keep the main post under 280 weighted characters, preferably in English for the Singapore audience, and link the live updated page.
