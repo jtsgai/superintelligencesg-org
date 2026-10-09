@@ -60,6 +60,14 @@
       "at": "2026-10-08T16:22:27.984503+00:00",
       "note": "Independently followed the Singtel original document URL to cdn1.singteldigital.com: HTTP 200. Read NCS business highlights on printed page 22 of the report for the half year ended 30 September 2024; it supports the existing AI and Digital Resilience description. Valid publisher-document redirect, no new announcement or index change required.",
       "public_url": "https://www.singtel.com/content/dam/singtel/investorRelations/stockExchange/2024/Halfyear-MDA.pdf"
+    },
+    {
+      "id": "reference_review:4a87ea2e5280793506b0",
+      "revision": "8e3a264afce3d6005105c70aed81b26478536f0cd5c12e9ec2f0458acb8c676a",
+      "status": "published",
+      "at": "2026-10-09T04:25:36Z",
+      "note": "Read the current Singapore EDB page in a browser: the 8 October 2025 release confirms the FWD AI Lab in Singapore and its insurance AI and data-science scope. Replaced only the legacy EDB path with the current canonical news-and-insights URL and updated the review date. Live Navigator JSON read back the exact new URL and 9 October date; no organization claim changed.",
+      "public_url": "https://superintelligencesg.com/directory.html?q=FWD%20AI%20Lab"
     }
   ]
 }
