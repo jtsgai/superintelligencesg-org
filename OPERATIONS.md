@@ -78,7 +78,7 @@ Save concise dated run records under `Growth/operations/runs/`: findings, verifi
 
 ### X publication checks
 
-Use the official `@SuperIntelSG` account only, verifying the active composer identity every time. Never use Red Fun Planet or a personal account. Inspect recent and scheduled posts before sending, preserve the existing scheduled posts, and avoid repeating a topic or link without new substance. Combine same-day changes into one post where possible. Keep the main post under 280 weighted characters, preferably in English for the Singapore audience, and link the live updated page.
+Use the official `@SI_Singapore` account only, verifying the active composer identity every time. Never use Red Fun Planet or a personal account. Inspect recent and scheduled posts before sending, preserve the existing scheduled posts, and avoid repeating a topic or link without new substance. Combine same-day changes into one post where possible. Keep the main post under 280 weighted characters, preferably in English for the Singapore audience, and link the live updated page.
 
 Read back the posted text and save the actual permalink, date, topic and source/site link under `Growth/operations/`. If the send outcome is unknown, inspect the profile before retrying. A saved draft, a click or a scheduled task is not evidence that a post was published. Login, account switching requiring credentials, CAPTCHAs or a platform block require user handling; keep the verified draft and notify the user rather than using another account.
 
