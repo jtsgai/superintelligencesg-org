@@ -68,6 +68,14 @@
       "at": "2026-10-09T04:25:36Z",
       "note": "Read the current Singapore EDB page in a browser: the 8 October 2025 release confirms the FWD AI Lab in Singapore and its insurance AI and data-science scope. Replaced only the legacy EDB path with the current canonical news-and-insights URL and updated the review date. Live Navigator JSON read back the exact new URL and 9 October date; no organization claim changed.",
       "public_url": "https://superintelligencesg.com/directory.html?q=FWD%20AI%20Lab"
+    },
+    {
+      "id": "reference_review:032bf9e08d55e704aef2",
+      "revision": "d3a786d6c903269cff5c1f73bb9b6864fcff8e070f75453c16c96d3162b6cc5f",
+      "status": "published",
+      "at": "2026-10-10T03:19:08.966436+00:00",
+      "note": "Read the current Singapore EDB page in a browser: the legacy business-insights URL redirects to the current news-and-insights canonical page. Updated only the KPMG Navigator record to the verified canonical URL and read back the live JSON after deployment; no organization claim changed.",
+      "public_url": "https://superintelligencesg.com/directory.html?q=KPMG%20Trusted%20AI%20Centre%20of%20Excellence"
     }
   ]
 }
