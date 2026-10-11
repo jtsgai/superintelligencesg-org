@@ -2,8 +2,8 @@ name: Superintelligence SG cloud maintenance
 
 on:
   schedule:
-    - cron: '0 2 * * *'
-    - cron: '0 3 * * *'
+    - cron: '17 2 * * *'
+    - cron: '43 2 * * *'
   workflow_dispatch:
 
 permissions:
