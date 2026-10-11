@@ -83,6 +83,14 @@
       "status": "reviewed",
       "at": "2026-10-11T03:05:57Z",
       "note": "Read the current EDB destination in a browser. The page is dated 20 May 2026, was issued by MDDI, and explicitly lists the Singapore Applied AI Lab among the MOU pillars. The old URL redirects to this official current page and supports the existing Navigator entry; no public record change is needed."
+    },
+    {
+      "id": "official_source_discovery:6fe7960dd42a604cf207",
+      "revision": "8f1707d6ac671945882c11c4a034af831983931970a8d043dcd417bf804cbf23",
+      "status": "reviewed",
+      "at": "2026-10-11T06:21:43Z",
+      "note": "Read the original MDDI speech page. Its article date is 23 September 2026; the site footer updated on 9 October is not the speech publication date. The speech discusses moving AI from pilots to measurable workflow value and mentions NEMOTRON-SEA-LION-V4.8. It is a policy speech, not a new 11 October programme launch; no Signals or Field Note change was warranted today.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/address-by-sms-tan-kiat-how-at-nvidia-ai-day-singapore/"
     }
   ]
 }
