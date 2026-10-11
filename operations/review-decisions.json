@@ -91,6 +91,14 @@
       "at": "2026-10-11T06:21:43Z",
       "note": "Read the original MDDI speech page. Its article date is 23 September 2026; the site footer updated on 9 October is not the speech publication date. The speech discusses moving AI from pilots to measurable workflow value and mentions NEMOTRON-SEA-LION-V4.8. It is a policy speech, not a new 11 October programme launch; no Signals or Field Note change was warranted today.",
       "public_url": "https://www.mddi.gov.sg/newsroom/address-by-sms-tan-kiat-how-at-nvidia-ai-day-singapore/"
+    },
+    {
+      "id": "cited_source_review:6741db43abe23ae39d1e",
+      "revision": "d6fdbfa70dcbe2b3f316ecf3baef67e69d7ddf0bf7d8d6c8b54d213a02c4ad07",
+      "status": "reviewed",
+      "at": "2026-10-11T10:46:43.876839Z",
+      "note": "Read the IMDA original in a browser. It is dated 2 March 2026 and supports the existing NAIIP description: enterprise and worker support, with announced targets of 10,000 enterprises and 100,000 AI-bilingual workers over three years. Existing Field Notes state these as programme targets, not outcomes; no public change needed.",
+      "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/national-ai-impact-programme"
     }
   ]
 }
