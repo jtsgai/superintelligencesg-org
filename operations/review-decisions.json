@@ -76,6 +76,13 @@
       "at": "2026-10-10T03:19:08.966436+00:00",
       "note": "Read the current Singapore EDB page in a browser: the legacy business-insights URL redirects to the current news-and-insights canonical page. Updated only the KPMG Navigator record to the verified canonical URL and read back the live JSON after deployment; no organization claim changed.",
       "public_url": "https://superintelligencesg.com/directory.html?q=KPMG%20Trusted%20AI%20Centre%20of%20Excellence"
+    },
+    {
+      "id": "reference_review:98d019d712232b89f6fa",
+      "revision": "83e9590d5a82ebac739c16f8dd02b156e1b4fefe091992e109f3241a9b46afe2",
+      "status": "reviewed",
+      "at": "2026-10-11T03:05:57Z",
+      "note": "Read the current EDB destination in a browser. The page is dated 20 May 2026, was issued by MDDI, and explicitly lists the Singapore Applied AI Lab among the MOU pillars. The old URL redirects to this official current page and supports the existing Navigator entry; no public record change is needed."
     }
   ]
 }
