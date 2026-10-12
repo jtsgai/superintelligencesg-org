@@ -86,7 +86,7 @@ Use the official `@SI_Singapore` account only, verifying the active composer ide
 
 After an official handle change, update the current identity in `OPERATIONS.md`, active automation prompts and future social metadata. Preserve historical post records and old permalinks as evidence; add the current account identity instead of rewriting history.
 
-Read back the posted text and save the actual permalink, date, topic and source/site link under `Growth/operations/`. If the send outcome is unknown, inspect the profile before retrying. A saved draft, a click or a scheduled task is not evidence that a post was published. Login, account switching requiring credentials, CAPTCHAs or a platform block require user handling; keep the verified draft and notify the user rather than using another account.
+Read back the posted text and save the actual permalink, date, topic and source/site link under `Growth/operations/`. If the send outcome is unknown, inspect the profile before retrying. A saved draft, a click or a scheduled task is not evidence that a post was published. When the official account is already signed in among browser profiles, select it before an email or X check and verify the visible identity; never use another account. Password, verification-code, CAPTCHA or platform-block steps require user handling; keep the verified draft and notify the user.
 
 ### Autonomous discovery and decision loop
 
