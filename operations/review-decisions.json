@@ -107,6 +107,14 @@
       "at": "2026-10-12T03:35:36Z",
       "note": "Independently followed the EDB legacy business-insights URL: HTTP 308 redirects to the current official news-and-insights page, HTTP 200. The current page explicitly describes A*STAR’s Sectoral AI Centre of Excellence for Manufacturing and its AI-powered defect-detection example. Updated only the Navigator source URL and review date. The live Navigator JSON returned the exact canonical URL and 12 October review date.",
       "public_url": "https://superintelligencesg.com/directory.html?q=Sectoral%20AI%20Centre%20of%20Excellence%20for%20Manufacturing"
+    },
+    {
+      "id": "cited_source_review:e2677f157a2fb8cd8bc3",
+      "revision": "f923e0df1465dd4b7016fbd424d1ee6ba993d5d29260f06c61da4907b153b030",
+      "status": "reviewed",
+      "at": "2026-10-12T16:13:59Z",
+      "note": "Read the NUS Artificial Intelligence Institute original research page. It identifies foundational AI, AI + X, and AI governance and policy, including responsible, ethical, fair and inclusive deployment. This supports the existing Field Note wording about the Institute's research map. No new announcement, programme result or page change is warranted.",
+      "public_url": "https://ai.nus.edu.sg/research/"
     }
   ]
 }
