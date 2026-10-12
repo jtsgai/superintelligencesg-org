@@ -103,9 +103,10 @@
     {
       "id": "reference_review:24c74186ca5abd03144b",
       "revision": "d2463c9ad6cb14a0efc52e0a10892d85e51c43a4696bdf9464a38869890d8883",
-      "status": "reviewed",
-      "at": "2026-10-12T03:30:17Z",
-      "note": "Independently followed the EDB legacy business-insights URL: HTTP 308 redirects to the current official news-and-insights page, HTTP 200. The current page explicitly describes A*STAR’s Sectoral AI Centre of Excellence for Manufacturing and its AI-powered defect-detection example. The canonical source is verified; Navigator publication and live readback are tracked separately."
+      "status": "published",
+      "at": "2026-10-12T03:35:36Z",
+      "note": "Independently followed the EDB legacy business-insights URL: HTTP 308 redirects to the current official news-and-insights page, HTTP 200. The current page explicitly describes A*STAR’s Sectoral AI Centre of Excellence for Manufacturing and its AI-powered defect-detection example. Updated only the Navigator source URL and review date. The live Navigator JSON returned the exact canonical URL and 12 October review date.",
+      "public_url": "https://superintelligencesg.com/directory.html?q=Sectoral%20AI%20Centre%20of%20Excellence%20for%20Manufacturing"
     }
   ]
 }
