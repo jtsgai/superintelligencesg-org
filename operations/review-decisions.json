@@ -115,6 +115,14 @@
       "at": "2026-10-12T16:13:59Z",
       "note": "Read the NUS Artificial Intelligence Institute original research page. It identifies foundational AI, AI + X, and AI governance and policy, including responsible, ethical, fair and inclusive deployment. This supports the existing Field Note wording about the Institute's research map. No new announcement, programme result or page change is warranted.",
       "public_url": "https://ai.nus.edu.sg/research/"
+    },
+    {
+      "id": "cited_source_review:7256d475246fca889cc2",
+      "revision": "efae1cd7903039de19da650ec1e4622ada82f428c662325aa2ac39fa05bf4a28",
+      "status": "reviewed",
+      "at": "2026-10-13T03:05:18.826Z",
+      "note": "Read the AI Verify Foundation original homepage after the monitored source changed. It continues to describe a global open-source community for trustworthy AI, its testing framework and toolkit, and the Global AI Assurance Sandbox for real-world GenAI testing. The page also now highlights accreditation, a Starter Kit and current events, but no existing Field Note or Navigator statement is contradicted or requires a bounded public update.",
+      "public_url": "https://aiverifyfoundation.sg/"
     }
   ]
 }
