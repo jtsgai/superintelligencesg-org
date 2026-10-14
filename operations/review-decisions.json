@@ -123,6 +123,14 @@
       "at": "2026-10-13T03:05:18.826Z",
       "note": "Read the AI Verify Foundation original homepage after the monitored source changed. It continues to describe a global open-source community for trustworthy AI, its testing framework and toolkit, and the Global AI Assurance Sandbox for real-world GenAI testing. The page also now highlights accreditation, a Starter Kit and current events, but no existing Field Note or Navigator statement is contradicted or requires a bounded public update.",
       "public_url": "https://aiverifyfoundation.sg/"
+    },
+    {
+      "id": "cited_source_review:7256d475246fca889cc2",
+      "revision": "1beb4bb2f0cb09af8715bf65cc995723ccc30ae7a83d96d13ac45a95916c2484",
+      "status": "reviewed",
+      "at": "2026-10-14T03:00:01.338Z",
+      "note": "Read the AI Verify Foundation original homepage after this evidence revision. It continues to describe a global open-source community for trustworthy AI, the AI Verify Testing Framework and Toolkit, and the Global AI Assurance Sandbox for real-world GenAI testing. Newly surfaced member quotations and event/resource links do not change the existing published claims or justify a bounded public update.",
+      "public_url": "https://aiverifyfoundation.sg/"
     }
   ]
 }
