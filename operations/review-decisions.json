@@ -139,6 +139,14 @@
       "at": "2026-10-15T02:31:28Z",
       "note": "Read the original MDDI opening address. It is dated 17 September 2026 and describes SG AI Xchange as a venue for companies to share AI-adoption approaches, problems, difficulties and changes, citing GlobalFoundries sharing its experience scaling AI in manufacturing. Published a bounded Field Note v1.3 signal that labels this as intended implementation exchange, not measured adoption outcomes; the public page and PDF were read back after deployment.",
       "public_url": "https://superintelligencesg.ai/field-notes/from-programme-to-practice.html"
+    },
+    {
+      "id": "cited_source_review:1e41cc9b766be58ee8ce",
+      "revision": "5267844398cc336d89922e6f304b06fb9cbce973e85697fb48d040d71198d342",
+      "status": "reviewed",
+      "at": "2026-10-15T03:06:14Z",
+      "note": "Read the IMDA original in a browser. It is dated 6 October 2025 and continues to support the Field Note baseline: 14.5% of SMEs adopted AI in 2024, up from 4.2% in 2023, and non-SME adoption rose from 44% to 62.5%. The page also supports the existing description of AI use across business functions. No published claim required correction.",
+      "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2025/singapore-digital-economy"
     }
   ]
 }
