@@ -131,6 +131,15 @@
       "at": "2026-10-14T03:00:01.338Z",
       "note": "Read the AI Verify Foundation original homepage after this evidence revision. It continues to describe a global open-source community for trustworthy AI, the AI Verify Testing Framework and Toolkit, and the Global AI Assurance Sandbox for real-world GenAI testing. Newly surfaced member quotations and event/resource links do not change the existing published claims or justify a bounded public update.",
       "public_url": "https://aiverifyfoundation.sg/"
+    },
+    {
+      "id": "official_source_discovery:ff2840017e726f67248e",
+      "revision": "1d68386ca6e6062e659429f4cfb8811483b20c6eb9cb045654afe91d78dd524c",
+      "status": "published",
+      "at": "2026-10-15T02:31:28Z",
+      "note": "Read the original MDDI opening address. It is dated 17 September 2026 and describes SG AI Xchange as a venue for companies to share AI-adoption approaches, problems, difficulties and changes, citing GlobalFoundries sharing its experience scaling AI in manufacturing. Published a bounded Field Note v1.3 signal that labels this as intended implementation exchange, not measured adoption outcomes; the public page and PDF were read back after deployment.",
+      "public_url": "https://superintelligencesg.ai/field-notes/from-programme-to-practice.html"
     }
-  ]
+  ],
+  "items": []
 }
