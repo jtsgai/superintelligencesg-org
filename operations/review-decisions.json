@@ -147,6 +147,22 @@
       "at": "2026-10-15T03:06:14Z",
       "note": "Read the IMDA original in a browser. It is dated 6 October 2025 and continues to support the Field Note baseline: 14.5% of SMEs adopted AI in 2024, up from 4.2% in 2023, and non-SME adoption rose from 44% to 62.5%. The page also supports the existing description of AI use across business functions. No published claim required correction.",
       "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2025/singapore-digital-economy"
+    },
+    {
+      "id": "official_source_discovery:59f402a03ad68fea1f04",
+      "revision": "5963cb361703fe52bc2ad6264b721933f5e89f9ef5732a55eadb6c626d245530",
+      "status": "reviewed",
+      "at": "2026-10-16T03:07:00Z",
+      "note": "Read the original MDDI parliamentary response. It is dated 10 September 2026 and says the written question was addressed in the 9 September oral reply. It provides no new programme, adoption outcome or implementation change for the existing public research; no publication update warranted.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-singapore-position-on-joining-waico-implications-of-pax-silica-signatory-status-and-asean-consensus-on-ai-governance-initiatives/"
+    },
+    {
+      "id": "official_source_discovery:97b53593883b36db104c",
+      "revision": "2c65393e9d561bb8a2bb5ced178c9c5d07dceb2e4abb65f49805ce689af5f555",
+      "status": "reviewed",
+      "at": "2026-10-16T03:07:00Z",
+      "note": "Read the original MDDI parliamentary response. It is dated 10 September 2026 and describes existing advertising and online-harm safeguards, while inauthentic-material-abuse powers remain for progressive implementation. It is not a newly announced programme or measured outcome; no public research update warranted.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-protecting-against-unauthorised-ai-generated-likeness-in-advertisements-and-operationalising-online-safety-commission-mandate-over-inauthentic-material-abuse/"
     }
   ]
 }
