@@ -3,29 +3,11 @@
   "status": "collecting_first_week",
   "timezone": "Asia/Singapore",
   "updated_at": "2026-10-16T00:00:00+08:00",
-  "source": "Cloudflare Web Analytics dashboard \u2014 superintelligencesg@gmail.com account, starting 16 Oct 2026",
+  "source": "Cloudflare Web Analytics dashboard — superintelligencesg@gmail.com account, starting 16 Oct 2026",
   "sites": {
-    "superintelligencesg.com": {
-      "visits": null,
-      "referrals": {
-        "t.co": null,
-        "x.com": null
-      }
-    },
-    "superintelligencesg.org": {
-      "visits": null,
-      "referrals": {
-        "t.co": null,
-        "x.com": null
-      }
-    },
-    "superintelligencesg.ai": {
-      "visits": null,
-      "referrals": {
-        "t.co": null,
-        "x.com": null
-      }
-    }
+    "superintelligencesg.com": { "visits": null, "referrals": { "t.co": null, "x.com": null } },
+    "superintelligencesg.org": { "visits": null, "referrals": { "t.co": null, "x.com": null } },
+    "superintelligencesg.ai": { "visits": null, "referrals": { "t.co": null, "x.com": null } }
   },
   "notes": "Values remain null until a completed weekly collection has actual Cloudflare data. Referrals are recorded only when Cloudflare reports them."
 }
