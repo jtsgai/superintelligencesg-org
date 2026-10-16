@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "status": "collecting_first_week",
+  "timezone": "Asia/Singapore",
+  "updated_at": "2026-10-16T00:00:00+08:00",
+  "source": "Cloudflare Web Analytics dashboard",
+  "sites": {
+    "superintelligencesg.com": { "visits": null, "referrals": { "t.co": null, "x.com": null } },
+    "superintelligencesg.org": { "visits": null, "referrals": { "t.co": null, "x.com": null } },
+    "superintelligencesg.ai": { "visits": null, "referrals": { "t.co": null, "x.com": null } }
+  },
+  "notes": "Values remain null until a completed weekly collection has actual Cloudflare data. Referrals are recorded only when Cloudflare reports them."
+}
