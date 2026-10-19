@@ -179,6 +179,14 @@
       "at": "2026-10-18T03:05:59Z",
       "note": "Read the current official IMDA factsheet. It is dated 20 May 2026, with the page last updated 21 May 2026, and describes the Singapore Government and Google AI Agents Sandbox, including practical agent behaviour and governance considerations. This confirms the existing source context; no new measured outcome or contradiction requires a public update.",
       "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/ai-agents-insights-from-the-singapore-government-and-google-sandbox"
+    },
+    {
+      "id": "cited_source_review:dade1c45f49329c4881d",
+      "revision": "d59b4f8433ce35dfc2d974f724b3b5c210233fdf664e68dc902132aabe59da9b",
+      "status": "reviewed",
+      "at": "2026-10-19T03:05:13Z",
+      "note": "Read the current official IMDA release. It is dated 20 May 2026 and describes new global partnerships and initiatives announced at ATxSummit 2026, including the National AI Partnership with Google, NVIDIA's Singapore AI research lab, Temus collaboration with AI Singapore, and governance work. These are already represented as announced programme and partnership activity; no new measured outcome or contradiction requires a public update.",
+      "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/accelerate-real-world-deployment"
     }
   ]
 }
