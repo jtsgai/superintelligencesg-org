@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-10-18T07:25:23.985Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/39107587525",
+  "checked_at": "2026-10-19T07:47:43.521Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/39218271064",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -41,7 +41,7 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-18T07:25:23.985Z",
+      "discovered_at": "2026-10-19T07:47:43.521Z",
       "status": "cited_source"
     },
     {
@@ -50,7 +50,7 @@
       "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-18T07:25:23.985Z",
+      "discovered_at": "2026-10-19T07:47:43.521Z",
       "status": "cited_source"
     },
     {
@@ -68,7 +68,7 @@
       "url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-18T07:25:23.985Z",
+      "discovered_at": "2026-10-19T07:47:43.521Z",
       "status": "cited_source"
     }
   ]
