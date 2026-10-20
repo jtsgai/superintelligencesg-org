@@ -187,6 +187,14 @@
       "at": "2026-10-19T03:05:13Z",
       "note": "Read the current official IMDA release. It is dated 20 May 2026 and describes new global partnerships and initiatives announced at ATxSummit 2026, including the National AI Partnership with Google, NVIDIA's Singapore AI research lab, Temus collaboration with AI Singapore, and governance work. These are already represented as announced programme and partnership activity; no new measured outcome or contradiction requires a public update.",
       "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/accelerate-real-world-deployment"
+    },
+    {
+      "id": "official_source_discovery:deeb119366c907f30504",
+      "revision": "9c16094e646e711df8c89286c88c5047c45c1ddb4bee08d154c24ff806ef11f9",
+      "status": "reviewed",
+      "at": "2026-10-20T03:02:27Z",
+      "note": "Read the original MDDI written parliamentary reply dated 6 October 2026 (Parliament sitting the same day). It says the Government is monitoring foreign AI chip export controls and remote computing restrictions and engaging companies; mitigation would be considered if needed. It announces no new measure, programme or measured impact. No related current site claim requires correction or a new Signal.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-impact-of-foreign-ai-chip-export-controls-and-remote-computing-access-restrictions-on-singapore-data-centre-and-cloud-services-sectors-and-mitigation-measures/"
     }
   ]
 }
