@@ -195,6 +195,14 @@
       "at": "2026-10-20T03:02:27Z",
       "note": "Read the original MDDI written parliamentary reply dated 6 October 2026 (Parliament sitting the same day). It says the Government is monitoring foreign AI chip export controls and remote computing restrictions and engaging companies; mitigation would be considered if needed. It announces no new measure, programme or measured impact. No related current site claim requires correction or a new Signal.",
       "public_url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-impact-of-foreign-ai-chip-export-controls-and-remote-computing-access-restrictions-on-singapore-data-centre-and-cloud-services-sectors-and-mitigation-measures/"
+    },
+    {
+      "id": "reference_review:313813ea2dd5c307074a",
+      "revision": "9d90c582184c591d9a5ea6fcb371108bc6b94219e46c98a5f3d661e5e3e8400b",
+      "status": "reviewed",
+      "at": "2026-10-21T03:02:30Z",
+      "note": "Independently opened the old EDB URL in a browser and confirmed it redirects to the current EDB page dated 4 June 2026. Its Mastercard section says the regional AI centre was announced in April with an opening planned later in 2026, and lists payments, fraud detection, cybersecurity and real-time risk management. The Navigator record accurately says planned. This is a working official hosted source redirect; no public record correction or new publication is warranted.",
+      "public_url": "https://www.edb.gov.sg/en/news-and-insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore"
     }
   ]
 }
