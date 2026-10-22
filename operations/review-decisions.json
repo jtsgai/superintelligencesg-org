@@ -203,6 +203,14 @@
       "at": "2026-10-21T03:02:30Z",
       "note": "Independently opened the old EDB URL in a browser and confirmed it redirects to the current EDB page dated 4 June 2026. Its Mastercard section says the regional AI centre was announced in April with an opening planned later in 2026, and lists payments, fraud detection, cybersecurity and real-time risk management. The Navigator record accurately says planned. This is a working official hosted source redirect; no public record correction or new publication is warranted.",
       "public_url": "https://www.edb.gov.sg/en/news-and-insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore"
+    },
+    {
+      "id": "official_source_discovery:1753749977c24fb1b2ef",
+      "revision": "a6a647664dea61f435bcbfa87e7a624515c709ad1530c75cd2f8ff0146bbefdb",
+      "status": "reviewed",
+      "at": "2026-10-22T02:05:19Z",
+      "note": "Read the original MDDI parliamentary response. It is dated 14 October 2025, despite entering the discovery queue in October 2026. It says existing regulations, sector guidance, human and organisational accountability, and controls and guardrails apply to agentic AI; Government is reviewing and trialling approaches. This is useful context, but it predates the existing Field Note safeguards material and supplies no new programme, outcome or correction requiring publication.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-tackling-risk-of-agentic-ai-capable-of-autonomous-actions-and-unforeseen-emergent-behaviours/"
     }
   ]
 }
