@@ -211,6 +211,14 @@
       "at": "2026-10-22T02:05:19Z",
       "note": "Read the original MDDI parliamentary response. It is dated 14 October 2025, despite entering the discovery queue in October 2026. It says existing regulations, sector guidance, human and organisational accountability, and controls and guardrails apply to agentic AI; Government is reviewing and trialling approaches. This is useful context, but it predates the existing Field Note safeguards material and supplies no new programme, outcome or correction requiring publication.",
       "public_url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-tackling-risk-of-agentic-ai-capable-of-autonomous-actions-and-unforeseen-emergent-behaviours/"
+    },
+    {
+      "id": "official_source_discovery:479c91a4230d22b1b219",
+      "revision": "f1af18c7788372827d89794730b3127052ca34824de5aaeb2d156d2109beae12",
+      "status": "reviewed",
+      "at": "2026-10-23T03:04:08Z",
+      "note": "Read the original MDDI release, dated 1 July 2026. It confirms Professor Christian Wolfrum became AI Singapore's Executive Chairman on that date, succeeding Professor Ho Teck Hua. Existing public site content describes AISG's programmes and ecosystem role but does not name its current chair, so there is no inaccurate public claim to correct or a substantive research update to publish.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/appointment-of-new-executive-chairman-of-ai-singapore/"
     }
   ]
 }
