@@ -10,7 +10,7 @@ Use the established GitHub cloud collector and two local review tasks. Adding an
 
 ## Scope and observable completion
 
-1. Discover previously uncited official AI material from verified MDDI, IMDA, AI Singapore and Smart Nation XML indexes. Read at most two candidate pages per provider per run.
+1. Discover previously uncited official AI material from verified MDDI, IMDA, AI Singapore, Smart Nation, EDB and A*STAR XML indexes. Read at most two candidate pages per provider per run.
 2. Save source URL, observed title, dates, short excerpt and content hash. Sitemap modification time must never be described as article publication time; visibly identify old articles with recent modification dates.
 3. Preserve discoveries across runs and create a priority queue combining service failures, source changes, reference issues and new material.
 4. Keep editorial decisions in a public, versioned ledger containing no submissions, contacts or credentials. Close an item only when the decision matches its exact evidence revision. A new revision reopens review.

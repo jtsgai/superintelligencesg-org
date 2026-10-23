@@ -5,6 +5,8 @@ const providers = [
   { name: 'IMDA', index: 'https://www.imda.gov.sg/sitemap.xml', path: /^\/resources\/press-releases-factsheets-and-speeches\//, aiOnly: true },
   { name: 'AI Singapore', index: 'https://aisingapore.org/post-sitemap1.xml', path: /^\/(?!wp-|category\/|tag\/).+/, aiOnly: false },
   { name: 'Smart Nation', index: 'https://www.smartnation.gov.sg/sitemap.xml', path: /^\/initiatives\//, aiOnly: true },
+  { name: 'EDB', index: 'https://www.edb.gov.sg/sitemap.xml', path: /^\/en\/(?:news-and-insights|about-edb\/media-releases-publications)\//, aiOnly: true },
+  { name: 'A*STAR', index: 'https://www.a-star.edu.sg/sitemap.xml', path: /^\/(?:news\/(?:press-releases|features)|[^/]+\/news\/(?:press-release|press-releases|features|grant-awards))\//, aiOnly: true },
 ];
 const aiTopic = /(?:^|[^a-z])ai(?:[^a-z]|$)|artificial[-\s]intelligence|agentic|machine[-\s]learning|sea[-\s]lion/i;
 export const digest = value => createHash('sha256').update(value).digest('hex');

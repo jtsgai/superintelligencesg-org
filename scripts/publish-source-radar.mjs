@@ -8,8 +8,8 @@ const operations = resolve(dirname(fileURLToPath(import.meta.url)), '../../Growt
 const report = JSON.parse(await readFile(resolve(operations, 'latest.json'), 'utf8'));
 const queue = JSON.parse(await readFile(resolve(operations, 'work-queue.json'), 'utf8'));
 if (report.execution?.platform !== 'github_actions' || report.execution.run_id !== process.env.GITHUB_RUN_ID || !report.health?.length || !report.health.every(item => item.passed)) throw new Error('Expected the successful report from this hosted run.');
-const allowed = new Set(['www.mddi.gov.sg', 'www.imda.gov.sg', 'aisingapore.org', 'www.smartnation.gov.sg']);
-const providerByHost = new Map([['www.mddi.gov.sg', 'MDDI'], ['www.imda.gov.sg', 'IMDA'], ['aisingapore.org', 'AI Singapore'], ['www.smartnation.gov.sg', 'Smart Nation']]);
+const allowed = new Set(['www.mddi.gov.sg', 'www.imda.gov.sg', 'aisingapore.org', 'www.smartnation.gov.sg', 'www.edb.gov.sg', 'www.a-star.edu.sg']);
+const providerByHost = new Map([['www.mddi.gov.sg', 'MDDI'], ['www.imda.gov.sg', 'IMDA'], ['aisingapore.org', 'AI Singapore'], ['www.smartnation.gov.sg', 'Smart Nation'], ['www.edb.gov.sg', 'EDB'], ['www.a-star.edu.sg', 'A*STAR']]);
 const discovered = report.discovery.items.filter(item => {
   const decision = queue.items.find(job => job.type === 'official_source_discovery' && job.evidence.url === item.url);
   return item.outcome === 'discovered_review_required' && !['older_article_recently_modified', 'future_publication_date_review_required'].includes(item.freshness) && decision?.status !== 'not_actionable' && allowed.has(new URL(item.url).hostname);
