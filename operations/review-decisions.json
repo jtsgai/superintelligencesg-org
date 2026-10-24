@@ -219,6 +219,14 @@
       "at": "2026-10-23T03:04:08Z",
       "note": "Read the original MDDI release, dated 1 July 2026. It confirms Professor Christian Wolfrum became AI Singapore's Executive Chairman on that date, succeeding Professor Ho Teck Hua. Existing public site content describes AISG's programmes and ecosystem role but does not name its current chair, so there is no inaccurate public claim to correct or a substantive research update to publish.",
       "public_url": "https://www.mddi.gov.sg/newsroom/appointment-of-new-executive-chairman-of-ai-singapore/"
+    },
+    {
+      "id": "official_source_discovery:27f49b6bff7d32dc82ca",
+      "revision": "ea2488ab0fe24782b96c83c5b24f05a6ad3c54a8d05d3cbda23da3648bf1bc17",
+      "status": "reviewed",
+      "at": "2026-10-24T03:56:59Z",
+      "note": "Read the original MDDI parliamentary response, dated 5 August 2026. It says the Government released its Model Governance Framework for Agentic AI in January 2026 and calls for designated oversight, meaningful human accountability and risk controls proportionate to the system's risk and autonomy. The current Trusted Deployment Field Note already describes agent safeguards and accountability boundaries; this response adds no new programme, measured outcome or correction requiring a public update.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-extending-model-ai-governance-framework-and-ai-verify-to-cover-agentic-ai-systems/"
     }
   ]
 }
