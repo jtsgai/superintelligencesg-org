@@ -227,6 +227,14 @@
       "at": "2026-10-24T03:56:59Z",
       "note": "Read the original MDDI parliamentary response, dated 5 August 2026. It says the Government released its Model Governance Framework for Agentic AI in January 2026 and calls for designated oversight, meaningful human accountability and risk controls proportionate to the system's risk and autonomy. The current Trusted Deployment Field Note already describes agent safeguards and accountability boundaries; this response adds no new programme, measured outcome or correction requiring a public update.",
       "public_url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-extending-model-ai-governance-framework-and-ai-verify-to-cover-agentic-ai-systems/"
+    },
+    {
+      "id": "official_source_discovery:520c2549b3c484391582",
+      "revision": "ca27f3ff0c965951c55b5cd02b3ae02297f69ac8b963166b86c56ed78879657c",
+      "status": "reviewed",
+      "at": "2026-10-26T02:01:00Z",
+      "note": "Read the original MDDI release, dated 15 July 2021. It describes the OneService Chatbot beta launch under the National AI Strategy, including VICA, WhatsApp and Telegram channels, and an earlier 450-participant trial. This is historic context, not a current programme update or a correction to existing public research; no publication change is warranted.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/new-ai-powered-oneservice/"
     }
   ]
 }
