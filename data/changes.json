@@ -1,0 +1,196 @@
+{
+  "$schema": "./schema/changes.schema.json",
+  "version": 1,
+  "provenance": "Moved from the published Change Brief, superintelligencesg-com changelog.html (2026-10-27).",
+  "records": [
+    {
+      "id": "change-2026-10-16-a-public-route-for-evidence-intelligence",
+      "date": "2026-10-16",
+      "label": "Research brief",
+      "title": "A public route for Evidence Intelligence.",
+      "summary": "Lab now has SG Evidence Intelligence at superintelligencesg.ai/evidence-intelligence/. The page explains the in-preparation research service and links two clearly labelled public-source samples. It does not describe customers, engagements or outcomes; client briefs, when made, are delivered privately and are not published.",
+      "tags": [],
+      "links": [
+        {
+          "label": "superintelligencesg.ai/evidence-intelligence/",
+          "url": "https://superintelligencesg.ai/evidence-intelligence/"
+        }
+      ],
+      "url": "https://superintelligencesg.ai/evidence-intelligence/",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.ai/evidence-intelligence/",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "change-2026-10-12-four-records-individually-checked",
+      "date": "2026-10-12",
+      "label": "Evidence ledger",
+      "title": "Four records, individually checked.",
+      "summary": "Navigator now shows an Evidence Card for every result. Four public records have completed an individual review against official sources: AI Singapore, AI Verify Foundation, Singapore AI Safety Institute and the Sectoral AI Centre of Excellence for Manufacturing. Their cards show the source, review date and latest change. The remaining references continue to be labelled Public reference until they receive the same review.",
+      "tags": [
+        "Official source linked",
+        "Review date visible",
+        "Change note retained"
+      ],
+      "links": [
+        {
+          "label": "Browse the evidence records",
+          "url": "https://superintelligencesg.com/directory.html?source=public"
+        }
+      ],
+      "url": "https://superintelligencesg.com/directory.html?source=public",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.com/directory.html?source=public",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "change-2026-10-09-from-a-public-record-to-a-decision",
+      "date": "2026-10-09",
+      "label": "Decision tools",
+      "title": "From a public record to a decision.",
+      "summary": "Lab now publishes a customer-support research sample with three providers, eight original sources, a downloadable brief and a blank evaluation workbook. Navigator links directly to it. Provider claims, price components and unanswered questions are visible; no product trials, customers or endorsements are claimed.",
+      "tags": [],
+      "links": [
+        {
+          "label": "Read the sample and download the tools",
+          "url": "https://superintelligencesg.ai/field-notes/customer-support-procurement.html"
+        }
+      ],
+      "url": "https://superintelligencesg.ai/field-notes/customer-support-procurement.html",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.ai/field-notes/customer-support-procurement.html",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "change-2026-09-29-100-public-references-with-a-defined-boundary",
+      "date": "2026-09-29",
+      "label": "The record",
+      "title": "100 public references, with a defined boundary.",
+      "summary": "Navigator now contains 100 source-linked public references across research, public capability, governance, education, health and deployment. Each is a practical starting point, not a ranking, certification or complete census.",
+      "tags": [
+        "Public source linked",
+        "Editorial description",
+        "Review date visible"
+      ],
+      "links": [
+        {
+          "label": "Browse public references",
+          "url": "https://superintelligencesg.com/directory.html?source=public"
+        }
+      ],
+      "url": "https://superintelligencesg.com/directory.html?source=public",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.com/directory.html?source=public",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "change-2026-09-29-trusted-deployment-now-has-its-own-route",
+      "date": "2026-09-29",
+      "label": "The collection",
+      "title": "Trusted deployment now has its own route.",
+      "summary": "A new collection connects public work on AI assurance, safety, evaluation, agentic-AI governance and responsible deployment. It gives a researcher, operator or journalist a focused way to save and compare the relevant public record.",
+      "tags": [
+        "10 source-linked entries",
+        "Shareable collection URL",
+        "Linked from Lab"
+      ],
+      "links": [
+        {
+          "label": "Open Trusted deployment",
+          "url": "https://superintelligencesg.com/directory.html?lens=trusted-deployment"
+        },
+        {
+          "label": "Read the related Field Note",
+          "url": "https://superintelligencesg.ai/field-notes/trusted-deployment.html"
+        }
+      ],
+      "url": "https://superintelligencesg.com/directory.html?lens=trusted-deployment",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.com/directory.html?lens=trusted-deployment",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "change-2026-09-29-community-records-remain-distinct-from-editorial-references",
+      "date": "2026-09-29",
+      "label": "The ownership layer",
+      "title": "Community records remain distinct from editorial references.",
+      "summary": "Two organisations have chosen to publish their own Commons profiles. Their records are shown as community profiles, with their source status visible. Publishing, claiming or paying for profile tools does not change the order or evidence label of any Navigator result.",
+      "tags": [
+        "Organisation-authored",
+        "Publicly correctable",
+        "Separate source status"
+      ],
+      "links": [
+        {
+          "label": "Meet the Commons profiles",
+          "url": "https://superintelligencesg.com/directory.html?source=community"
+        },
+        {
+          "label": "Publish an organisation record",
+          "url": "https://superintelligencesg.org/#participate"
+        }
+      ],
+      "url": "https://superintelligencesg.com/directory.html?source=community",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.com/directory.html?source=community",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "change-2026-09-29-a-better-source-should-change-the-map",
+      "date": "2026-09-29",
+      "label": "The correction path",
+      "title": "A better source should change the map.",
+      "summary": "Anyone can submit a public addition, correction or removal request through Source Desk. The next brief will record material changes with the relevant source or organisation request, rather than silently replacing the record.",
+      "tags": [
+        "Addition",
+        "Correction",
+        "Removal request"
+      ],
+      "links": [
+        {
+          "label": "Open Source Desk",
+          "url": "https://superintelligencesg.com/source-desk.html"
+        }
+      ],
+      "url": "https://superintelligencesg.com/source-desk.html",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.com/source-desk.html",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    }
+  ]
+}
