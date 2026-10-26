@@ -5,6 +5,8 @@ const ORIGINS = new Set([
   'https://www.superintelligencesg.com',
   'https://superintelligencesg.ai',
   'https://www.superintelligencesg.ai',
+  'https://superintelligencesg.si',
+  'https://www.superintelligencesg.si',
 ]);
 
 const CATEGORIES = ['Organization', 'Research', 'Applied research', 'Education & research', 'Company', 'Health AI', 'Ecosystem', 'Governance', 'Public capability'];

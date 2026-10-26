@@ -51,4 +51,14 @@ const response = await worker.fetch(request, { DB });
 assert.equal(response.status, 201, 'Source Desk should accept a valid request');
 assert.deepEqual(await response.json(), { ok: true, status: 'received' });
 assert(calls.some(call => call.sql.includes('INSERT INTO source_desk_submissions')), 'Source Desk must write to the existing table');
+for (const origin of ['https://superintelligencesg.si', 'https://www.superintelligencesg.si']) {
+  const preflight = await worker.fetch(new Request('https://data.superintelligencesg.org/api/organizations', { method: 'OPTIONS', headers: { Origin: origin } }), { DB });
+  assert.equal(preflight.status, 204, `${origin} preflight should be allowed`);
+  assert.equal(preflight.headers.get('Access-Control-Allow-Origin'), origin);
+  const read = await worker.fetch(new Request('https://data.superintelligencesg.org/api/organizations', { headers: { Origin: origin } }), { DB });
+  assert.equal(read.status, 200, `${origin} should be able to read the directory`);
+  assert.equal(read.headers.get('Access-Control-Allow-Origin'), origin);
+}
+const blocked = await worker.fetch(new Request('https://data.superintelligencesg.org/api/organizations', { headers: { Origin: 'https://superintelligencesg.si.example.com' } }), { DB });
+assert.equal(blocked.status, 403, 'unlisted origins stay blocked');
 console.log('Worker routes and Source Desk intake are valid');
