@@ -91,7 +91,9 @@ const v1DB = {
 };
 const live = { DB: v1DB, DATA_BASE_URL: 'https://live.test/repo/' };
 const get = (path, env = live, headers = {}) => worker.fetch(new Request(`https://data.superintelligencesg.org${path}`, { headers }), env, { waitUntil() {} });
-const curated = JSON.parse(await readFile(resolve(root, 'data/entries.json'), 'utf8')).records;
+const allCurated = JSON.parse(await readFile(resolve(root, 'data/entries.json'), 'utf8')).records;
+const curated = allCurated.filter(record => record.published !== false);
+assert.equal(allCurated.length - curated.length, 1, 'one withdrawn curated record (TAIGER) is kept in data but not published');
 
 let res = await get('/api/v1/entries');
 assert.equal(res.status, 200, 'v1 entries should respond');
@@ -108,13 +110,14 @@ assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b, 'en', { sen
 assert(body.entries.every(entry => !('score' in entry) && !('rank' in entry) && !('position' in entry)), 'no scores or ranks are exposed');
 for (const entry of body.entries) for (const key of ['source_url', 'evidence', 'checked_at', 'conclusion', 'action', 'review_label']) assert(key in entry, `${entry.id} exposes ${key}`);
 const needsReview = body.entries.filter(entry => entry.evidence.status === 'needs_review');
-assert.equal(needsReview.length, 10, '10 moved entries remain needs_review after the 2026-10-28 source review and IMDA rendered re-check (90 verified)');
+assert.equal(needsReview.length, 9, '9 published entries remain needs_review after the 2026-10-28 source review and IMDA rendered re-check (90 verified)');
+assert(!body.entries.some(entry => entry.id === 'public-taiger'), 'withdrawn TAIGER is not served');
 assert(needsReview.every(entry => entry.review_label === 'Needs review' && entry.conclusion === null && entry.action === null));
 assert(body.entries.filter(entry => entry.evidence.status !== 'needs_review').every(entry => entry.review_label === null));
 assert.equal(body.entries.find(entry => entry.origin === 'commons').evidence.status, 'self_submitted');
 assert.equal(body.entries.find(entry => entry.origin === 'commons').kind, 'Organization', 'JT M&C uses the stored default category');
 assert.equal(body.entries.find(entry => entry.origin === 'commons').review_label, null, 'Commons profiles carry no review label');
-assert.equal(body.entries.filter(entry => entry.review_label === 'Needs review').length, 10, 'Needs review label is emitted');
+assert.equal(body.entries.filter(entry => entry.review_label === 'Needs review').length, 9, 'Needs review label is emitted');
 
 // ?origin= filter
 const curatedOnly = await (await get('/api/v1/entries?origin=curated')).json();

@@ -512,7 +512,8 @@ async function v1EntryList(request, env, ctx, url) {
   if (originFilter && !['curated', 'commons'].includes(originFilter)) fail('Choose origin curated or commons.');
   const limit = limitParam(url);
   const [curated, commons] = await Promise.all([dataset(env, ctx, url, 'entries'), commonsEntries(env)]);
-  const entries = [...curated.value.records.map(curatedEntry), ...commons.entries]
+  // published: false withdraws a curated record from the API (mirrors D1 organization_details.published); the data is kept.
+  const entries = [...curated.value.records.filter(record => record.published !== false).map(curatedEntry), ...commons.entries]
     .filter(entry => type === null || entry.type === type)
     .filter(entry => !originFilter || entry.origin === originFilter)
     .filter(entry => !lens || (entry.lenses || []).includes(lens))

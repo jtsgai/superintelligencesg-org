@@ -354,11 +354,19 @@
       ],
       "source_url": "https://taiger.ai/",
       "evidence": {
-        "status": "needs_review"
+        "status": "needs_review",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "withdrawn_no_reliable_source",
+            "note": "taiger.ai now serves an unrelated crypto page; taiger.com unreachable, last news 2023. ACRA UEN 201510023W: Taiger Singapore Pte. Ltd. in creditors' voluntary winding up (2022), now dissolved. Business Times 2022-04-04 reported the liquidation: https://www.businesstimes.com.sg/startups-tech/startups/ai-startup-taiger-liquidates-singapore-entity-over-80-staff-cut . No reliable current source; withdrawn via published=false, data kept."
+          }
+        ]
       },
       "checked_at": null,
       "conclusion": null,
-      "action": null
+      "action": null,
+      "published": false
     },
     {
       "id": "public-biofourmis",

@@ -294,6 +294,10 @@
             "person"
           ],
           "default": "organization"
+        },
+        "published": {
+          "type": "boolean",
+          "description": "false withdraws a curated record from the API without deleting it (mirrors D1 organization_details.published). Omitted = published."
         }
       },
       "if": {
@@ -402,6 +406,10 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 200
+        },
+        "published": {
+          "type": "boolean",
+          "description": "false withdraws a curated record from the API without deleting it (mirrors D1 organization_details.published). Omitted = published."
         }
       }
     }
