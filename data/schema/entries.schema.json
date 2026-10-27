@@ -113,6 +113,60 @@
       }
     },
     "record": {
+      "if": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "const": "person"
+          }
+        }
+      },
+      "then": {
+        "$ref": "#/$defs/person"
+      },
+      "else": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/entry"
+          },
+          {
+            "if": {
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "event",
+                    "funding",
+                    "gov_initiative"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "source_url",
+                "checked_at"
+              ],
+              "properties": {
+                "source_url": {
+                  "type": "string",
+                  "pattern": "^https?://[^\\s]+$"
+                },
+                "checked_at": {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "entry": {
       "type": "object",
       "required": [
         "id",
@@ -158,7 +212,11 @@
             "Health AI",
             "Ecosystem",
             "Governance",
-            "Public capability"
+            "Public capability",
+            "Event",
+            "Funding",
+            "Government initiative",
+            "Person"
           ]
         },
         "source": {
@@ -196,9 +254,9 @@
             "string",
             "null"
           ],
-          "pattern": "^https://[^\\s]+$",
+          "pattern": "^https?://[^\\s]+$",
           "maxLength": 600,
-          "description": "Required (https) unless evidence.status is needs_review; null is allowed only for needs_review records."
+          "description": "HTTP/HTTPS source; mandatory and non-null for every non-organization type."
         },
         "evidence": {
           "$ref": "#/$defs/evidence"
@@ -226,6 +284,16 @@
           ],
           "maxLength": 600,
           "description": "Suggested reader action. Null until written by a reviewer; never generated."
+        },
+        "type": {
+          "enum": [
+            "organization",
+            "event",
+            "funding",
+            "gov_initiative",
+            "person"
+          ],
+          "default": "organization"
         }
       },
       "if": {
@@ -248,13 +316,92 @@
         "properties": {
           "source_url": {
             "type": "string",
-            "pattern": "^https://[^\\s]+$",
+            "pattern": "^https?://[^\\s]+$",
             "maxLength": 600
           },
           "checked_at": {
             "type": "string",
             "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
           }
+        }
+      }
+    },
+    "person": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "name",
+        "public_role",
+        "organisation",
+        "source_url",
+        "checked_at"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,120}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "source_url": {
+          "type": "string",
+          "pattern": "^https?://[^\\s]+$",
+          "maxLength": 600
+        },
+        "checked_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "kind": {
+          "enum": [
+            "Organization",
+            "Research",
+            "Applied research",
+            "Education & research",
+            "Company",
+            "Health AI",
+            "Ecosystem",
+            "Governance",
+            "Public capability",
+            "Event",
+            "Funding",
+            "Government initiative",
+            "Person"
+          ]
+        },
+        "updated": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "lenses": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "research",
+              "deployment",
+              "trust",
+              "public",
+              "trusted-deployment"
+            ]
+          }
+        },
+        "type": {
+          "const": "person"
+        },
+        "public_role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "organisation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
         }
       }
     }

@@ -9,11 +9,56 @@ const ORIGINS = new Set([
   'https://www.superintelligencesg.si',
 ]);
 
+export const RECORD_TYPES = Object.freeze(['organization', 'event', 'funding', 'gov_initiative', 'person']);
+const PERSON_FIELDS = new Set(['id', 'type', 'name', 'public_role', 'organisation', 'source_url', 'checked_at', 'kind', 'updated', 'lenses']);
+
+export function validSourceURL(value) {
+  try {
+    if (typeof value !== 'string' || !/^https?:\/\/[^\s]+$/i.test(value)) return false;
+    const url = new URL(value);
+    return ['http:', 'https:'].includes(url.protocol) && Boolean(url.hostname) && !url.username && !url.password;
+  } catch { return false; }
+}
+
+export const isLegacyOrganization = record => (record.type === undefined && record.origin === undefined) || record.evidence?.status === 'needs_review';
+export const missingSource = record => !validSourceURL(record.source_url);
+
+// Pure validation shared by the Worker and local ingest/build scripts.
+export function validateRecord(record) {
+  if (!record || typeof record !== 'object' || Array.isArray(record)) return ['Record must be an object.'];
+  const type = record.type === undefined ? 'organization' : record.type;
+  const errors = [];
+  if (!RECORD_TYPES.includes(type)) return ['Invalid record type.'];
+  // Legacy organizations (no explicit type, or still needs_review) are not enforced;
+  // they are reported through missing_source instead. New or modified ones must cite a source.
+  if (type !== 'organization' || !isLegacyOrganization(record)) {
+    if (!validSourceURL(record.source_url)) errors.push('source_url must be an http/https URL.');
+  }
+  if (type !== 'organization') {
+    const date = record.checked_at;
+    if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) {
+      errors.push('checked_at must be a valid ISO date (YYYY-MM-DD).');
+    }
+  }
+  if (type === 'person') {
+    for (const key of ['name', 'public_role', 'organisation']) {
+      if (typeof record[key] !== 'string' || !record[key].trim() || record[key].length > 200) errors.push(`${key} is required (up to 200 characters).`);
+    }
+    for (const key of Object.keys(record)) if (!PERSON_FIELDS.has(key)) errors.push(`Person records cannot contain ${key}; only public-role fields and record metadata are allowed.`);
+  }
+  return errors;
+}
+
+function requireValidRecord(record) {
+  const errors = validateRecord(record);
+  if (errors.length) fail(errors.join(' '));
+}
+
 const CATEGORIES = ['Organization', 'Research', 'Applied research', 'Education & research', 'Company', 'Health AI', 'Ecosystem', 'Governance', 'Public capability'];
 const REVIEW_STATUSES = ['received', 'in_review', 'accepted', 'rejected', 'resolved'];
 const NAVIGATOR_CANDIDATE_STATUSES = ['none', 'draft', 'ready'];
 let sourceDeskReviewColumnsReady = false;
-const PUBLIC_SELECT = `SELECT o.id,o.name,o.founder,o.business,o.logo_key,o.created_at,d.website_url,d.location,d.category,d.collaboration,d.collaboration_note,d.contact_url,d.updated_at,d.verification_status,d.verified_domain,d.verified_at FROM organizations o LEFT JOIN organization_details d ON d.organization_id=o.id`;
+const PUBLIC_SELECT = `SELECT o.id,o.name,o.founder,o.business,o.logo_key,o.created_at,d.website_url,d.source_url,d.location,d.category,d.collaboration,d.collaboration_note,d.contact_url,d.updated_at,d.verification_status,d.verified_domain,d.verified_at FROM organizations o LEFT JOIN organization_details d ON d.organization_id=o.id`;
 
 function headers(origin, type = 'application/json; charset=utf-8') {
   const result = new Headers({
@@ -69,14 +114,14 @@ function text(value, max, required = false) {
   return result;
 }
 
-function website(value) {
+function website(value, message = 'Enter a public website URL beginning with https:// or http://.') {
   if (!value) return '';
   try {
     const parsed = new URL(value);
     if (!['https:', 'http:'].includes(parsed.protocol) || parsed.username || parsed.password || parsed.port || !parsed.hostname.includes('.') || /^[\d.]+$/.test(parsed.hostname) || !/^[a-z0-9.-]+$/i.test(parsed.hostname) || parsed.hostname.endsWith('.local')) throw Error();
     return parsed.href;
   } catch {
-    fail('Enter a public website URL beginning with https:// or http://.');
+    fail(message);
   }
 }
 
@@ -106,6 +151,7 @@ function publicRow(row) {
   return {
     ...row,
     website_url: row.website_url ?? inferredWebsite(row.business),
+    source_url: row.source_url || null,
     location: row.location || '',
     category: row.category || 'Organization',
     collaboration: row.collaboration || 'unspecified',
@@ -117,6 +163,15 @@ function publicRow(row) {
 }
 
 function fields(form) {
+  const type = form.get('type') ?? 'organization';
+  // Prefer a separate source link. The organisation website is the source only when source_url is empty.
+  const sourceInput = text(form.get('source_url'), 500);
+  const websiteInput = text(form.get('website_url'), 300);
+  const sourceURL = sourceInput ? website(sourceInput, 'Enter a public source_url beginning with https:// or http://.') : '';
+  const websiteURL = website(websiteInput);
+  if (!sourceURL && !websiteURL) fail('Enter a source_url or a website_url.');
+  requireValidRecord({ type, source_url: sourceURL || websiteURL, checked_at: form.get('checked_at') });
+  if (type !== 'organization') fail('This endpoint accepts organizations only; submit other record types through the reviewed data layer.');
   const category = text(form.get('category'), 50) || 'Organization';
   const collaboration = text(form.get('collaboration'), 20) || 'unspecified';
   if (!CATEGORIES.includes(category) || !['unspecified', 'open', 'closed'].includes(collaboration)) fail('Choose an available category and collaboration status.');
@@ -124,7 +179,8 @@ function fields(form) {
     name: text(form.get('name'), 100, true),
     founder: text(form.get('founder'), 100, true),
     business: text(form.get('business'), 500, true),
-    website_url: website(text(form.get('website_url'), 300)),
+    website_url: websiteURL,
+    source_url: sourceURL || null,
     location: text(form.get('location'), 120),
     category,
     collaboration,
@@ -329,7 +385,9 @@ const BUNDLED_DATA = /* @bundled-data */ null;
 const dataMemory = new Map();
 
 function validDataset(name, value) {
-  return name === 'radar' ? Array.isArray(value?.items) : Array.isArray(value?.records);
+  const valid = name === 'radar' ? Array.isArray(value?.items) : Array.isArray(value?.records);
+  if (valid && name === 'entries') value.records.forEach(requireValidRecord);
+  return valid;
 }
 
 // Last-good copy for a GitHub outage after the in-memory copy is gone.
@@ -358,7 +416,7 @@ async function dataset(env, ctx, requestURL, name) {
           return { value, from: 'edge' };
         }
       }
-    } catch {}
+    } catch (error) { if (error.status) throw error; }
   }
   try {
     const response = await fetch(source, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(8000) });
@@ -372,7 +430,8 @@ async function dataset(env, ctx, requestURL, name) {
       if (ctx?.waitUntil) ctx.waitUntil(put); else await put;
     }
     return { value, from: 'origin' };
-  } catch {
+  } catch (error) {
+    if (error.status) throw error;
     if (memory) return { value: memory.value, from: 'stale' };
     const stored = await snapshotCacheRead(env, name);
     if (stored) return { value: stored, from: 'snapshot' };
@@ -392,14 +451,16 @@ function absolute(value, base) {
 }
 
 function curatedEntry(record) {
-  return { ...record, origin: 'curated', logo_url: absolute(record.logo, NAVIGATOR_URL), review_label: reviewLabel(record) };
+  return { ...record, type: record.type ?? 'organization', origin: 'curated', logo_url: absolute(record.logo, NAVIGATOR_URL), review_label: reviewLabel(record), missing_source: missingSource(record) };
 }
 
 function commonsEntry(row) {
   const site = row.website_url || null;
+  const source = validSourceURL(row.source_url) ? row.source_url : site;
   return {
     id: row.id,
     origin: 'commons',
+    type: 'organization',
     name: row.name,
     founder: row.founder,
     description: row.business,
@@ -411,12 +472,13 @@ function commonsEntry(row) {
     location: row.location,
     collaboration: row.collaboration,
     profile_url: `https://superintelligencesg.org/organizations.html?id=${encodeURIComponent(row.id)}`,
-    source_url: site,
+    source_url: source,
     evidence: { status: 'self_submitted', verification_status: row.verification_status, verified_domain: row.verified_domain || null, verified_at: isoDay(row.verified_at) },
     checked_at: null,
     conclusion: null,
     action: null,
     review_label: null,
+    missing_source: missingSource({ source_url: source }),
   };
 }
 
@@ -439,6 +501,8 @@ function limitParam(url) {
 }
 
 async function v1EntryList(request, env, ctx, url) {
+  const type = url.searchParams.get('type');
+  if (type !== null && !RECORD_TYPES.includes(type)) fail('Choose a valid record type.');
   const lens = (url.searchParams.get('lens') || '').trim().toLowerCase();
   const kind = (url.searchParams.get('kind') || '').trim().toLowerCase();
   const q = (url.searchParams.get('q') || '').trim().toLowerCase().slice(0, 120);
@@ -449,6 +513,7 @@ async function v1EntryList(request, env, ctx, url) {
   const limit = limitParam(url);
   const [curated, commons] = await Promise.all([dataset(env, ctx, url, 'entries'), commonsEntries(env)]);
   const entries = [...curated.value.records.map(curatedEntry), ...commons.entries]
+    .filter(entry => type === null || entry.type === type)
     .filter(entry => !originFilter || entry.origin === originFilter)
     .filter(entry => !lens || (entry.lenses || []).includes(lens))
     .filter(entry => !kind || String(entry.kind || '').toLowerCase() === kind)
@@ -456,6 +521,18 @@ async function v1EntryList(request, env, ctx, url) {
   // Alphabetical or most recently updated only. Never order by any score.
   entries.sort(sort === 'updated' ? (a, b) => String(b.updated || '').localeCompare(String(a.updated || '')) || byName(a, b) : byName);
   return { value: { version: 1, sort, count: Math.min(entries.length, limit), total: entries.length, entries: entries.slice(0, limit) }, source: `entries=${curated.from}; commons=${commons.status}` };
+}
+
+async function v1Stats(request, env, ctx, url) {
+  const all = await v1EntryList(request, env, ctx, new URL(`${url.origin}/api/v1/entries`));
+  const by_type = Object.fromEntries(RECORD_TYPES.map(type => [type, 0]));
+  const by_kind = Object.create(null);
+  for (const entry of all.value.entries) {
+    by_type[entry.type] += 1;
+    const kind = entry.kind || 'Unspecified';
+    by_kind[kind] = (by_kind[kind] || 0) + 1;
+  }
+  return { value: { version: 1, total: all.value.total, by_type, by_kind }, source: all.source };
 }
 
 async function v1Records(env, ctx, url, name) {
@@ -556,6 +633,7 @@ async function v1(request, env, ctx, url, path, origin) {
   // TODO(needs D1 table approval): POST /api/v1/inquiries. Inquiries go to
   // superintelligencesg@gmail.com by email until storage is approved.
   if (request.method !== 'GET') return json({ error: 'Not found' }, 404, origin);
+  if (path === '/api/v1/stats') return publicJSON(request, await v1Stats(request, env, ctx, url), origin);
   if (path === '/api/v1/entries') return publicJSON(request, await v1EntryList(request, env, ctx, url), origin);
   if (path === '/api/v1/signals') return publicJSON(request, await v1Records(env, ctx, url, 'signals'), origin);
   if (path === '/api/v1/changes') return publicJSON(request, await v1Records(env, ctx, url, 'changes'), origin);
@@ -584,8 +662,8 @@ export default {
     const path = apiPath(url.pathname);
     if (!path.startsWith('/api/')) return new Response('Not found', { status: 404 });
     if (request.method === 'OPTIONS' && isFeedPath(path)) return new Response(null, { status: 204, headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, OPTIONS', 'Access-Control-Max-Age': '86400' } });
-    if (request.method === 'OPTIONS') return new Response(null, { status: ORIGINS.has(origin) ? 204 : 403, headers: headers(origin) });
-    if (origin && !ORIGINS.has(origin) && !isFeedPath(path)) return json({ error: 'This origin is not allowed.' }, 403, origin);
+    if (request.method === 'OPTIONS') return new Response(null, { status: ORIGINS.has(origin) ? 204 : 400, headers: headers(origin) });
+    if (origin && !ORIGINS.has(origin) && !isFeedPath(path)) return json({ error: 'This origin is not allowed.' }, 400, origin);
     try {
       if (path.startsWith('/api/v1/')) return await v1(request, env, ctx, url, path, origin);
       if (path === '/api/health' && request.method === 'GET') return health(env, origin);
@@ -627,7 +705,7 @@ export default {
         const timestamp = now();
         await env.DB.batch([
           env.DB.prepare('INSERT INTO organizations(id,name,founder,business,logo_key,created_at) VALUES(?,?,?,?,?,?)').bind(id, fieldValues.name, fieldValues.founder, fieldValues.business, logo, timestamp),
-          env.DB.prepare('INSERT INTO organization_details(organization_id,website_url,location,category,collaboration,collaboration_note,contact_url,manage_hash,updated_at) VALUES(?,?,?,?,?,?,?,?,?)').bind(id, fieldValues.website_url, fieldValues.location, fieldValues.category, fieldValues.collaboration, fieldValues.collaboration_note, fieldValues.contact_url, await hash(key), timestamp),
+          env.DB.prepare('INSERT INTO organization_details(organization_id,website_url,source_url,location,category,collaboration,collaboration_note,contact_url,manage_hash,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)').bind(id, fieldValues.website_url, fieldValues.source_url, fieldValues.location, fieldValues.category, fieldValues.collaboration, fieldValues.collaboration_note, fieldValues.contact_url, await hash(key), timestamp),
         ]);
         return json({ ok: true, organization: await readOne(env, id), management_key: key }, 201, origin);
       }
@@ -644,7 +722,7 @@ export default {
           const sameDomain = owner.verified_domain && fieldValues.website_url && new URL(fieldValues.website_url).hostname === owner.verified_domain;
           await env.DB.batch([
             env.DB.prepare('UPDATE organizations SET name=?,founder=?,business=?,logo_key=? WHERE id=?').bind(fieldValues.name, fieldValues.founder, fieldValues.business, logo || old.logo_key, id),
-            env.DB.prepare('UPDATE organization_details SET website_url=?,location=?,category=?,collaboration=?,collaboration_note=?,contact_url=?,updated_at=?,verification_status=?,verified_domain=?,verified_at=?,claim_hash=NULL,claim_challenge=NULL,claim_expires=NULL WHERE organization_id=?').bind(fieldValues.website_url, fieldValues.location, fieldValues.category, fieldValues.collaboration, fieldValues.collaboration_note, fieldValues.contact_url, now(), sameDomain ? 'claimed' : 'submitted', sameDomain ? owner.verified_domain : null, sameDomain ? owner.verified_at : null, id),
+            env.DB.prepare('UPDATE organization_details SET website_url=?,source_url=?,location=?,category=?,collaboration=?,collaboration_note=?,contact_url=?,updated_at=?,verification_status=?,verified_domain=?,verified_at=?,claim_hash=NULL,claim_challenge=NULL,claim_expires=NULL WHERE organization_id=?').bind(fieldValues.website_url, fieldValues.source_url, fieldValues.location, fieldValues.category, fieldValues.collaboration, fieldValues.collaboration_note, fieldValues.contact_url, now(), sameDomain ? 'claimed' : 'submitted', sameDomain ? owner.verified_domain : null, sameDomain ? owner.verified_at : null, id),
           ]);
           return json({ ok: true, organization: await readOne(env, id, true) }, 200, origin);
         }
