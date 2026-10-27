@@ -1,0 +1,21 @@
+<!--
+  Superintelligence SG shared ecosystem chrome (.si · .com · .org · .ai).
+  Self-contained: inline CSS, no fonts, scripts or external requests.
+  Keep identical on all four sites. The disclosure wording is copied verbatim
+  from https://superintelligencesg.org/about.html#disclosure (the master).
+  In this repo, `node scripts/apply-ecosystem-chrome.mjs` copies each marked
+  region into every page; `--check` (part of npm test) fails on any drift.
+-->
+<!-- si-eco:style -->
+<style id="si-eco-style">
+footer:has(>.si-eco-foot){flex-wrap:wrap}
+.si-eco-foot{flex:1 0 100%;width:100%;box-sizing:border-box;margin:14px 0 0;padding:14px 16px;border-radius:10px;background:#0f1720;color:#c3cdd6;font:400 13px/1.55 "Avenir Next",Avenir,"Helvetica Neue",sans-serif;text-align:left}
+.si-eco-foot .si-eco-disclosure{max-width:none;margin:0;padding:0;color:#c3cdd6;font:inherit}
+.si-eco-foot a{display:inline;margin:0;padding:0;border:0;color:#fff;font:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.si-eco-foot a:hover{color:#fff;text-decoration-thickness:2px}
+.si-eco-foot a:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:2px}
+</style>
+<!-- /si-eco:style -->
+<!-- si-eco:footer -->
+<div class="si-eco-foot"><p class="si-eco-disclosure">Disclosure: Superintelligence SG is founded by Jerry Tuo, who also founded JT M&amp;C Pte Ltd (JT SG AI) and co-founded Red Fun Planet. Listings affiliated with our founder get no special ranking. <a href="https://superintelligencesg.org/about.html#disclosure">About this disclosure</a></p></div>
+<!-- /si-eco:footer -->
