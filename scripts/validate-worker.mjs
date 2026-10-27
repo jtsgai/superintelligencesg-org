@@ -82,7 +82,7 @@ globalThis.fetch = async (input, init) => {
   if (href.startsWith('https://raw.githubusercontent.com/')) return new Response('nope', { status: 503 });
   return realFetch(input, init);
 };
-const commonsRow = { id: '9dead00b-115e-4312-8d4d-6a4f2904a958', name: 'JT M&C', founder: 'Jerry Tuo', business: 'Self-submitted description.', logo_key: 'https://jt-sgai.com/favicon.ico', created_at: 1790482477, updated_at: 1790482477, website_url: 'https://jt-sgai.com/', category: 'Company', verification_status: 'submitted' };
+const commonsRow = { id: '9dead00b-115e-4312-8d4d-6a4f2904a958', name: 'JT M&C', founder: 'Jerry Tuo', business: 'Self-submitted description.', logo_key: 'https://jt-sgai.com/favicon.ico', created_at: 1790482477, updated_at: 1790482477, website_url: 'https://jt-sgai.com/', category: 'Organization', verification_status: 'submitted' };
 const v1DB = {
   prepare(sql) {
     calls.push({ sql, values: [] });
@@ -112,6 +112,18 @@ assert.equal(needsReview.length, 96, '96 moved entries are flagged needs_review'
 assert(needsReview.every(entry => entry.review_label === 'Needs review' && entry.conclusion === null && entry.action === null));
 assert(body.entries.filter(entry => entry.evidence.status !== 'needs_review').every(entry => entry.review_label === null));
 assert.equal(body.entries.find(entry => entry.origin === 'commons').evidence.status, 'self_submitted');
+assert.equal(body.entries.find(entry => entry.origin === 'commons').kind, 'Organization', 'JT M&C uses the stored default category');
+assert.equal(body.entries.find(entry => entry.origin === 'commons').review_label, null, 'Commons profiles carry no review label');
+assert.equal(body.entries.filter(entry => entry.review_label === 'Needs review').length, 96, 'Needs review label is emitted');
+
+// ?origin= filter
+const curatedOnly = await (await get('/api/v1/entries?origin=curated')).json();
+assert.equal(curatedOnly.total, curated.length, 'origin=curated returns only curated entries');
+assert(curatedOnly.entries.every(entry => entry.origin === 'curated'));
+const commonsOnly = await (await get('/api/v1/entries?origin=commons')).json();
+assert.equal(commonsOnly.total, 1, 'origin=commons returns only Commons profiles');
+assert(commonsOnly.entries.every(entry => entry.origin === 'commons' && entry.name === 'JT M&C'));
+assert.equal((await get('/api/v1/entries?origin=bogus')).status, 400, 'unknown origin is rejected');
 assert.equal(body.entries.find(entry => entry.id === 'public-ai-singapore').logo_url, 'https://superintelligencesg.com/assets/navigator/ai-singapore.png');
 
 const etag = res.headers.get('ETag');
