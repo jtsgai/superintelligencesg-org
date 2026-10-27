@@ -166,3 +166,94 @@ test('new or modified organizations need a valid source_url; legacy ones are fla
   assert.equal(response.status, 400);
   assert.match((await response.json()).error, /source_url/);
 });
+
+test('organization submissions accept source_url only, website_url only, or both, and return 400 when neither is present', async () => {
+  const rows = [];
+  const calls = [];
+  const DB = {
+    prepare(sql) {
+      const call = { sql, values: [] };
+      calls.push(call);
+      const stmt = {
+        bind(...values) { call.values = values; return stmt; },
+        async run() { return { meta: { changes: 1 } }; },
+        async all() { return { results: rows }; },
+        async first() { return rows.at(-1) || null; },
+      };
+      return stmt;
+    },
+    async batch() {
+      const org = calls.filter(call => call.sql.includes('INSERT INTO organizations')).at(-1);
+      const detail = calls.filter(call => call.sql.includes('INSERT INTO organization_details')).at(-1);
+      if (org && detail && !rows.some(row => row.id === org.values[0])) {
+        const [id, website_url, source_url, location, category, collaboration, collaboration_note, contact_url, , updated_at] = detail.values;
+        rows.push({ id, name: org.values[1], founder: org.values[2], business: org.values[3], logo_key: org.values[4], created_at: org.values[5], website_url, source_url, location, category, collaboration, collaboration_note, contact_url, updated_at, verification_status: 'submitted' });
+      }
+      const update = calls.filter(call => call.sql.startsWith('UPDATE organization_details SET website_url=?,source_url=?')).at(-1);
+      if (update) {
+        const row = rows.find(item => item.id === update.values.at(-1));
+        if (row) {
+          row.website_url = update.values[0];
+          row.source_url = update.values[1];
+        }
+      }
+      return [{}, { results: [{ count: 1 }] }, {}];
+    },
+  };
+  const png = new File([Uint8Array.from([137, 80, 78, 71, 13, 10, 26, 10])], 'logo.png', { type: 'image/png' });
+  const submit = async fields => {
+    const form = new FormData();
+    form.set('consent', 'on');
+    form.set('name', fields.name);
+    form.set('founder', 'Founder');
+    form.set('business', 'Public work');
+    form.set('logo', png);
+    if (fields.source_url) form.set('source_url', fields.source_url);
+    if (fields.website_url) form.set('website_url', fields.website_url);
+    return worker.fetch(request('/api/organizations', { method: 'POST', headers: { Origin: origin }, body: form }), { ...env, DB });
+  };
+  const missing = await submit({ name: 'Neither' });
+  assert.equal(missing.status, 400);
+  assert.match((await missing.json()).error, /source_url/);
+  assert.equal(calls.some(call => call.sql.includes('INSERT INTO organizations(') || call.sql.includes('INSERT INTO organization_details(')), false);
+  const cases = [
+    { name: 'Source only', source_url: 'https://example.org/source', storedSource: 'https://example.org/source', storedSite: '', cited: 'https://example.org/source' },
+    { name: 'Website only', website_url: 'https://example.org/site', storedSource: null, storedSite: 'https://example.org/site', cited: 'https://example.org/site' },
+    { name: 'Both', source_url: 'https://example.org/source', website_url: 'https://example.org/site', storedSource: 'https://example.org/source', storedSite: 'https://example.org/site', cited: 'https://example.org/source' },
+  ];
+  for (const item of cases) {
+    const response = await submit(item);
+    const body = await response.json();
+    assert.equal(response.status, 201, `${item.name}: ${body.error || ''}`);
+    assert.equal(body.organization.name, item.name);
+    assert.equal(body.organization.source_url, item.storedSource);
+    assert.equal(body.organization.website_url, item.storedSite);
+    const saved = calls.filter(call => call.sql.includes('INSERT INTO organization_details')).at(-1);
+    assert.equal(saved.values[1], item.storedSite);
+    assert.equal(saved.values[2], item.storedSource);
+  }
+  const listed = await (await worker.fetch(request('/v1/entries?origin=commons'), { ...env, DB })).json();
+  for (const item of cases) {
+    const entry = listed.entries.find(entry => entry.name === item.name);
+    assert.equal(entry.source_url, item.cited, item.name);
+    assert.equal(entry.missing_source, false);
+    assert.equal(entry.url, item.storedSite || null);
+  }
+  const edit = new FormData();
+  edit.set('id', rows.at(-1).id);
+  edit.set('name', 'Both');
+  edit.set('founder', 'Founder');
+  edit.set('business', 'Public work');
+  edit.set('source_url', 'https://example.org/new-source');
+  edit.set('website_url', 'https://example.org/site');
+  const updated = await worker.fetch(request('/api/manage/update', { method: 'POST', headers: { Origin: origin, Authorization: `Bearer ${'ab'.repeat(32)}` }, body: edit }), { ...env, DB });
+  const edited = await updated.json();
+  assert.equal(updated.status, 200, edited.error || '');
+  assert.equal(edited.organization.source_url, 'https://example.org/new-source');
+  assert.equal(edited.organization.website_url, 'https://example.org/site');
+  const formSource = await readFile(new URL('../assets/product/commons.js', import.meta.url), 'utf8');
+  assert.match(formSource, /来源链接 \/ Source link/);
+  assert.match(formSource, /name="source_url"/);
+  assert.match(formSource, /function requireSource/);
+  assert.equal(formSource, await readFile(new URL('../static/assets/product/commons.js', import.meta.url), 'utf8'));
+});

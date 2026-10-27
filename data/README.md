@@ -35,7 +35,10 @@ New types use Git-reviewed `data/entries.json` storage. The shared pure
 bundling, and Worker ingestion (including edge-cache reads). Invalid ingested
 records produce HTTP 400 JSON rather than silently falling back. Organization
 form endpoints remain organization-only and reject submitted non-organization
-types rather than dropping their type/provenance. No D1 migration is needed.
+types rather than dropping their type/provenance. Organization submissions store
+an optional `source_url` on `organization_details`. At least one of `source_url`
+and `website_url` is required; `source_url` is preferred, and `website_url` is
+the source only when `source_url` is empty. Existing rows are not backfilled.
 
 `GET /api/v1/entries?type=event` filters by type, combined with the existing
 filters, sorting, and limit. `/v1/entries` is an alias. Unknown or empty `type`
