@@ -365,19 +365,9 @@
       ],
       "source_url": "https://biofourmis.com/about",
       "evidence": {
-        "status": "source_verified",
-        "source_url": "https://biofourmis.com/about",
-        "record_updated_at": "2026-09-28",
-        "checked_at": "2026-10-28",
-        "history": [
-          {
-            "at": "2026-10-28",
-            "kind": "individual_source_review",
-            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
-          }
-        ]
+        "status": "needs_review"
       },
-      "checked_at": "2026-10-28",
+      "checked_at": null,
       "conclusion": null,
       "action": null
     },
@@ -524,19 +514,9 @@
       ],
       "source_url": "https://www.a-star.edu.sg/i2r",
       "evidence": {
-        "status": "source_verified",
-        "source_url": "https://www.a-star.edu.sg/i2r",
-        "record_updated_at": "2026-09-28",
-        "checked_at": "2026-10-28",
-        "history": [
-          {
-            "at": "2026-10-28",
-            "kind": "individual_source_review",
-            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
-          }
-        ]
+        "status": "needs_review"
       },
-      "checked_at": "2026-10-28",
+      "checked_at": null,
       "conclusion": null,
       "action": null
     },
@@ -735,19 +715,9 @@
       ],
       "source_url": "https://www.tech.gov.sg/",
       "evidence": {
-        "status": "source_verified",
-        "source_url": "https://www.tech.gov.sg/",
-        "record_updated_at": "2026-09-28",
-        "checked_at": "2026-10-28",
-        "history": [
-          {
-            "at": "2026-10-28",
-            "kind": "individual_source_review",
-            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
-          }
-        ]
+        "status": "needs_review"
       },
-      "checked_at": "2026-10-28",
+      "checked_at": null,
       "conclusion": null,
       "action": null
     },
@@ -934,19 +904,9 @@
       ],
       "source_url": "https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa",
       "evidence": {
-        "status": "source_verified",
-        "source_url": "https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa",
-        "record_updated_at": "2026-09-28",
-        "checked_at": "2026-10-28",
-        "history": [
-          {
-            "at": "2026-10-28",
-            "kind": "individual_source_review",
-            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
-          }
-        ]
+        "status": "needs_review"
       },
-      "checked_at": "2026-10-28",
+      "checked_at": null,
       "conclusion": null,
       "action": null
     },
