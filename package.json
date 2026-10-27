@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "bash scripts/build.sh",
-    "test": "npm run validate:data && npm run build && node --test tests/*.test.mjs && node scripts/validate-worker.mjs && node scripts/validate-candidate-workflow.mjs",
+    "test": "node scripts/apply-ecosystem-chrome.mjs --check && npm run validate:data && npm run build && node --test tests/*.test.mjs && node scripts/validate-worker.mjs && node scripts/validate-candidate-workflow.mjs",
     "check:production": "node scripts/check-production.mjs",
     "validate:data": "node scripts/validate-data.mjs"
   }
