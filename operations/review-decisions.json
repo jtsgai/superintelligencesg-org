@@ -243,6 +243,14 @@
       "at": "2026-10-26T03:03:26Z",
       "note": "Independently opened the current official EDB URL. It is a 4 August 2025 insight, with the page last updated 26 October 2026, and confirms TCS launched its Singapore innovation centre in July 2025 to help customers and partners, including 60 SMEs and start-ups, develop AI solutions; it also says 50 fresh graduates would support operations. The old EDB URL now redirects to this working official page. The Navigator record remains accurate and no public content update is warranted.",
       "public_url": "https://www.edb.gov.sg/en/news-and-insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months"
+    },
+    {
+      "id": "cited_source_review:5008a282677deeda62d8",
+      "revision": "b2746fd3b33b6ede26af4d11988375f57a6ac0e0e18b971d4fca24d11bb9aae6",
+      "status": "reviewed",
+      "at": "2026-10-27T03:02:14.918Z",
+      "note": "Read the current official AI Singapore 100E application FAQ. It remains updated 5 January 2024 and continues to state that AISG supplies proposal templates and evaluates AI use case, business value, availability of off-the-shelf alternatives, technical feasibility, development timeframe, data, and a Singapore IT, R&D or engineering team. This supports the existing Field Note wording; no new programme update or correction warrants publication.",
+      "public_url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/"
     }
   ]
 }
