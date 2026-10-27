@@ -1,0 +1,32 @@
+{
+  "$schema": "./schema/signals.schema.json",
+  "version": 1,
+  "provenance": "Moved from the Signals block on superintelligencesg-com index.html (2026-10-27).",
+  "records": [
+    {
+      "id": "signal-2026-10-06-from-ai-capacity-to-real-world-value",
+      "date": "2026-10-06",
+      "label": "Signals from Singapore · updated 6 October 2026",
+      "title": "From AI capacity to real-world value.",
+      "summary": "Recent public signals put a practical test at the centre of Singapore’s AI agenda: can organisations turn capacity into redesigned workflows and demonstrable value? A 5 October speech also described an ecosystem built around trust, talent and solutions developed, deployed and adapted in Singapore. These are stated priorities; evidence of outcomes is still the next thing to track.",
+      "sources": [
+        {
+          "label": "MDDI, 23 September 2026: AI capacity and real-world value",
+          "url": "https://beta.mddi.gov.sg/newsroom/address-by-sms-tan-kiat-how-at-nvidia-ai-day-singapore/"
+        },
+        {
+          "label": "MDDI, 5 October 2026: trust, talent and deployment",
+          "url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-0g-dev-day-2026/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "source_url": "https://beta.mddi.gov.sg/newsroom/address-by-sms-tan-kiat-how-at-nvidia-ai-day-singapore/",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    }
+  ]
+}

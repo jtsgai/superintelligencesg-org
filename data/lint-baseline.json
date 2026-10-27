@@ -1,0 +1,4 @@
+{
+  "description": "Known no-ranking lint hits in text moved verbatim from existing pages. Listed hits are reported as warnings by scripts/validate-data.mjs instead of being edited. Entry shape: {file, id, field, term}. conclusion/action hits can never be baselined.",
+  "allowed": []
+}

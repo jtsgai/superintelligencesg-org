@@ -5,6 +5,8 @@ const ORIGINS = new Set([
   'https://www.superintelligencesg.com',
   'https://superintelligencesg.ai',
   'https://www.superintelligencesg.ai',
+  'https://superintelligencesg.si',
+  'https://www.superintelligencesg.si',
 ]);
 
 const CATEGORIES = ['Organization', 'Research', 'Applied research', 'Education & research', 'Company', 'Health AI', 'Ecosystem', 'Governance', 'Public capability'];
@@ -313,6 +315,258 @@ async function sourceUpdates(env, origin) {
   return json({ updates: result.results || [] }, 200, origin);
 }
 
+// API v1: public, cacheable reads of the Git data layer (data/*.json) merged with
+// published Commons profiles. v0 routes above keep their no-store behaviour.
+const DATA_BASE_URL = 'https://raw.githubusercontent.com/jtsgai/superintelligencesg-org/main';
+const DATA_FILES = { entries: 'data/entries.json', changes: 'data/changes.json', signals: 'data/signals.json', radar: 'assets/product/source-radar.json' };
+const DATA_TTL = 300;
+const V1_CACHE_CONTROL = 'public, max-age=300, stale-while-revalidate=86400';
+const NAVIGATOR_URL = 'https://superintelligencesg.com/';
+const FEED_URL = 'https://data.superintelligencesg.org/api/v1/feed.json';
+// scripts/bundle-data.mjs replaces the null below with this commit's data files at build time.
+const BUNDLED_DATA = /* @bundled-data */ null;
+const dataMemory = new Map();
+
+function validDataset(name, value) {
+  return name === 'radar' ? Array.isArray(value?.items) : Array.isArray(value?.records);
+}
+
+// Last-good copy for a GitHub outage after the in-memory copy is gone.
+async function snapshotCacheRead(env, name) {
+  if (env.ENABLE_SNAPSHOT_CACHE !== '1') return null;
+  // TODO(needs 劲涛 approval): D1 snapshot_cache (key, etag, body, fetched_at).
+  // It needs a new D1 table, so this flag-gated path stays a no-op stub. Do not
+  // add CREATE TABLE or read/write `name` here until the schema change is approved.
+  return null;
+}
+
+async function dataset(env, ctx, requestURL, name) {
+  const base = String(env.DATA_BASE_URL || DATA_BASE_URL).replace(/\/+$/, '');
+  const source = `${base}/${DATA_FILES[name]}`;
+  const memory = dataMemory.get(source);
+  if (memory && Date.now() - memory.at < DATA_TTL * 1000) return { value: memory.value, from: 'memory' };
+  const edge = typeof caches !== 'undefined' && caches?.default ? caches.default : null;
+  const cacheKey = new Request(`${requestURL.origin}/__si-data/${name}?source=${encodeURIComponent(source)}`);
+  if (edge) {
+    try {
+      const hit = await edge.match(cacheKey);
+      if (hit) {
+        const value = await hit.json();
+        if (validDataset(name, value)) {
+          dataMemory.set(source, { value, at: Date.now() });
+          return { value, from: 'edge' };
+        }
+      }
+    } catch {}
+  }
+  try {
+    const response = await fetch(source, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(8000) });
+    if (!response.ok) throw Error(`HTTP ${response.status}`);
+    const body = await response.text();
+    const value = JSON.parse(body);
+    if (!validDataset(name, value)) throw Error('Unexpected data shape');
+    dataMemory.set(source, { value, at: Date.now() });
+    if (edge) {
+      const put = edge.put(cacheKey, new Response(body, { headers: { 'Content-Type': 'application/json', 'Cache-Control': `public, max-age=${DATA_TTL}` } })).catch(() => {});
+      if (ctx?.waitUntil) ctx.waitUntil(put); else await put;
+    }
+    return { value, from: 'origin' };
+  } catch {
+    if (memory) return { value: memory.value, from: 'stale' };
+    const stored = await snapshotCacheRead(env, name);
+    if (stored) return { value: stored, from: 'snapshot' };
+    if (validDataset(name, BUNDLED_DATA?.[name])) return { value: BUNDLED_DATA[name], from: 'bundled' };
+    return { value: name === 'radar' ? { items: [] } : { records: [] }, from: 'empty' };
+  }
+}
+
+const reviewLabel = record => record.evidence?.status === 'needs_review' ? 'Needs review' : null;
+const isoDay = seconds => seconds ? new Date(Number(seconds) * 1000).toISOString().slice(0, 10) : null;
+const byName = (a, b) => String(a.name).localeCompare(String(b.name), 'en', { sensitivity: 'base' }) || String(a.id).localeCompare(String(b.id));
+const byDate = (a, b) => String(b.date || '').localeCompare(String(a.date || '')) || String(a.id).localeCompare(String(b.id));
+
+function absolute(value, base) {
+  if (!value) return null;
+  try { return new URL(value, base).href; } catch { return null; }
+}
+
+function curatedEntry(record) {
+  return { ...record, origin: 'curated', logo_url: absolute(record.logo, NAVIGATOR_URL), review_label: reviewLabel(record) };
+}
+
+function commonsEntry(row) {
+  const site = row.website_url || null;
+  return {
+    id: row.id,
+    origin: 'commons',
+    name: row.name,
+    founder: row.founder,
+    description: row.business,
+    kind: row.category,
+    url: site,
+    logo_url: row.logo_key || null,
+    updated: isoDay(row.updated_at),
+    lenses: ['community'],
+    location: row.location,
+    collaboration: row.collaboration,
+    profile_url: `https://superintelligencesg.org/organizations.html?id=${encodeURIComponent(row.id)}`,
+    source_url: site,
+    evidence: { status: 'self_submitted', verification_status: row.verification_status, verified_domain: row.verified_domain || null, verified_at: isoDay(row.verified_at) },
+    checked_at: null,
+    conclusion: null,
+    action: null,
+    review_label: null,
+  };
+}
+
+async function commonsEntries(env) {
+  if (!env.DB) return { entries: [], status: 'unavailable' };
+  try {
+    const result = await env.DB.prepare(`${PUBLIC_SELECT} WHERE COALESCE(d.published,1)=1 ORDER BY o.created_at DESC LIMIT 500`).all();
+    return { entries: (result.results || []).map(publicRow).map(commonsEntry), status: 'ok' };
+  } catch {
+    return { entries: [], status: 'unavailable' };
+  }
+}
+
+function limitParam(url) {
+  const value = url.searchParams.get('limit');
+  if (value === null || value === '') return Infinity;
+  const limit = Number(value);
+  if (!Number.isInteger(limit) || limit < 1 || limit > 500) fail('Use a limit between 1 and 500.');
+  return limit;
+}
+
+async function v1EntryList(request, env, ctx, url) {
+  const lens = (url.searchParams.get('lens') || '').trim().toLowerCase();
+  const kind = (url.searchParams.get('kind') || '').trim().toLowerCase();
+  const q = (url.searchParams.get('q') || '').trim().toLowerCase().slice(0, 120);
+  const originFilter = url.searchParams.get('origin') || '';
+  const sort = url.searchParams.get('sort') || 'name';
+  if (!['name', 'updated'].includes(sort)) fail('Sort by name or updated.');
+  if (originFilter && !['curated', 'commons'].includes(originFilter)) fail('Choose origin curated or commons.');
+  const limit = limitParam(url);
+  const [curated, commons] = await Promise.all([dataset(env, ctx, url, 'entries'), commonsEntries(env)]);
+  const entries = [...curated.value.records.map(curatedEntry), ...commons.entries]
+    .filter(entry => !originFilter || entry.origin === originFilter)
+    .filter(entry => !lens || (entry.lenses || []).includes(lens))
+    .filter(entry => !kind || String(entry.kind || '').toLowerCase() === kind)
+    .filter(entry => !q || [entry.name, entry.founder, entry.description, entry.kind].join(' ').toLowerCase().includes(q));
+  // Alphabetical or most recently updated only. Never order by any score.
+  entries.sort(sort === 'updated' ? (a, b) => String(b.updated || '').localeCompare(String(a.updated || '')) || byName(a, b) : byName);
+  return { value: { version: 1, sort, count: Math.min(entries.length, limit), total: entries.length, entries: entries.slice(0, limit) }, source: `entries=${curated.from}; commons=${commons.status}` };
+}
+
+async function v1Records(env, ctx, url, name) {
+  const limit = limitParam(url);
+  const loaded = await dataset(env, ctx, url, name);
+  const records = loaded.value.records.map(record => ({ ...record, review_label: reviewLabel(record) })).sort(byDate);
+  return { value: { version: 1, count: Math.min(records.length, limit), total: records.length, [name]: records.slice(0, limit) }, source: `${name}=${loaded.from}` };
+}
+
+function xDraft(item) {
+  const source = (() => { try { return new URL(item.source_url || item.url).hostname.replace(/^www\./, ''); } catch { return 'superintelligencesg.com'; } })();
+  const [year, month, day] = String(item.date).split('-').map(Number);
+  const date = `${day} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][month - 1]} ${year}`;
+  const tail = ` (Source: ${source}, ${date})`;
+  const room = 240 - tail.length;
+  const title = item.title.length > room ? `${item.title.slice(0, room - 1).trimEnd()}…` : item.title;
+  const link = new URL(item.url || item.brief_url || item.source_url);
+  link.searchParams.set('utm_source', 'x');
+  link.searchParams.set('utm_campaign', 'change-brief');
+  return {
+    text: `${title}${tail}`,
+    url: link.href,
+    media: { required: true, type: 'gif|video', asset_url: null },
+    auto_post: false,
+    status: 'draft_needs_human_approval',
+  };
+}
+
+async function v1Feed(env, ctx, url) {
+  const [changes, signals] = await Promise.all([dataset(env, ctx, url, 'changes'), dataset(env, ctx, url, 'signals')]);
+  const records = [
+    ...changes.value.records.map(record => ({ ...record, feed_type: 'change' })),
+    ...signals.value.records.map(record => ({ ...record, feed_type: 'signal' })),
+  ].sort(byDate).slice(0, limitParam(url));
+  return {
+    value: {
+      version: 'https://jsonfeed.org/version/1.1',
+      title: 'Superintelligence SG: Change Brief and Signals',
+      home_page_url: 'https://superintelligencesg.com/changelog.html',
+      feed_url: FEED_URL,
+      description: 'Dated, source-linked site records. Items marked Needs review have not had an individual source check.',
+      language: 'en-SG',
+      items: records.map(record => ({
+        id: record.id,
+        url: record.url || record.brief_url || record.source_url,
+        title: record.title,
+        content_text: record.summary,
+        date_published: `${record.date}T00:00:00+08:00`,
+        tags: [record.feed_type],
+        _source_url: record.source_url,
+        _evidence_status: record.evidence?.status || null,
+        _review_label: reviewLabel(record),
+        // Draft only. Nothing here posts anywhere; the separate @SI_Singapore assistant reads it and a human approves.
+        _x_draft: xDraft(record),
+      })),
+    },
+    source: `changes=${changes.from}; signals=${signals.from}`,
+  };
+}
+
+async function v1Snapshot(request, env, ctx, url) {
+  const [entries, changes, signals, radar] = await Promise.all([
+    v1EntryList(request, env, ctx, new URL(`${url.origin}/api/v1/entries`)),
+    v1Records(env, ctx, new URL(`${url.origin}/api/v1/changes`), 'changes'),
+    v1Records(env, ctx, new URL(`${url.origin}/api/v1/signals`), 'signals'),
+    dataset(env, ctx, url, 'radar'),
+  ]);
+  return {
+    value: { version: 1, entries: entries.value.entries, changes: changes.value.changes, signals: signals.value.signals, radar: radar.value },
+    source: [entries.source, changes.source, signals.source, `radar=${radar.from}`].join('; '),
+  };
+}
+
+async function publicJSON(request, payload, origin, anyOrigin = false) {
+  const body = JSON.stringify(payload.value);
+  const etag = `"${(await hash(body)).slice(0, 32)}"`;
+  const result = headers(anyOrigin ? null : origin);
+  result.set('Cache-Control', V1_CACHE_CONTROL);
+  result.set('ETag', etag);
+  result.set('X-Data-Source', payload.source);
+  if (anyOrigin) {
+    result.set('Access-Control-Allow-Origin', '*');
+    result.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  } else {
+    result.set('Vary', 'Origin');
+  }
+  const match = (request.headers.get('If-None-Match') || '').split(',').map(tag => tag.trim().replace(/^W\//, ''));
+  if (match.includes(etag) || match.includes('*')) {
+    result.delete('Content-Type');
+    return new Response(null, { status: 304, headers: result });
+  }
+  return new Response(body, { status: 200, headers: result });
+}
+
+const isFeedPath = path => /^\/api\/v1\/feed\.[a-z]+$/.test(path);
+
+async function v1(request, env, ctx, url, path, origin) {
+  // TODO(needs D1 table approval): POST /api/v1/inquiries. Inquiries go to
+  // superintelligencesg@gmail.com by email until storage is approved.
+  if (request.method !== 'GET') return json({ error: 'Not found' }, 404, origin);
+  if (path === '/api/v1/entries') return publicJSON(request, await v1EntryList(request, env, ctx, url), origin);
+  if (path === '/api/v1/signals') return publicJSON(request, await v1Records(env, ctx, url, 'signals'), origin);
+  if (path === '/api/v1/changes') return publicJSON(request, await v1Records(env, ctx, url, 'changes'), origin);
+  if (path === '/api/v1/radar') {
+    const radar = await dataset(env, ctx, url, 'radar');
+    return publicJSON(request, { value: radar.value, source: `radar=${radar.from}` }, origin);
+  }
+  if (path === '/api/v1/snapshot') return publicJSON(request, await v1Snapshot(request, env, ctx, url), origin);
+  if (path === '/api/v1/feed.json') return publicJSON(request, await v1Feed(env, ctx, url), origin, true);
+  return json({ error: 'Not found' }, 404, origin);
+}
+
 async function health(env, origin) {
   try {
     await env.DB.prepare('SELECT 1').first();
@@ -323,14 +577,16 @@ async function health(env, origin) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin');
     const path = apiPath(url.pathname);
     if (!path.startsWith('/api/')) return new Response('Not found', { status: 404 });
+    if (request.method === 'OPTIONS' && isFeedPath(path)) return new Response(null, { status: 204, headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, OPTIONS', 'Access-Control-Max-Age': '86400' } });
     if (request.method === 'OPTIONS') return new Response(null, { status: ORIGINS.has(origin) ? 204 : 403, headers: headers(origin) });
-    if (origin && !ORIGINS.has(origin)) return json({ error: 'This origin is not allowed.' }, 403, origin);
+    if (origin && !ORIGINS.has(origin) && !isFeedPath(path)) return json({ error: 'This origin is not allowed.' }, 403, origin);
     try {
+      if (path.startsWith('/api/v1/')) return await v1(request, env, ctx, url, path, origin);
       if (path === '/api/health' && request.method === 'GET') return health(env, origin);
       if (path === '/api/source-updates' && request.method === 'GET') return await sourceUpdates(env, origin);
       if (path === '/api/organizations' && request.method === 'GET') {

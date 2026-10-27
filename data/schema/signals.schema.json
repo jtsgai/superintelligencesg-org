@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://superintelligencesg.org/data/schema/signals.schema.json",
+  "title": "Signals",
+  "type": "object",
+  "required": [
+    "version",
+    "records"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "const": 1
+    },
+    "provenance": {
+      "type": "string",
+      "maxLength": 400
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/record"
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "needs_review",
+            "source_verified",
+            "signal",
+            "outcome"
+          ],
+          "description": "needs_review = moved from an existing page without an individual source check; nothing about it is invented."
+        },
+        "source_type": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "source_url": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 600
+        },
+        "record_updated_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "checked_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "at",
+              "kind",
+              "note"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "at": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "kind": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 600
+              }
+            }
+          }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "label",
+        "url"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 600
+        }
+      }
+    },
+    "record": {
+      "type": "object",
+      "required": [
+        "id",
+        "source_url",
+        "evidence",
+        "checked_at",
+        "conclusion",
+        "action",
+        "date",
+        "title",
+        "summary"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,120}$"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1200
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/link"
+          }
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 600
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 600,
+          "description": "Required (https) unless evidence.status is needs_review; null is allowed only for needs_review records."
+        },
+        "evidence": {
+          "$ref": "#/$defs/evidence"
+        },
+        "checked_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Date a human checked the source. Null until reviewed."
+        },
+        "conclusion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 600,
+          "description": "Editorial conclusion. Null until written by a reviewer; never generated."
+        },
+        "action": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 600,
+          "description": "Suggested reader action. Null until written by a reviewer; never generated."
+        }
+      },
+      "if": {
+        "properties": {
+          "evidence": {
+            "properties": {
+              "status": {
+                "const": "needs_review"
+              }
+            }
+          }
+        }
+      },
+      "then": true,
+      "else": {
+        "required": [
+          "source_url",
+          "checked_at"
+        ],
+        "properties": {
+          "source_url": {
+            "type": "string",
+            "pattern": "^https://[^\\s]+$",
+            "maxLength": 600
+          },
+          "checked_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        }
+      }
+    }
+  }
+}
