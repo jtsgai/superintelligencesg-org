@@ -17,7 +17,8 @@ const MASTERS = ['about.html', 'static/about.html'];
 // Where a region goes the first time it is added to a page.
 const ANCHORS = {
   style: html => html.indexOf('</head>'),
-  bar: html => { const match = /<body[^>]*>/.exec(html); return match ? match.index + match[0].length : -1; },
+  // After <body>, but behind a leading skip link so that stays the first stop.
+  bar: html => { const match = /<body[^>]*>(\s*<a class="skip"[^>]*>[^<]*<\/a>)?/.exec(html); return match ? match.index + match[0].length : -1; },
   footer: html => html.indexOf('</footer>'),
 };
 

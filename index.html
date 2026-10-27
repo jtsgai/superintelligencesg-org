@@ -57,6 +57,18 @@
 <script>document.documentElement.classList.add("si-motion-ready")</script><link rel="stylesheet" href="/assets/product/si-motion.css">  <link rel="stylesheet" href="/assets/product/si-mobile-nav.css">
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f9ce1225243a4b3bbdaeea4642802fe8"}'></script><!-- End Cloudflare Web Analytics -->
 <!-- si-eco:style --><style id="si-eco-style">
+.si-eco-bar{display:block;margin:0;padding:0 clamp(14px,4vw,56px);background:#0f1720;border-bottom:1px solid #263544;color:#c3cdd6;font:600 12px/1.2 "Avenir Next",Avenir,"Helvetica Neue",sans-serif;letter-spacing:.01em;box-sizing:border-box}
+.si-eco-bar .si-eco-in{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:34px;margin:0;padding:0}
+.si-eco-bar .si-eco-tag{margin:0;padding:0;color:#8fa1b3;font:600 11px/1.2 SFMono-Regular,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.si-eco-bar ul{display:flex;align-items:center;gap:clamp(10px,3vw,22px);min-width:0;margin:0;padding:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+.si-eco-bar li{margin:0;padding:0}
+.si-eco-bar a{display:inline-flex;align-items:center;min-height:34px;margin:0;padding:0 2px;border:0;border-bottom:2px solid transparent;color:#c3cdd6;font:inherit;text-decoration:none;white-space:nowrap;box-sizing:border-box}
+.si-eco-bar a:hover{color:#fff;border-bottom-color:#5d7084}
+.si-eco-bar a[aria-current="page"]{color:#fff;border-bottom-color:#fff}
+.si-eco-bar a:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.si-eco-bar .si-eco-dom{margin-left:4px;color:#8fa1b3;font:600 11px/1 SFMono-Regular,Consolas,monospace}
+@media(max-width:640px){.si-eco-bar .si-eco-tag{display:none}.si-eco-bar ul{flex:1 1 auto;justify-content:space-between}}
+@media(max-width:420px){.si-eco-bar .si-eco-dom{display:none}}
 footer:has(>.si-eco-foot){flex-wrap:wrap}
 .si-eco-foot{flex:1 0 100%;width:100%;box-sizing:border-box;margin:14px 0 0;padding:14px 16px;border-radius:10px;background:#0f1720;color:#c3cdd6;font:400 13px/1.55 "Avenir Next",Avenir,"Helvetica Neue",sans-serif;text-align:left}
 .si-eco-foot .si-eco-disclosure{max-width:none;margin:0;padding:0;color:#c3cdd6;font:inherit}
@@ -65,7 +77,7 @@ footer:has(>.si-eco-foot){flex-wrap:wrap}
 .si-eco-foot a:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:2px}
 </style><!-- /si-eco:style --></head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#main">Skip to content</a><!-- si-eco:bar --><nav class="si-eco-bar" aria-label="Superintelligence SG sites"><div class="si-eco-in"><p class="si-eco-tag">Singapore's open SI ecosystem</p><ul><li><a href="https://superintelligencesg.si">Gateway<span class="si-eco-dom">.si</span></a></li><li><a href="https://superintelligencesg.com">Navigator<span class="si-eco-dom">.com</span></a></li><li><a href="https://superintelligencesg.org" aria-current="page">Commons<span class="si-eco-dom">.org</span></a></li><li><a href="https://superintelligencesg.ai">Lab<span class="si-eco-dom">.ai</span></a></li></ul></div></nav><!-- /si-eco:bar -->
   <header class="shell site-header"><a class="brand" href="https://superintelligencesg.org" aria-label="Superintelligence SG Commons home"><img class="brand-logo" src="assets/logo-org.svg" alt="Superintelligence SG Commons logo">SUPERINTELLIGENCE SG <span class="domain">.ORG</span></a><nav class="nav" aria-label="Site navigation"><a class="active" href="https://superintelligencesg.org">Home</a><a href="https://superintelligencesg.com">Overview</a><a href="https://superintelligencesg.ai">Lab</a><a href="about.html">About</a></nav></header>
   <main id="main">
     <section class="hero"><figure class="hero-media"><img src="https://superintelligencesg.com/assets/commons-hero-v2.jpg" width="1586" height="992" alt="People collaborating around a shared map in a sunlit community room"></figure><div class="shell hero-copy"><h1>The future needs an <strong><span class="open-conversation">open <span class="conversation-word">conversation.</span></span></strong></h1><p>A public space for shared language, careful questions and more voices in the future of Super Intelligence (SI).</p><p class="tagline" style="margin-top:10px;font:700 12px/1.4 var(--mono,'SFMono-Regular',Consolas,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)">Open map · not a ranking</p><a class="button" href="#participate">Join the commons</a><a class="button" style="margin-top:14px;background:transparent;color:var(--ink);border:1px solid var(--ink)" href="https://superintelligencesg.ai/work-with-us.html#start">Have a research question? Start here ↗</a></div><a class="scroll-cue" href="#learn"><span>Meet the commons</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v17m0 0 6-6m-6 6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></section>
