@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-10-26T08:07:04.242Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/40290039671",
+  "checked_at": "2026-10-27T07:53:22.286Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/40469833572",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -41,7 +41,7 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-26T08:07:04.242Z",
+      "discovered_at": "2026-10-27T07:53:22.286Z",
       "status": "cited_source"
     },
     {
@@ -50,7 +50,7 @@
       "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-26T08:07:04.242Z",
+      "discovered_at": "2026-10-27T07:53:22.286Z",
       "status": "cited_source"
     },
     {
@@ -64,11 +64,11 @@
     },
     {
       "provider": "AI Singapore",
-      "title": "How does an organisation apply for the 100 Experiments (100E)? - AI Singapore",
-      "url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/",
+      "title": "100 Experiments - AI Singapore",
+      "url": "https://aisingapore.org/innovation/100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-10-26T08:07:04.242Z",
+      "discovered_at": "2026-10-27T07:53:22.286Z",
       "status": "cited_source"
     }
   ]
