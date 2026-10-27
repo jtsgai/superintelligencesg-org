@@ -1,4 +1,4 @@
-// Copies the marked regions of assets/product/si-ecosystem-snippet.html into
+// Copies the marked regions of assets/product/sisg-ecosystem-snippet.html into
 // every public page, so the cross-site ecosystem chrome and the footer
 // disclosure stay identical. With --check it only reports drift (npm test).
 // The footer disclosure must match the about.html master wording verbatim.
@@ -22,13 +22,13 @@ const ANCHORS = {
   footer: html => html.indexOf('</footer>'),
 };
 
-const snippet = await readFile(resolve(root, 'assets/product/si-ecosystem-snippet.html'), 'utf8');
+const snippet = await readFile(resolve(root, 'assets/product/sisg-ecosystem-snippet.html'), 'utf8');
 const regions = {};
-for (const [, name, body] of snippet.matchAll(/<!-- si-eco:(\w+) -->\n([\s\S]*?)\n<!-- \/si-eco:\1 -->/g)) regions[name] = body;
+for (const [, name, body] of snippet.matchAll(/<!-- sisg-eco:(\w+) -->\n([\s\S]*?)\n<!-- \/sisg-eco:\1 -->/g)) regions[name] = body;
 for (const name of Object.keys(regions)) if (!ANCHORS[name]) throw Error(`Unknown snippet region ${name}`);
 if (!regions.footer) throw Error('Snippet has no footer region');
 
-const disclosure = /<p class="si-eco-disclosure">(Disclosure: [^<]*?) <a /.exec(regions.footer)?.[1];
+const disclosure = /<p class="sisg-foot__disclosure">(Disclosure: [^<]*)<\/p>/.exec(regions.footer)?.[1];
 if (!disclosure) throw Error('Snippet footer has no disclosure text');
 const errors = [];
 for (const page of MASTERS) {
@@ -41,8 +41,8 @@ for (const page of PAGES) {
   let html = await readFile(file, 'utf8');
   if ((html.match(/<footer[\s>]/g) || []).length !== 1) errors.push(`${page}: expected exactly one <footer>`);
   for (const [name, body] of Object.entries(regions)) {
-    const block = `<!-- si-eco:${name} -->${body}<!-- /si-eco:${name} -->`;
-    const existing = new RegExp(`<!-- si-eco:${name} -->[\\s\\S]*?<!-- /si-eco:${name} -->`);
+    const block = `<!-- sisg-eco:${name} -->${body}<!-- /sisg-eco:${name} -->`;
+    const existing = new RegExp(`<!-- sisg-eco:${name} -->[\\s\\S]*?<!-- /sisg-eco:${name} -->`);
     if (existing.test(html)) html = html.replace(existing, () => block);
     else {
       const at = ANCHORS[name](html);
