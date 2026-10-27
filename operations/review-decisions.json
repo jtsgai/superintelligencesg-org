@@ -227,6 +227,22 @@
       "at": "2026-10-24T03:56:59Z",
       "note": "Read the original MDDI parliamentary response, dated 5 August 2026. It says the Government released its Model Governance Framework for Agentic AI in January 2026 and calls for designated oversight, meaningful human accountability and risk controls proportionate to the system's risk and autonomy. The current Trusted Deployment Field Note already describes agent safeguards and accountability boundaries; this response adds no new programme, measured outcome or correction requiring a public update.",
       "public_url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-extending-model-ai-governance-framework-and-ai-verify-to-cover-agentic-ai-systems/"
+    },
+    {
+      "id": "official_source_discovery:520c2549b3c484391582",
+      "revision": "ca27f3ff0c965951c55b5cd02b3ae02297f69ac8b963166b86c56ed78879657c",
+      "status": "reviewed",
+      "at": "2026-10-26T02:01:00Z",
+      "note": "Read the original MDDI release, dated 15 July 2021. It describes the OneService Chatbot beta launch under the National AI Strategy, including VICA, WhatsApp and Telegram channels, and an earlier 450-participant trial. This is historic context, not a current programme update or a correction to existing public research; no publication change is warranted.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/new-ai-powered-oneservice/"
+    },
+    {
+      "id": "reference_review:440ec11326c0288a7eb7",
+      "revision": "c87340da461b7c1567d087b1493d5925b707de4e17228bf142e25d64143cfe02",
+      "status": "reviewed",
+      "at": "2026-10-26T03:03:26Z",
+      "note": "Independently opened the current official EDB URL. It is a 4 August 2025 insight, with the page last updated 26 October 2026, and confirms TCS launched its Singapore innovation centre in July 2025 to help customers and partners, including 60 SMEs and start-ups, develop AI solutions; it also says 50 fresh graduates would support operations. The old EDB URL now redirects to this working official page. The Navigator record remains accurate and no public content update is warranted.",
+      "public_url": "https://www.edb.gov.sg/en/news-and-insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months"
     }
   ]
 }
