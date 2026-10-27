@@ -1,4 +1,4 @@
-import { validateRecord } from '../worker/index.js';
+import { missingSource, validateRecord } from '../worker/index.js';
 // Validates data/*.json against data/schema/*.schema.json (dependency-free
 // subset of JSON Schema 2020-12), enforces the source_url rule and runs the
 // no-ranking lint. Existing moved text listed in data/lint-baseline.json is
@@ -74,7 +74,7 @@ function texts(record) {
 export async function validateData() {
   const baseline = JSON.parse(await readFile(resolve(root, 'data/lint-baseline.json'), 'utf8')).allowed || [];
   const allowed = new Set(baseline.map(item => `${item.file}|${item.id}|${item.field}|${item.term}`));
-  const errors = [], warnings = [], needsReview = [], summary = {};
+  const errors = [], warnings = [], needsReview = [], missingSources = [], summary = {};
   for (const name of DATASETS) {
     const file = `data/${name}.json`;
     const schema = JSON.parse(await readFile(resolve(root, `data/schema/${name}.schema.json`), 'utf8'));
@@ -87,6 +87,7 @@ export async function validateData() {
     let reviewCount = 0;
     for (const record of records) {
       if (name === 'entries') errors.push(...validateRecord(record).map(error => `${file} ${record.id}: ${error}`));
+      if (name === 'entries' && (record.type ?? 'organization') === 'organization' && missingSource(record)) missingSources.push({ id: record.id, name: record.name, status: record.evidence?.status ?? null });
       if (ids.has(record.id)) errors.push(`${file}: duplicate id ${record.id}`);
       ids.add(record.id);
       const status = record.evidence?.status;
@@ -108,12 +109,13 @@ export async function validateData() {
     }
     summary[name] = { records: records.length, needs_review: reviewCount };
   }
-  return { errors, warnings, needsReview, summary };
+  return { errors, warnings, needsReview, missingSources, summary };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const { errors, warnings, needsReview, summary } = await validateData();
+  const { errors, warnings, needsReview, missingSources, summary } = await validateData();
   for (const [name, counts] of Object.entries(summary)) console.log(`data/${name}.json: ${counts.records} records, ${counts.needs_review} needs_review`);
+  if (missingSources.length) console.log(`missing_source: legacy organizations without a valid source_url (${missingSources.length}, not enforced):\n  ${missingSources.map(item => item.id).join('\n  ')}`);
   if (needsReview.length) console.log(`needs_review without source_url (${needsReview.length}):\n  ${needsReview.join('\n  ')}`);
   if (warnings.length) console.log(`no-ranking lint warnings in existing moved text (${warnings.length}, not edited):\n  ${warnings.join('\n  ')}`);
   if (errors.length) {

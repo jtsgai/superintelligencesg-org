@@ -12,18 +12,29 @@ const ORIGINS = new Set([
 export const RECORD_TYPES = Object.freeze(['organization', 'event', 'funding', 'gov_initiative', 'person']);
 const PERSON_FIELDS = new Set(['id', 'type', 'name', 'public_role', 'organisation', 'source_url', 'checked_at', 'kind', 'updated', 'lenses']);
 
+export function validSourceURL(value) {
+  try {
+    if (typeof value !== 'string' || !/^https?:\/\/[^\s]+$/i.test(value)) return false;
+    const url = new URL(value);
+    return ['http:', 'https:'].includes(url.protocol) && Boolean(url.hostname) && !url.username && !url.password;
+  } catch { return false; }
+}
+
+export const isLegacyOrganization = record => (record.type === undefined && record.origin === undefined) || record.evidence?.status === 'needs_review';
+export const missingSource = record => !validSourceURL(record.source_url);
+
 // Pure validation shared by the Worker and local ingest/build scripts.
 export function validateRecord(record) {
   if (!record || typeof record !== 'object' || Array.isArray(record)) return ['Record must be an object.'];
   const type = record.type === undefined ? 'organization' : record.type;
   const errors = [];
   if (!RECORD_TYPES.includes(type)) return ['Invalid record type.'];
+  // Legacy organizations (no explicit type, or still needs_review) are not enforced;
+  // they are reported through missing_source instead. New or modified ones must cite a source.
+  if (type !== 'organization' || !isLegacyOrganization(record)) {
+    if (!validSourceURL(record.source_url)) errors.push('source_url must be an http/https URL.');
+  }
   if (type !== 'organization') {
-    try {
-      if (typeof record.source_url !== 'string' || !/^https?:\/\/[^\s]+$/i.test(record.source_url)) throw Error();
-      const url = new URL(record.source_url);
-      if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) throw Error();
-    } catch { errors.push('source_url must be an http/https URL.'); }
     const date = record.checked_at;
     if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) {
       errors.push('checked_at must be a valid ISO date (YYYY-MM-DD).');
@@ -152,7 +163,9 @@ function publicRow(row) {
 
 function fields(form) {
   const type = form.get('type') ?? 'organization';
-  requireValidRecord({ type, source_url: form.get('source_url'), checked_at: form.get('checked_at') });
+  // A new or edited organization must cite a source; the organisation website counts when no separate source is given.
+  const sourceURL = text(form.get('source_url'), 500) || text(form.get('website_url'), 300);
+  requireValidRecord({ type, source_url: sourceURL, checked_at: form.get('checked_at') });
   if (type !== 'organization') fail('This endpoint accepts organizations only; submit other record types through the reviewed data layer.');
   const category = text(form.get('category'), 50) || 'Organization';
   const collaboration = text(form.get('collaboration'), 20) || 'unspecified';
@@ -432,7 +445,7 @@ function absolute(value, base) {
 }
 
 function curatedEntry(record) {
-  return { ...record, type: record.type ?? 'organization', origin: 'curated', logo_url: absolute(record.logo, NAVIGATOR_URL), review_label: reviewLabel(record) };
+  return { ...record, type: record.type ?? 'organization', origin: 'curated', logo_url: absolute(record.logo, NAVIGATOR_URL), review_label: reviewLabel(record), missing_source: missingSource(record) };
 }
 
 function commonsEntry(row) {
@@ -458,6 +471,7 @@ function commonsEntry(row) {
     conclusion: null,
     action: null,
     review_label: null,
+    missing_source: missingSource({ source_url: site }),
   };
 }
 

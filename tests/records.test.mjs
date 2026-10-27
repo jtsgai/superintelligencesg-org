@@ -2,12 +2,12 @@ import { readFile } from 'node:fs/promises';
 import { check } from '../scripts/validate-data.mjs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import worker, { RECORD_TYPES, validateRecord } from '../worker/index.js';
+import worker, { RECORD_TYPES, missingSource, validateRecord } from '../worker/index.js';
 
 const person = { id: 'public-person', type: 'person', name: 'Public Name', public_role: 'Director', organisation: 'Public Institution', source_url: 'https://example.org/roles', checked_at: '2026-10-28', kind: 'Person' };
 const records = [
   { id: 'legacy', name: 'Legacy', kind: 'Research' },
-  { id: 'explicit', name: 'Organization', type: 'organization', kind: 'Research' },
+  { id: 'explicit', name: 'Organization', type: 'organization', kind: 'Research', source_url: 'https://example.org/org' },
   ...['event', 'funding', 'gov_initiative'].map(type => ({ id: type, type, name: type, kind: 'Public capability', source_url: 'http://example.org/source', checked_at: '2024-02-29' })),
   person,
 ];
@@ -146,4 +146,23 @@ test('entry JSON schema accepts legacy and typed records and rejects missing pro
     const { source_url, ...sourceless } = record;
     assert(errorsFor(sourceless).length);
   }
+});
+
+test('new or modified organizations need a valid source_url; legacy ones are flagged missing_source, not rejected', async () => {
+  for (const source_url of [undefined, null, '', 'ftp://example.org', 'https://user:pass@example.org']) {
+    assert(validateRecord({ id: 'new-org', type: 'organization', name: 'New', source_url }).some(error => error.includes('source_url')));
+    assert.deepEqual(validateRecord({ id: 'old', name: 'Old', source_url }), []);
+    assert.deepEqual(validateRecord({ id: 'old', type: 'organization', name: 'Old', source_url, evidence: { status: 'needs_review' } }), []);
+    assert.equal(missingSource({ source_url }), true);
+  }
+  assert.equal(missingSource({ source_url: 'https://example.org/org' }), false);
+  const body = await (await worker.fetch(request('/v1/entries?type=organization'), env)).json();
+  assert.equal(body.entries.find(entry => entry.id === 'legacy').missing_source, true);
+  assert.equal(body.entries.find(entry => entry.id === 'explicit').missing_source, false);
+  const DB = { prepare() { return { bind() { return this; }, async run() {} }; }, async batch() { return [{}, { results: [{ count: 1 }] }]; } };
+  const form = new FormData();
+  for (const [key, value] of Object.entries({ consent: 'on', name: 'N', founder: 'F', business: 'B' })) form.set(key, value);
+  const response = await worker.fetch(request('/api/organizations', { method: 'POST', headers: { Origin: origin }, body: form }), { DB });
+  assert.equal(response.status, 400);
+  assert.match((await response.json()).error, /source_url/);
 });
