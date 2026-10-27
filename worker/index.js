@@ -9,6 +9,40 @@ const ORIGINS = new Set([
   'https://www.superintelligencesg.si',
 ]);
 
+export const RECORD_TYPES = Object.freeze(['organization', 'event', 'funding', 'gov_initiative', 'person']);
+const PERSON_FIELDS = new Set(['id', 'type', 'name', 'public_role', 'organisation', 'source_url', 'checked_at', 'kind', 'updated', 'lenses']);
+
+// Pure validation shared by the Worker and local ingest/build scripts.
+export function validateRecord(record) {
+  if (!record || typeof record !== 'object' || Array.isArray(record)) return ['Record must be an object.'];
+  const type = record.type === undefined ? 'organization' : record.type;
+  const errors = [];
+  if (!RECORD_TYPES.includes(type)) return ['Invalid record type.'];
+  if (type !== 'organization') {
+    try {
+      if (typeof record.source_url !== 'string' || !/^https?:\/\/[^\s]+$/i.test(record.source_url)) throw Error();
+      const url = new URL(record.source_url);
+      if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password) throw Error();
+    } catch { errors.push('source_url must be an http/https URL.'); }
+    const date = record.checked_at;
+    if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) {
+      errors.push('checked_at must be a valid ISO date (YYYY-MM-DD).');
+    }
+  }
+  if (type === 'person') {
+    for (const key of ['name', 'public_role', 'organisation']) {
+      if (typeof record[key] !== 'string' || !record[key].trim() || record[key].length > 200) errors.push(`${key} is required (up to 200 characters).`);
+    }
+    for (const key of Object.keys(record)) if (!PERSON_FIELDS.has(key)) errors.push(`Person records cannot contain ${key}; only public-role fields and record metadata are allowed.`);
+  }
+  return errors;
+}
+
+function requireValidRecord(record) {
+  const errors = validateRecord(record);
+  if (errors.length) fail(errors.join(' '));
+}
+
 const CATEGORIES = ['Organization', 'Research', 'Applied research', 'Education & research', 'Company', 'Health AI', 'Ecosystem', 'Governance', 'Public capability'];
 const REVIEW_STATUSES = ['received', 'in_review', 'accepted', 'rejected', 'resolved'];
 const NAVIGATOR_CANDIDATE_STATUSES = ['none', 'draft', 'ready'];
@@ -117,6 +151,9 @@ function publicRow(row) {
 }
 
 function fields(form) {
+  const type = form.get('type') ?? 'organization';
+  requireValidRecord({ type, source_url: form.get('source_url'), checked_at: form.get('checked_at') });
+  if (type !== 'organization') fail('This endpoint accepts organizations only; submit other record types through the reviewed data layer.');
   const category = text(form.get('category'), 50) || 'Organization';
   const collaboration = text(form.get('collaboration'), 20) || 'unspecified';
   if (!CATEGORIES.includes(category) || !['unspecified', 'open', 'closed'].includes(collaboration)) fail('Choose an available category and collaboration status.');
@@ -329,7 +366,9 @@ const BUNDLED_DATA = /* @bundled-data */ null;
 const dataMemory = new Map();
 
 function validDataset(name, value) {
-  return name === 'radar' ? Array.isArray(value?.items) : Array.isArray(value?.records);
+  const valid = name === 'radar' ? Array.isArray(value?.items) : Array.isArray(value?.records);
+  if (valid && name === 'entries') value.records.forEach(requireValidRecord);
+  return valid;
 }
 
 // Last-good copy for a GitHub outage after the in-memory copy is gone.
@@ -358,7 +397,7 @@ async function dataset(env, ctx, requestURL, name) {
           return { value, from: 'edge' };
         }
       }
-    } catch {}
+    } catch (error) { if (error.status) throw error; }
   }
   try {
     const response = await fetch(source, { headers: { accept: 'application/json' }, signal: AbortSignal.timeout(8000) });
@@ -372,7 +411,8 @@ async function dataset(env, ctx, requestURL, name) {
       if (ctx?.waitUntil) ctx.waitUntil(put); else await put;
     }
     return { value, from: 'origin' };
-  } catch {
+  } catch (error) {
+    if (error.status) throw error;
     if (memory) return { value: memory.value, from: 'stale' };
     const stored = await snapshotCacheRead(env, name);
     if (stored) return { value: stored, from: 'snapshot' };
@@ -392,7 +432,7 @@ function absolute(value, base) {
 }
 
 function curatedEntry(record) {
-  return { ...record, origin: 'curated', logo_url: absolute(record.logo, NAVIGATOR_URL), review_label: reviewLabel(record) };
+  return { ...record, type: record.type ?? 'organization', origin: 'curated', logo_url: absolute(record.logo, NAVIGATOR_URL), review_label: reviewLabel(record) };
 }
 
 function commonsEntry(row) {
@@ -400,6 +440,7 @@ function commonsEntry(row) {
   return {
     id: row.id,
     origin: 'commons',
+    type: 'organization',
     name: row.name,
     founder: row.founder,
     description: row.business,
@@ -439,6 +480,8 @@ function limitParam(url) {
 }
 
 async function v1EntryList(request, env, ctx, url) {
+  const type = url.searchParams.get('type');
+  if (type !== null && !RECORD_TYPES.includes(type)) fail('Choose a valid record type.');
   const lens = (url.searchParams.get('lens') || '').trim().toLowerCase();
   const kind = (url.searchParams.get('kind') || '').trim().toLowerCase();
   const q = (url.searchParams.get('q') || '').trim().toLowerCase().slice(0, 120);
@@ -449,6 +492,7 @@ async function v1EntryList(request, env, ctx, url) {
   const limit = limitParam(url);
   const [curated, commons] = await Promise.all([dataset(env, ctx, url, 'entries'), commonsEntries(env)]);
   const entries = [...curated.value.records.map(curatedEntry), ...commons.entries]
+    .filter(entry => type === null || entry.type === type)
     .filter(entry => !originFilter || entry.origin === originFilter)
     .filter(entry => !lens || (entry.lenses || []).includes(lens))
     .filter(entry => !kind || String(entry.kind || '').toLowerCase() === kind)
@@ -456,6 +500,18 @@ async function v1EntryList(request, env, ctx, url) {
   // Alphabetical or most recently updated only. Never order by any score.
   entries.sort(sort === 'updated' ? (a, b) => String(b.updated || '').localeCompare(String(a.updated || '')) || byName(a, b) : byName);
   return { value: { version: 1, sort, count: Math.min(entries.length, limit), total: entries.length, entries: entries.slice(0, limit) }, source: `entries=${curated.from}; commons=${commons.status}` };
+}
+
+async function v1Stats(request, env, ctx, url) {
+  const all = await v1EntryList(request, env, ctx, new URL(`${url.origin}/api/v1/entries`));
+  const by_type = Object.fromEntries(RECORD_TYPES.map(type => [type, 0]));
+  const by_kind = Object.create(null);
+  for (const entry of all.value.entries) {
+    by_type[entry.type] += 1;
+    const kind = entry.kind || 'Unspecified';
+    by_kind[kind] = (by_kind[kind] || 0) + 1;
+  }
+  return { value: { version: 1, total: all.value.total, by_type, by_kind }, source: all.source };
 }
 
 async function v1Records(env, ctx, url, name) {
@@ -556,6 +612,7 @@ async function v1(request, env, ctx, url, path, origin) {
   // TODO(needs D1 table approval): POST /api/v1/inquiries. Inquiries go to
   // superintelligencesg@gmail.com by email until storage is approved.
   if (request.method !== 'GET') return json({ error: 'Not found' }, 404, origin);
+  if (path === '/api/v1/stats') return publicJSON(request, await v1Stats(request, env, ctx, url), origin);
   if (path === '/api/v1/entries') return publicJSON(request, await v1EntryList(request, env, ctx, url), origin);
   if (path === '/api/v1/signals') return publicJSON(request, await v1Records(env, ctx, url, 'signals'), origin);
   if (path === '/api/v1/changes') return publicJSON(request, await v1Records(env, ctx, url, 'changes'), origin);
@@ -584,8 +641,8 @@ export default {
     const path = apiPath(url.pathname);
     if (!path.startsWith('/api/')) return new Response('Not found', { status: 404 });
     if (request.method === 'OPTIONS' && isFeedPath(path)) return new Response(null, { status: 204, headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, OPTIONS', 'Access-Control-Max-Age': '86400' } });
-    if (request.method === 'OPTIONS') return new Response(null, { status: ORIGINS.has(origin) ? 204 : 403, headers: headers(origin) });
-    if (origin && !ORIGINS.has(origin) && !isFeedPath(path)) return json({ error: 'This origin is not allowed.' }, 403, origin);
+    if (request.method === 'OPTIONS') return new Response(null, { status: ORIGINS.has(origin) ? 204 : 400, headers: headers(origin) });
+    if (origin && !ORIGINS.has(origin) && !isFeedPath(path)) return json({ error: 'This origin is not allowed.' }, 400, origin);
     try {
       if (path.startsWith('/api/v1/')) return await v1(request, env, ctx, url, path, origin);
       if (path === '/api/health' && request.method === 'GET') return health(env, origin);

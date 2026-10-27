@@ -60,7 +60,7 @@ for (const origin of ['https://superintelligencesg.si', 'https://www.superintell
   assert.equal(read.headers.get('Access-Control-Allow-Origin'), origin);
 }
 const blocked = await worker.fetch(new Request('https://data.superintelligencesg.org/api/organizations', { headers: { Origin: 'https://superintelligencesg.si.example.com' } }), { DB });
-assert.equal(blocked.status, 403, 'unlisted origins stay blocked');
+assert.equal(blocked.status, 400, 'unlisted origins stay blocked');
 for (const path of ['/api/organizations', '/api/source-updates', '/api/health']) {
   const v0 = await worker.fetch(new Request(`https://data.superintelligencesg.org${path}`), { DB });
   assert.equal(v0.headers.get('Cache-Control'), 'no-store', `${path} keeps no-store`);
@@ -80,7 +80,7 @@ globalThis.fetch = async (input, init) => {
   if (match && DATA_FILES[match[2]]) return new Response(await readFile(resolve(root, match[2]), 'utf8'), { status: 200 });
   if (href.startsWith('https://down.test/')) throw new TypeError('network down');
   if (href.startsWith('https://raw.githubusercontent.com/')) return new Response('nope', { status: 503 });
-  return realFetch(input, init);
+  throw new Error(`Unexpected network request: ${href}`);
 };
 const commonsRow = { id: '9dead00b-115e-4312-8d4d-6a4f2904a958', name: 'JT M&C', founder: 'Jerry Tuo', business: 'Self-submitted description.', logo_key: 'https://jt-sgai.com/favicon.ico', created_at: 1790482477, updated_at: 1790482477, website_url: 'https://jt-sgai.com/', category: 'Organization', verification_status: 'submitted' };
 const v1DB = {
@@ -198,7 +198,7 @@ assert.equal(res.headers.get('Vary'), 'Origin');
 res = await get('/v1/entries', live);
 assert.equal(res.status, 200, 'the short v1 alias returns entries');
 res = await get('/api/v1/entries', live, { Origin: 'https://reader.example.net' });
-assert.equal(res.status, 403, 'non-feed v1 routes keep the origin allowlist');
+assert.equal(res.status, 400, 'non-feed v1 routes keep the origin allowlist');
 res = await worker.fetch(new Request('https://data.superintelligencesg.org/api/v1/entries', { method: 'POST', headers: { Origin: 'https://superintelligencesg.org' }, body: '{}' }), live);
 assert.equal(res.status, 404, 'v1 has no write routes');
 assert.equal(res.headers.get('Cache-Control'), 'no-store');

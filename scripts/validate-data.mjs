@@ -1,3 +1,4 @@
+import { validateRecord } from '../worker/index.js';
 // Validates data/*.json against data/schema/*.schema.json (dependency-free
 // subset of JSON Schema 2020-12), enforces the source_url rule and runs the
 // no-ranking lint. Existing moved text listed in data/lint-baseline.json is
@@ -22,7 +23,7 @@ const LINT_TERMS = [
 
 const typeOf = value => value === null ? 'null' : Array.isArray(value) ? 'array' : Number.isInteger(value) ? 'integer' : typeof value;
 
-function check(schema, value, path, rootSchema, errors) {
+export function check(schema, value, path, rootSchema, errors) {
   if (schema === true) return;
   if (schema.$ref) {
     const target = schema.$ref.replace(/^#\//, '').split('/').reduce((node, key) => node?.[key], rootSchema);
@@ -30,6 +31,7 @@ function check(schema, value, path, rootSchema, errors) {
     return check(target, value, path, rootSchema, errors);
   }
   const before = errors.length;
+  for (const branch of schema.allOf || []) check(branch, value, path, rootSchema, errors);
   if (schema.type) {
     const types = [].concat(schema.type);
     const actual = typeOf(value);
@@ -84,13 +86,14 @@ export async function validateData() {
     const ids = new Set();
     let reviewCount = 0;
     for (const record of records) {
+      if (name === 'entries') errors.push(...validateRecord(record).map(error => `${file} ${record.id}: ${error}`));
       if (ids.has(record.id)) errors.push(`${file}: duplicate id ${record.id}`);
       ids.add(record.id);
       const status = record.evidence?.status;
       if (status === 'needs_review') {
         reviewCount += 1;
         if (!record.source_url) needsReview.push(`${file} ${record.id}: source_url is null (needs_review)`);
-      } else if (!/^https:\/\//.test(record.source_url || '')) {
+      } else if (!(name === 'entries' ? /^https?:\/\// : /^https:\/\//).test(record.source_url || '')) {
         errors.push(`${file} ${record.id}: source_url is required unless evidence.status is needs_review`);
       }
       if (status === 'needs_review' && (record.conclusion || record.action)) errors.push(`${file} ${record.id}: needs_review records must not carry a conclusion or action`);

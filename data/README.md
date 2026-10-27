@@ -17,3 +17,36 @@ Every record carries `source_url`, `evidence.status`, `checked_at`, `conclusion`
 - The API adds a presentation-only `review_label: "Needs review"` to needs_review records. It never affects order or inclusion.
 
 Run `node scripts/validate-data.mjs` (it is part of `npm test`). It checks the schemas in `schema/`, the source_url rule, and the no-ranking lint ("top", "best", "#1", "leading", "AI ecosystem").
+
+Entries support `type`: `organization`, `event`, `funding`, `gov_initiative`, or
+`person`. Omitted types default to `organization` in API responses. Every new
+non-organization record requires an HTTP/HTTPS `source_url` and a real calendar
+`checked_at` date (`YYYY-MM-DD`), including records marked `needs_review`.
+Legacy organization provenance rules remain in place.
+
+Person records contain `id`, `type`, `name`, `public_role`, `organisation`,
+`source_url`, and `checked_at`; optional metadata is `kind`, `updated`, and
+`lenses`. Contact fields, free-form descriptions, and other properties are
+rejected. Editors must use public-role information from the cited source and
+must not put private information into any permitted field.
+
+New types use Git-reviewed `data/entries.json` storage. The shared pure
+`validateRecord` export in `worker/index.js` guards data validation, seeding,
+bundling, and Worker ingestion (including edge-cache reads). Invalid ingested
+records produce HTTP 400 JSON rather than silently falling back. Organization
+form endpoints remain organization-only and reject submitted non-organization
+types rather than dropping their type/provenance. No D1 migration is needed.
+
+`GET /api/v1/entries?type=event` filters by type, combined with the existing
+filters, sorting, and limit. `/v1/entries` is an alias. Unknown or empty `type`
+values return HTTP 400. The response remains `{version, sort, count, total, entries}`.
+
+`GET /api/v1/stats` (also `/v1/stats`) returns
+`{version, total, by_type, by_kind}` for all available curated and published
+Commons entries, independent of query filters. All types appear, including zero
+counts; entries without a kind count under `Unspecified`. Commons retains its
+existing 500-profile read cap, so these are counts of the API dataset.
+
+Non-feed API reads retain the own-domain CORS allowlist and
+`Cache-Control: public, max-age=300, stale-while-revalidate=86400` for v1. Bogus
+origins return HTTP 400. The existing public JSON Feed CORS exception remains.

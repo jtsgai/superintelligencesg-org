@@ -1,3 +1,4 @@
+import { validateRecord } from '../worker/index.js';
 // One-off seed for data/*.json. It MOVES existing published records into the
 // shared data layer; it never adds facts. Records without an evidence block are
 // marked evidence.status "needs_review" and keep conclusion/action as null.
@@ -108,6 +109,10 @@ const provenance = {
 };
 for (const [name, build] of Object.entries({ entries, changes, signals })) {
   const records = await build();
+  if (name === 'entries') for (const record of records) {
+    const errors = validateRecord(record);
+    if (errors.length) throw Error(`${record.id}: ${errors.join(' ')}`);
+  }
   const file = { $schema: `./schema/${name}.schema.json`, version: 1, provenance: provenance[name], records };
   await writeFile(resolve(root, `data/${name}.json`), `${JSON.stringify(file, null, 2)}\n`);
   console.log(`data/${name}.json: ${records.length} records`);
