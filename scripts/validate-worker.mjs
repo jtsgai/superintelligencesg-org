@@ -183,6 +183,8 @@ res = await get('/api/v1/entries', live, { Origin: 'https://superintelligencesg.
 assert.equal(res.status, 200, '.si can read v1 entries');
 assert.equal(res.headers.get('Access-Control-Allow-Origin'), 'https://superintelligencesg.si');
 assert.equal(res.headers.get('Vary'), 'Origin');
+res = await get('/v1/entries', live);
+assert.equal(res.status, 200, 'the short v1 alias returns entries');
 res = await get('/api/v1/entries', live, { Origin: 'https://reader.example.net' });
 assert.equal(res.status, 403, 'non-feed v1 routes keep the origin allowlist');
 res = await worker.fetch(new Request('https://data.superintelligencesg.org/api/v1/entries', { method: 'POST', headers: { Origin: 'https://superintelligencesg.org' }, body: '{}' }), live);

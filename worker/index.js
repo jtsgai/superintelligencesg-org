@@ -40,6 +40,7 @@ function fail(message, status = 400) {
 }
 
 function apiPath(pathname) {
+  if (pathname.startsWith('/v1/')) return `/api${pathname}`;
   if (pathname.startsWith('/directory/api/')) return pathname.slice('/directory'.length);
   if (pathname.startsWith('/directory/')) return `/api/${pathname.slice('/directory/'.length)}`;
   return pathname;
