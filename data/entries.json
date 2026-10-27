@@ -127,9 +127,19 @@
       ],
       "source_url": "https://www.a-star.edu.sg/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.a-star.edu.sg/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -148,9 +158,19 @@
       ],
       "source_url": "https://www.ntu.edu.sg/research/research-focus/research-cluster-1-artificalandaugumentedintelligence/about-the-cluster",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.ntu.edu.sg/research/research-focus/research-cluster-1-artificalandaugumentedintelligence/about-the-cluster",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -169,9 +189,19 @@
       ],
       "source_url": "https://www.ntu.edu.sg/ai-x",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.ntu.edu.sg/ai-x",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -190,9 +220,19 @@
       ],
       "source_url": "https://www.sutd.edu.sg/research/artificial-intelligence-ai/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.sutd.edu.sg/research/artificial-intelligence-ai/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -211,9 +251,19 @@
       ],
       "source_url": "https://www.sginnovate.com/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.sginnovate.com/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -232,9 +282,19 @@
       ],
       "source_url": "https://sail.sea.com/about-us",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://sail.sea.com/about-us",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -253,9 +313,19 @@
       ],
       "source_url": "https://www.patsnap.com/about-us",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.patsnap.com/about-us",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -316,9 +386,19 @@
       ],
       "source_url": "https://www.a-star.edu.sg/iaic",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.a-star.edu.sg/iaic",
+        "record_updated_at": "2026-10-08",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -337,9 +417,19 @@
       ],
       "source_url": "https://www.nscc.sg/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.nscc.sg/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -359,9 +449,19 @@
       ],
       "source_url": "https://www.ntu.edu.sg/dtc",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.ntu.edu.sg/dtc",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -435,9 +535,19 @@
       ],
       "source_url": "https://www.ntu.edu.sg/docs/default-source/corporate-ntu/hub-news/ntu-singapore-and-national-healthcare-group-launch-centre-to-advance-artificial-intelligence-in-healthcare.pdf?sfvrsn=d97f986e_1",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.ntu.edu.sg/docs/default-source/corporate-ntu/hub-news/ntu-singapore-and-national-healthcare-group-launch-centre-to-advance-artificial-intelligence-in-healthcare.pdf?sfvrsn=d97f986e_1",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -456,9 +566,19 @@
       ],
       "source_url": "https://www.mddi.gov.sg/newsroom/singapore-invests-over-s-1-billion-in-national-ai-research-and-development-plan-to-strengthen-ai-research-capabilities-and-our-position-as-global-ai-hub/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.mddi.gov.sg/newsroom/singapore-invests-over-s-1-billion-in-national-ai-research-and-development-plan-to-strengthen-ai-research-capabilities-and-our-position-as-global-ai-hub/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -477,9 +597,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/openai-launches-applied-ai-lab-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/openai-launches-applied-ai-lab-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -650,9 +780,19 @@
       ],
       "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -671,9 +811,19 @@
       ],
       "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -692,9 +842,19 @@
       ],
       "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -713,9 +873,19 @@
       ],
       "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.smartnation.gov.sg/initiatives/programmes-and-initiatives/?filters=%5B%7B%22id%22%3A%22Domain%22%2C%22items%22%3A%5B%7B%22id%22%3A%22Artificial+Intelligence%22%7D%5D%7D%5D&page=1",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -755,9 +925,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -818,9 +998,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/100e/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/100e/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -839,9 +1029,19 @@
       ],
       "source_url": "https://aisingapore.org/aiap-technical-assessment/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/aiap-technical-assessment/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -860,9 +1060,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/airi/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/airi/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -881,9 +1091,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/ai-advisory/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/ai-advisory/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -902,9 +1122,19 @@
       ],
       "source_url": "https://learn.aisingapore.org/wp-content/uploads/2023/01/LearnAI-Booklet-2023_v2.pdf",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://learn.aisingapore.org/wp-content/uploads/2023/01/LearnAI-Booklet-2023_v2.pdf",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -923,9 +1153,19 @@
       ],
       "source_url": "https://aisingapore.org/sea-lion/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/sea-lion/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -988,9 +1228,19 @@
       ],
       "source_url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1009,9 +1259,19 @@
       ],
       "source_url": "https://www.microsoft.com/en-us/research/group/microsoft-research-asia-singapore/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.microsoft.com/en-us/research/group/microsoft-research-asia-singapore/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1051,9 +1311,19 @@
       ],
       "source_url": "https://www.singtel.com/business/products-services/cybersecurity/cyber-education/ai-dea",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.singtel.com/business/products-services/cybersecurity/cyber-education/ai-dea",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1072,9 +1342,19 @@
       ],
       "source_url": "https://news.microsoft.com/en-sg/2022/05/28/ite-and-microsoft-collaborate-to-equip-over-4000-students-with-responsible-ai-skills/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://news.microsoft.com/en-sg/2022/05/28/ite-and-microsoft-collaborate-to-equip-over-4000-students-with-responsible-ai-skills/",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1093,9 +1373,19 @@
       ],
       "source_url": "https://www.singtel.com/content/dam/singtel/investorRelations/stockExchange/2024/Halfyear-MDA.pdf",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.singtel.com/content/dam/singtel/investorRelations/stockExchange/2024/Halfyear-MDA.pdf",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1114,9 +1404,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1135,9 +1435,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1156,9 +1466,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/news-and-insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/news-and-insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore",
+        "record_updated_at": "2026-10-10",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1177,9 +1497,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1198,9 +1528,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1219,9 +1559,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1240,9 +1590,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1261,9 +1621,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1282,9 +1652,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1303,9 +1683,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1324,9 +1714,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1345,9 +1745,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1366,9 +1776,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1387,9 +1807,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1408,9 +1838,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1429,9 +1869,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1450,9 +1900,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1471,9 +1931,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/artificial-intelligence-in-singapore-for-businesses-a-round-up-from-october-to-december-2025.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/artificial-intelligence-in-singapore-for-businesses-a-round-up-from-october-to-december-2025.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1492,9 +1962,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/artificial-intelligence-in-singapore-for-businesses-a-round-up-from-october-to-december-2025.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/artificial-intelligence-in-singapore-for-businesses-a-round-up-from-october-to-december-2025.html",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1546,9 +2026,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/news-and-insights/fwd-group-establishes-ai-lab-in-singapore-with-edb-support",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/news-and-insights/fwd-group-establishes-ai-lab-in-singapore-with-edb-support",
+        "record_updated_at": "2026-10-09",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1567,9 +2057,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/manulife-launches-ai-centre-of-excellence-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/manulife-launches-ai-centre-of-excellence-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1588,9 +2088,19 @@
       ],
       "source_url": "https://aisingapore.org/research/phd-fellowship-programme/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/research/phd-fellowship-programme/",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1609,9 +2119,19 @@
       ],
       "source_url": "https://aisingapore.org/wp-content/uploads/2025/06/2-AISG-Research-AMP-Application-Guideline_Aug-2025-Intake_IHL_v1.pdf",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/wp-content/uploads/2025/06/2-AISG-Research-AMP-Application-Guideline_Aug-2025-Intake_IHL_v1.pdf",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1651,9 +2171,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1672,9 +2202,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1693,9 +2233,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/the-latest-in-singapores-ai-scene-that-businesses-should-know-a-round-up-from-april-to-june-2026.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/the-latest-in-singapores-ai-scene-that-businesses-should-know-a-round-up-from-april-to-june-2026.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1714,9 +2264,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/the-latest-in-singapores-ai-scene-that-businesses-should-know-a-round-up-from-april-to-june-2026.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/the-latest-in-singapores-ai-scene-that-businesses-should-know-a-round-up-from-april-to-june-2026.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1735,9 +2295,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/content/dam/edb-en/business-insights/market-and-industry-reports/singapores-2024-budget-for-businesses-booklet/Business%20Budget%20booklet%202024.pdf",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/content/dam/edb-en/business-insights/market-and-industry-reports/singapores-2024-budget-for-businesses-booklet/Business%20Budget%20booklet%202024.pdf",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1756,9 +2326,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1777,9 +2357,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1798,9 +2388,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/how-prudential-coca-cola-singapore-and-grab-are-using-ai-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/how-prudential-coca-cola-singapore-and-grab-are-using-ai-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1819,9 +2419,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-food-to-finance-ai-facilities-that-have-set-up-shop-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/from-food-to-finance-ai-facilities-that-have-set-up-shop-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1840,9 +2450,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/how-prudential-coca-cola-singapore-and-grab-are-using-ai-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/how-prudential-coca-cola-singapore-and-grab-are-using-ai-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1861,9 +2481,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/-/media/imda/files/about/resources/corporate-publications/annual-report/imda-annual-report-fy2024-2025.pdf",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/-/media/imda/files/about/resources/corporate-publications/annual-report/imda-annual-report-fy2024-2025.pdf",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1882,9 +2512,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/microsoft-disg-launch-agentic-ai-accelerator-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/microsoft-disg-launch-agentic-ai-accelerator-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1903,9 +2543,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/microsoft-disg-launch-agentic-ai-accelerator-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/microsoft-disg-launch-agentic-ai-accelerator-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1924,9 +2574,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/tbwa-singapore-launches-apac-ai-innovation-centre.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/tbwa-singapore-launches-apac-ai-innovation-centre.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1945,9 +2605,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/dnv-expands-smart-shipping-centre-of-excellence-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/dnv-expands-smart-shipping-centre-of-excellence-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1966,9 +2636,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/content/dam/edb-en/about-edb/media-releases/news/thales-strengthens-avionics-and-digital-capabilities-in-singapore/Press%20release-Thales%20strengthens%20avionics%20and%20digital%20capabilities%20in%20Singapore.pdf",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/content/dam/edb-en/about-edb/media-releases/news/thales-strengthens-avionics-and-digital-capabilities-in-singapore/Press%20release-Thales%20strengthens%20avionics%20and%20digital%20capabilities%20in%20Singapore.pdf",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1987,9 +2667,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/content/dam/edb-en/about-edb/media-releases/news/dell-technologies-launches-global-innovation-hub-in-singapore/Press%20Release%20-Dell%20Technologies%20launches%20Global%20Innovation%20Hub%20in%20Singapore.pdf",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/content/dam/edb-en/about-edb/media-releases/news/dell-technologies-launches-global-innovation-hub-in-singapore/Press%20Release%20-Dell%20Technologies%20launches%20Global%20Innovation%20Hub%20in%20Singapore.pdf",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2008,9 +2698,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/business-insights/insights/how-prudential-coca-cola-singapore-and-grab-are-using-ai-in-singapore.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/business-insights/insights/how-prudential-coca-cola-singapore-and-grab-are-using-ai-in-singapore.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2029,9 +2729,19 @@
       ],
       "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/fwd-group-establishes-ai-lab-in-singapore-with-edb-support.html",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.edb.gov.sg/en/about-edb/media-releases-publications/fwd-group-establishes-ai-lab-in-singapore-with-edb-support.html",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2071,9 +2781,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/ai-advisory/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/ai-advisory/",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2092,9 +2812,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/ai-advisory/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/ai-advisory/",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2113,9 +2843,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/ai-advisory/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/ai-advisory/",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2134,9 +2874,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/ai-advisory/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/ai-advisory/",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2155,9 +2905,19 @@
       ],
       "source_url": "https://aisingapore.org/innovation/ai-advisory/",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://aisingapore.org/innovation/ai-advisory/",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source opened with curl on 2026-10-28; its text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     }
