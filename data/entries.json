@@ -72,9 +72,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/national-ai-impact-programme",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/national-ai-impact-programme",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -344,11 +354,19 @@
       ],
       "source_url": "https://taiger.ai/",
       "evidence": {
-        "status": "needs_review"
+        "status": "needs_review",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "withdrawn_no_reliable_source",
+            "note": "taiger.ai now serves an unrelated crypto page; taiger.com unreachable, last news 2023. ACRA UEN 201510023W: Taiger Singapore Pte. Ltd. in creditors' voluntary winding up (2022), now dissolved. Business Times 2022-04-04 reported the liquidation: https://www.businesstimes.com.sg/startups-tech/startups/ai-startup-taiger-liquidates-singapore-entity-over-80-staff-cut . No reliable current source; withdrawn via published=false, data kept."
+          }
+        ]
       },
       "checked_at": null,
       "conclusion": null,
-      "action": null
+      "action": null,
+      "published": false
     },
     {
       "id": "public-biofourmis",
@@ -628,9 +646,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/accelerate-real-world-deployment",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/accelerate-real-world-deployment",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -650,9 +678,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/ai-agents-insights-from-the-singapore-government-and-google-sandbox",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/ai-agents-insights-from-the-singapore-government-and-google-sandbox",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -672,9 +710,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2024/project-moonshot",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2024/project-moonshot",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -693,9 +741,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/resources/innovative-tech-companies-directory/datature",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/resources/innovative-tech-companies-directory/datature",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -737,9 +795,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/ai-agents-insights-from-the-singapore-government-and-google-sandbox",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/ai-agents-insights-from-the-singapore-government-and-google-sandbox",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -977,9 +1045,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/how-we-can-help/code-for-fun/ai-for-fun-secondary",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/how-we-can-help/code-for-fun/ai-for-fun-secondary",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1184,9 +1262,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/how-we-can-help/national-speech-corpus",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/how-we-can-help/national-speech-corpus",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -1206,9 +1294,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/about-imda/emerging-technologies-and-research/artificial-intelligence",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/about-imda/emerging-technologies-and-research/artificial-intelligence",
+        "record_updated_at": "2026-09-28",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
@@ -2150,9 +2248,19 @@
       ],
       "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/imda-partners-with-grab-and-rsm-stone-forest-it-to-uplift-12000-smes-in-ai-and-cybersecurity",
       "evidence": {
-        "status": "needs_review"
+        "status": "source_verified",
+        "source_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2026/imda-partners-with-grab-and-rsm-stone-forest-it-to-uplift-12000-smes-in-ai-and-cybersecurity",
+        "record_updated_at": "2026-09-29",
+        "checked_at": "2026-10-28",
+        "history": [
+          {
+            "at": "2026-10-28",
+            "kind": "individual_source_review",
+            "note": "Source rendered with headless Playwright Chromium on 2026-10-28; its body text describes this organisation or programme consistently with the entry."
+          }
+        ]
       },
-      "checked_at": null,
+      "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
     },
