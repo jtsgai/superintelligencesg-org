@@ -1,6 +1,8 @@
 # SI Commons Connector for Muse — Privacy Policy (DRAFT)
 
-Last updated: [date of publication]
+Effective: 28 October 2026
+Last updated: 28 October 2026
+Service address: https://si-commons-mcp.superintelligencesg.workers.dev/mcp (hosted on Cloudflare Workers)
 Operator: JT M&C PTE. LTD. (UEN 202424056N), Singapore ("we"). Contact: info@jt-sgai.com
 
 ## What this connector does

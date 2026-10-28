@@ -6,10 +6,12 @@ Read-only [Model Context Protocol](https://modelcontextprotocol.io) server for t
 
 The Streamable HTTP endpoint is `POST /mcp` on:
 
-- production: `https://mcp.superintelligencesg.org/mcp`
-- test: `https://mcp-test.superintelligencesg.org/mcp`
+- production: `https://si-commons-mcp.superintelligencesg.workers.dev/mcp`
+- test: `https://si-commons-mcp-test.superintelligencesg.workers.dev/mcp` (for reviewers and testing only)
 
-This package is not deployed from the repository workflow.
+Both run on Cloudflare's `workers.dev` subdomain (`superintelligencesg`). No custom domain is used, and the `superintelligencesg.org` DNS (Namecheap) and website (GitHub Pages) are not involved.
+
+This package is not deployed from the repository workflow. It was deployed manually on 28 October 2026.
 
 ## Tools
 
@@ -95,7 +97,7 @@ For the test environment locally, copy `.dev.vars.test.example` to `.dev.vars.te
 
 ## Deploy
 
-Deploy is a manual step for an operator who can publish Workers on the Cloudflare account that owns `superintelligencesg.org`. Do not put keys in git or in `wrangler.toml`.
+Deploy is a manual step for an operator who can publish Workers on the Cloudflare account (`superintelligencesg@gmail.com`). The deploy token needs only Account → Workers Scripts → Edit; no zone, route or DNS permission is needed. Do not put keys in git or in `wrangler.toml`.
 
 ```bash
 cd mcp
@@ -108,9 +110,9 @@ npx wrangler@4 deploy --env test
 
 `--env=""` selects the top-level production Worker. Wrangler warns if you deploy while `env.test` exists and no environment was named.
 
-Set only `MCP_API_KEY` on the production Worker and only `MCP_API_KEY_TEST` on the test Worker. Give the test key and the test hostname to reviewers through the host's credential flow, not by email. Production route: `mcp.superintelligencesg.org`. Test route: `mcp-test.superintelligencesg.org`. Both are `custom_domain` routes, so the zone has to be on that Cloudflare account.
+Set only `MCP_API_KEY` on the production Worker and only `MCP_API_KEY_TEST` on the test Worker. Give the test key and the test hostname to reviewers through the host's credential flow, not by email. `wrangler.toml` sets `workers_dev = true` for both Workers and defines no `routes` or `custom_domain`, so each Worker is served only at `https://<name>.superintelligencesg.workers.dev`. The `superintelligencesg.org` zone is not on Cloudflare (DNS is at Namecheap), so custom-domain routes cannot be used from this account. Moving to a custom subdomain later needs a DNS change and a separate approval.
 
-After deploy, repeat the curl example against `https://mcp.superintelligencesg.org/mcp` with the production key.
+After deploy, repeat the curl example against `https://si-commons-mcp.superintelligencesg.workers.dev/mcp` with the production key, and against the test URL with the test key. A request without a key must return 401.
 
 ## Layout
 
@@ -124,8 +126,7 @@ After deploy, repeat the curl example against `https://mcp.superintelligencesg.o
 ## Unresolved
 
 - The API still has no `GET /v1/entries/{id}`. `get_org` filters the organisation list. A direct route would need a separate change to the existing API Worker.
-- This connector is not deployed. `mcp.superintelligencesg.org` and `mcp-test.superintelligencesg.org` are not created by CI.
-- Whether this Cloudflare account can publish a second Worker, beside the existing API, is still an operator question.
+- Deploys are manual; CI does not deploy this connector.
 - Muse approval of a public-directory connector is not guaranteed. The partner-ranking tool is included so the connector is more than a list of links. Approval still depends on Meta's review.
 - A no-auth connector is not confirmed as acceptable, so this server requires an API key.
 - The Muse connector terms were not reviewed here.
