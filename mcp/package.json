@@ -1,0 +1,21 @@
+{
+  "name": "si-commons-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only MCP connector for the public Superintelligence SG directory. Copyright JT M&C PTE. LTD.",
+  "license": "UNLICENSED",
+  "author": "JT M&C PTE. LTD.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "dev": "wrangler dev",
+    "dev:test": "wrangler dev --env test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "zod": "4.6.7"
+  }
+}

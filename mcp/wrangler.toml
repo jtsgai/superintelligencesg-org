@@ -1,0 +1,35 @@
+# Copyright (c) 2026 JT M&C PTE. LTD. All rights reserved.
+# Standalone Worker. It does not bind D1 or any other data store.
+# Do not put API keys in this file. Set them with `wrangler secret put`.
+
+name = "si-commons-mcp"
+main = "src/index.js"
+compatibility_date = "2026-10-28"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = false
+
+[vars]
+ENVIRONMENT = "production"
+SI_API_BASE = "https://api.superintelligencesg.org"
+
+# Production secret: MCP_API_KEY
+# Leave MCP_API_KEY_TEST unset on this Worker so the test key is rejected.
+
+[[routes]]
+pattern = "mcp.superintelligencesg.org"
+custom_domain = true
+
+[env.test]
+name = "si-commons-mcp-test"
+workers_dev = false
+
+[env.test.vars]
+ENVIRONMENT = "test"
+SI_API_BASE = "https://api.superintelligencesg.org"
+
+# Test secret: MCP_API_KEY_TEST
+# Leave MCP_API_KEY unset on this Worker so the production key is rejected.
+
+[[env.test.routes]]
+pattern = "mcp-test.superintelligencesg.org"
+custom_domain = true
