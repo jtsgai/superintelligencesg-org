@@ -1,6 +1,8 @@
-# SI Commons Connector for Muse — Privacy Policy (DRAFT)
+# SI Commons Connector for Muse — Privacy Policy
 
-Last updated: [date of publication]
+Effective: 28 October 2026
+Last updated: 28 October 2026
+Service address: https://si-commons-mcp.superintelligencesg.workers.dev/mcp (hosted on Cloudflare Workers)
 Operator: JT M&C PTE. LTD. (UEN 202424056N), Singapore ("we"). Contact: info@jt-sgai.com
 
 ## What this connector does
@@ -15,7 +17,7 @@ We do not ask for, and do not receive, your name, email, Muse or Meta account de
 Only to return the results you asked for, and to keep the service secure and working (rate limiting, abuse prevention, troubleshooting). We do not sell data. We do not use it for advertising or profiling, and we do not use it to train AI models.
 
 ## Retention and deletion
-We do not store the text of your searches. Operational logs (time, tool, result status, latency, IP address) are kept for up to 30 days and then deleted. To ask about or request deletion of any data, email info@jt-sgai.com. We reply within 30 days.
+We do not store the text of your searches. Our service code does not log or store IP addresses. Cloudflare, as the hosting provider, may process IP addresses in its own request logs under its own policy (https://www.cloudflare.com/privacypolicy/). To ask about or request deletion of any data, email info@jt-sgai.com. We reply within 30 days.
 
 ## Sharing
 - **Cloudflare, Inc.:** our hosting provider, which processes requests on our behalf.
