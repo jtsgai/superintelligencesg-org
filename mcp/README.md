@@ -54,7 +54,7 @@ Application logs are one JSON line per request with `ts`, `tool`, `status`, and 
 
 ## Privacy
 
-[PRIVACY.md](PRIVACY.md) is the draft privacy policy. It is not a substitute for publishing that text at a public URL before a Muse submission.
+[PRIVACY.md](PRIVACY.md) is the privacy policy. It is not a substitute for publishing that text at a public URL before a Muse submission.
 
 ## Local test
 
@@ -130,6 +130,6 @@ After deploy, repeat the curl example against `https://si-commons-mcp.superintel
 - Muse approval of a public-directory connector is not guaranteed. The partner-ranking tool is included so the connector is more than a list of links. Approval still depends on Meta's review.
 - A no-auth connector is not confirmed as acceptable, so this server requires an API key.
 - The Muse connector terms were not reviewed here.
-- [PRIVACY.md](PRIVACY.md) is still a draft. The publication date is a placeholder, and the page is not yet on `superintelligencesg.org`.
+- [PRIVACY.md](PRIVACY.md) is dated 28 October 2026. The same text is not yet published on `superintelligencesg.org`.
 - The 60-request limit is per isolate, not a single global counter.
 - The in-memory cache does not store search text. The public API still sends `Cache-Control: max-age=300` on its own responses.
