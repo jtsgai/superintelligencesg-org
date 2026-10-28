@@ -28,7 +28,7 @@ for (const [, name, body] of snippet.matchAll(/<!-- sisg-eco:(\w+) -->\n([\s\S]*
 for (const name of Object.keys(regions)) if (!ANCHORS[name]) throw Error(`Unknown snippet region ${name}`);
 if (!regions.footer) throw Error('Snippet has no footer region');
 
-const disclosure = /<p class="sisg-foot__disclosure">(Disclosure: [^<]*)<\/p>/.exec(regions.footer)?.[1];
+const disclosure = /<p class="sisg-foot__disclosure">(Disclosure: [\s\S]*?)<\/p>/.exec(regions.footer)?.[1];
 if (!disclosure) throw Error('Snippet footer has no disclosure text');
 const errors = [];
 for (const page of MASTERS) {
