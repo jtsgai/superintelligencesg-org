@@ -53,3 +53,13 @@ existing 500-profile read cap, so these are counts of the API dataset.
 Non-feed API reads retain the own-domain CORS allowlist and
 `Cache-Control: public, max-age=300, stale-while-revalidate=86400` for v1. Bogus
 origins return HTTP 400. The existing public JSON Feed CORS exception remains.
+
+`source_url` and `updated` are the canonical source and updated-at fields for
+entries (`date` for changes and signals). Do not add a parallel `updated_at`;
+the `evidence.*` copies only mirror them at review time.
+
+`node scripts/check-sources.mjs` (read-only; `--md --out <file>` for a report,
+`--strict` to fail on a missing source) lists records whose source is missing,
+still `needs_review`, homepage-only or stale. After editing `entries.json`, run
+`node scripts/build-org-pages.mjs` to regenerate `org/<slug>/index.html` and
+`ecosystem.html`; `npm test` fails if they are out of date.
