@@ -259,6 +259,14 @@
       "at": "2026-10-29T05:17:03Z",
       "note": "Opened the cited EDB source and confirmed it redirects to the current official canonical page. Its Oracle section says the Singapore AI Centre of Excellence launched in March 2025 and provides training in cloud and AI technology plus support for experimentation and implementation. This matches the Navigator entry; the working official redirect needs no public record correction or new publication.",
       "public_url": "https://www.edb.gov.sg/en/news-and-insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months"
+    },
+    {
+      "id": "official_source_discovery:c9deb89c00615166cb7e",
+      "revision": "3bb2a917f27c0a8357d97b10b1b42a7f240ac6c3f9b904c7ebfd547d506fd852",
+      "status": "published",
+      "at": "2026-10-29T05:40:17Z",
+      "note": "Read MDDI's original 18 September 2026 release. It says the Institute of Digital Government, launched with the Civil Service College, will equip more than 150,000 public officers with practical digital, data and AI capabilities by end-2028, using structured pathways and AI Sprints. This is a material public-service capability update, so the Singapore AI Ecosystem Field Note was updated to version 1.2 while retaining its original 28 September 2026 publication date.",
+      "public_url": "https://superintelligencesg.ai/field-notes/singapore-ai-ecosystem.html"
     }
   ]
 }
