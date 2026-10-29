@@ -105,7 +105,7 @@ function orgPage(record) {
   const path = `/org/${slug}/`;
   const facts = [
     ['Category', esc(record.kind)],
-    record.founder && ['Founded by', esc(record.founder)],
+    record.founder && ['Background', esc(record.founder)],
     record.url && ['Website', link(record.url)],
     ['Source', hasSource(record) ? link(record.source_url) : SOURCE_PENDING],
     record.updated && ['Record updated', esc(record.updated)],
