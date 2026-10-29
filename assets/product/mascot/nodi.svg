@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 440" role="img" aria-labelledby="t"><title id="t">Nodi, the Superintelligence SG mascot: a glossy robot whose screen face shows a small ecosystem map</title>
+<defs>
+<radialGradient id="shell" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f1ebdc"/><stop offset="1" stop-color="#c9c2b0"/></radialGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22344a"/><stop offset=".6" stop-color="#101a27"/><stop offset="1" stop-color="#06090f"/></linearGradient>
+<radialGradient id="ball" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#ff8a70"/><stop offset=".6" stop-color="#d84f37"/><stop offset="1" stop-color="#9c3320"/></radialGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#c4ed4c" stop-opacity=".55"/><stop offset="1" stop-color="#c4ed4c" stop-opacity="0"/></radialGradient>
+<linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+</defs>
+<ellipse cx="200" cy="418" rx="110" ry="14" fill="#1d2a37" opacity=".16"/>
+<rect x="196" y="40" width="8" height="46" rx="4" fill="#1d2a37"/>
+<circle cx="200" cy="36" r="17" fill="url(#ball)"/>
+<rect x="128" y="300" width="144" height="112" rx="56" fill="url(#shell)" stroke="#b9b7aa" stroke-width="1.5"/>
+<rect x="176" y="336" width="48" height="22" rx="11" fill="#c4ed4c"/><text x="200" y="352" text-anchor="middle" font-family="SFMono-Regular,Consolas,monospace" font-size="12" font-weight="700" fill="#2b3a0b">.org</text>
+<circle cx="64" cy="192" r="26" fill="url(#ball)"/><circle cx="336" cy="192" r="26" fill="url(#ball)"/>
+<rect x="70" y="84" width="260" height="222" rx="104" fill="url(#shell)" stroke="#b9b7aa" stroke-width="1.5"/>
+<rect x="98" y="120" width="204" height="150" rx="72" fill="url(#screen)"/>
+<g stroke="#c4ed4c" stroke-width="2.5" stroke-linecap="round" opacity=".7" fill="none"><path d="M152 182 L200 228 L248 182"/><path d="M152 182 L248 182" stroke-dasharray="2 8"/><path d="M200 228 L200 252"/></g>
+<circle cx="152" cy="182" r="34" fill="url(#glow)"/><circle cx="248" cy="182" r="34" fill="url(#glow)"/>
+<rect x="138" y="166" width="28" height="34" rx="14" fill="#c4ed4c"/><rect x="234" y="166" width="28" height="34" rx="14" fill="#c4ed4c"/>
+<circle cx="146" cy="176" r="4" fill="#fff" opacity=".8"/><circle cx="242" cy="176" r="4" fill="#fff" opacity=".8"/>
+<circle cx="200" cy="228" r="8" fill="#d84f37"/><circle cx="200" cy="254" r="4" fill="#f4eedf" opacity=".8"/>
+<path d="M118 150 Q200 104 282 150 Q240 134 200 134 Q160 134 118 150Z" fill="url(#gloss)"/>
+<path d="M104 120 Q120 96 160 92" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none" opacity=".9"/>
+</svg>
