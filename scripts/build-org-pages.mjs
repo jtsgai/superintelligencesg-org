@@ -1,0 +1,224 @@
+// Generates the static organization profile pages (org/<slug>/index.html) and
+// the shareable ecosystem map (ecosystem.html) from data/entries.json.
+// Only fields already in the record are shown; nothing is inferred or added.
+// A record without a valid source_url shows "Source pending".
+// Withdrawn records (published:false) get no page and are not listed.
+//   node scripts/build-org-pages.mjs          write the pages
+//   node scripts/build-org-pages.mjs --check  fail if the committed pages are out of date (npm test)
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { validSourceURL } from '../worker/index.js';
+
+const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const check = process.argv.includes('--check');
+const SITE = 'https://superintelligencesg.org';
+const SOURCE_DESK = 'https://superintelligencesg.com/source-desk.html';
+
+// Existing `kind` categories, in the order they appear on the map.
+const KINDS = [
+  'Ecosystem', 'Governance', 'Public capability', 'Research', 'Applied research', 'Education & research',
+  'Health AI', 'Company', 'Organization', 'Event', 'Funding', 'Government initiative', 'Person',
+];
+const LENS_LABEL = { research: 'Research', deployment: 'Deployment', trust: 'Trust', public: 'Public', 'trusted-deployment': 'Trusted deployment' };
+const SOURCE_PENDING = 'Source pending';
+
+export const slugFor = record => record.id.replace(/^public-/, '').replace(/-+/g, '-').replace(/(^-|-$)/g, '');
+const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
+
+const terms = await readFile(resolve(root, 'terms/index.html'), 'utf8');
+const baseCSS = /<style>\n([\s\S]*?)\n\s*<\/style>/.exec(terms)?.[1];
+if (!baseCSS) throw Error('terms/index.html has no base stylesheet to reuse');
+const snippet = await readFile(resolve(root, 'assets/product/sisg-ecosystem-snippet.html'), 'utf8');
+const region = name => {
+  const body = new RegExp(`<!-- sisg-eco:${name} -->\\n([\\s\\S]*?)\\n<!-- /sisg-eco:${name} -->`).exec(snippet)?.[1];
+  if (!body) throw Error(`Snippet has no ${name} region`);
+  return `<!-- sisg-eco:${name} -->${body}<!-- /sisg-eco:${name} -->`;
+};
+
+const PAGE_CSS = `.kicker{margin:0 0 18px;color:var(--accent);font:700 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}.facts{margin:0;display:grid;grid-template-columns:minmax(120px,.35fr) minmax(0,1fr);gap:0}.facts dt,.facts dd{margin:0;padding:14px 0;border-top:1px solid var(--line)}.facts dt{color:var(--ink);font-weight:700}.facts dd{color:var(--muted);overflow-wrap:anywhere}.facts a,.map a.org{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.tag{display:inline-block;margin:0 6px 6px 0;padding:3px 9px;border:1px solid var(--line);border-radius:999px;font-size:13px}.status-ok{color:#3d6b2f}.status-wait{color:var(--accent)}.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px;padding:56px 0;border-bottom:1px solid var(--line)}.cluster h2{margin:0 0 4px;font:600 1.5rem/1.1 var(--display);letter-spacing:-.02em}.cluster .count{margin:0 0 14px;color:var(--muted);font:12px/1.4 var(--mono)}.cluster ul{margin:0;padding:0;list-style:none}.cluster li{padding:7px 0;border-top:1px solid var(--line);font-size:15px}.cluster li .pending{color:var(--muted);font-size:12px}.legend{color:var(--muted);font-size:14px;max-width:70ch}.legend p{margin:0 0 10px}@media(max-width:820px){.facts{grid-template-columns:1fr}.facts dt{padding-bottom:0}.facts dd{border-top:0;padding-top:4px}}`;
+
+function page({ path, title, description, jsonld, body }) {
+  const url = `${SITE}${path}`;
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="${esc(description)}">
+  <link rel="canonical" href="${url}">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>${esc(title)} | Superintelligence SG Commons</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${esc(title)} | Superintelligence SG Commons">
+  <meta property="og:description" content="${esc(description)}">
+  <meta property="og:url" content="${url}">
+  <meta property="og:image" content="${SITE}/assets/og-commons.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="${SITE}/assets/og-commons.png">
+  <script type="application/ld+json">${json(jsonld)}</script>
+  <!-- Generated by scripts/build-org-pages.mjs from data/entries.json. Do not edit by hand. -->
+  <style>
+${baseCSS}
+  </style>
+  <style>.brand-logo{width:30px;height:30px;display:block;flex:0 0 auto}${PAGE_CSS}</style>
+  <link rel="stylesheet" href="/assets/product/si-mobile-nav.css">
+  ${region('style')}
+</head>
+<body>
+  ${region('bar')}
+  <header class="header">
+    <a class="brand" href="${SITE}" aria-label="Superintelligence SG Commons home"><img class="brand-logo" src="/assets/logo-org.svg" alt="Superintelligence SG Commons logo">SUPERINTELLIGENCE SG <span class="domain">.ORG</span></a>
+    <nav class="nav" aria-label="Site navigation"><a href="${SITE}">Home</a><a href="/ecosystem.html"${path === '/ecosystem.html' ? ' aria-current="page"' : ''}>Ecosystem map</a><a href="/organizations.html">Organizations</a><a href="/about.html">About</a></nav>
+  </header>
+  <main>
+    <div class="shell">
+${body}
+    </div>
+  </main>
+  <footer class="shell">
+    <span>Superintelligence SG</span>
+    <a href="mailto:superintelligencesg@gmail.com">superintelligencesg@gmail.com</a>
+    <a href="${SITE}">Back to Commons</a>
+    ${region('footer')}
+  </footer>
+</body>
+</html>
+`;
+}
+
+const hasSource = record => validSourceURL(record.source_url);
+const status = record => !hasSource(record)
+  ? `<span class="status-wait">${SOURCE_PENDING}</span>`
+  : record.evidence?.status === 'needs_review'
+    ? '<span class="status-wait">Needs review</span> (moved from the Navigator; the source has not yet been individually checked)'
+    : `<span class="status-ok">Source checked</span>${record.checked_at ? ` on ${esc(record.checked_at)}` : ''}`;
+const link = url => `<a href="${esc(url)}" rel="noopener">${esc(url)}</a>`;
+
+function orgPage(record) {
+  const slug = slugFor(record);
+  const path = `/org/${slug}/`;
+  const facts = [
+    ['Category', esc(record.kind)],
+    record.founder && ['Background', esc(record.founder)],
+    record.url && ['Website', link(record.url)],
+    ['Source', hasSource(record) ? link(record.source_url) : SOURCE_PENDING],
+    record.updated && ['Record updated', esc(record.updated)],
+    ['Review status', status(record)],
+    record.lenses?.length && ['Lenses', record.lenses.map(lens => `<span class="tag">${esc(LENS_LABEL[lens] || lens)}</span>`).join('')],
+  ].filter(Boolean);
+  const history = record.evidence?.history || [];
+  const body = `      <section class="lede">
+        <div>
+          <p class="kicker">Organization profile · ${esc(record.kind)}</p>
+          <h1>${esc(record.name)}</h1>
+        </div>
+        <div class="meta">
+          <p>${esc(record.description)}</p>
+          <p>${hasSource(record) ? 'Summary as recorded in the Navigator. The source is listed below.' : `Summary as recorded in the Navigator. ${SOURCE_PENDING}.`}</p>
+        </div>
+      </section>
+      <section class="section">
+        <h2>Record</h2>
+        <div class="section-copy">
+          <dl class="facts">
+${facts.map(([term, value]) => `            <dt>${term}</dt><dd>${value}</dd>`).join('\n')}
+          </dl>
+        </div>
+      </section>${record.evidence?.summary || history.length ? `
+      <section class="section">
+        <h2>Source review</h2>
+        <div class="section-copy">${record.evidence?.summary ? `
+          <p>${esc(record.evidence.summary)}</p>` : ''}${history.length ? `
+          <ul>
+${history.map(item => `            <li><strong>${esc(item.at)}</strong> · ${esc(item.note)}</li>`).join('\n')}
+          </ul>` : ''}
+        </div>
+      </section>` : ''}
+      <section class="section">
+        <h2>Corrections</h2>
+        <div class="section-copy">
+          <p>This is an editorial record compiled from public sources. It does not imply endorsement, partnership or authorisation by the organization. Every request is reviewed by a person before any change; nothing is written to the database automatically.</p>
+          <p><a href="${SOURCE_DESK}">Claim or correct this profile</a></p>
+          <p><a href="/ecosystem.html">← Back to the Singapore AI ecosystem map</a></p>
+        </div>
+      </section>`;
+  const jsonld = { '@context': 'https://schema.org', '@type': 'ProfilePage', name: record.name, url: `${SITE}${path}`, ...(record.updated ? { dateModified: record.updated } : {}), isPartOf: { '@type': 'WebSite', name: 'Superintelligence SG Commons', url: `${SITE}/` }, mainEntity: { '@type': 'Organization', name: record.name, ...(record.url ? { url: record.url } : {}), description: record.description } };
+  return { path, file: `org/${slug}/index.html`, html: page({ path, title: `${record.name} · Organization profile`, description: `${record.name}: an organization profile compiled from public sources by Superintelligence SG Commons.`, jsonld, body }) };
+}
+
+function ecosystemPage(records) {
+  const unknown = records.filter(record => !KINDS.includes(record.kind));
+  if (unknown.length) throw Error(`Unmapped kind: ${unknown.map(record => record.kind).join(', ')}`);
+  const groups = KINDS.map(kind => [kind, records.filter(record => record.kind === kind).sort((a, b) => a.name.localeCompare(b.name, 'en'))]).filter(([, items]) => items.length);
+  const pending = records.filter(record => record.evidence?.status === 'needs_review' || !hasSource(record)).length;
+  const latest = records.map(record => record.updated).filter(Boolean).sort().at(-1);
+  const note = record => !hasSource(record) ? SOURCE_PENDING : record.evidence?.status === 'needs_review' ? 'Needs review' : '';
+  const body = `      <section class="lede">
+        <div>
+          <p class="kicker">Singapore AI · Ecosystem map</p>
+          <h1>Singapore AI ecosystem map</h1>
+        </div>
+        <div class="meta">
+          <p>${records.length} public records grouped by their existing category and listed alphabetically within each category. This is not a ranking. Each name links to its profile and source.</p>
+          <p>${pending} records are marked "Needs review" or "${SOURCE_PENDING}": their source has not yet been individually checked. Most recent record update: ${esc(latest)}.</p>
+        </div>
+      </section>
+      <section class="map" aria-label="Organizations grouped by category">
+${groups.map(([kind, items]) => `        <div class="cluster">
+          <h2>${esc(kind)}</h2>
+          <p class="count">${items.length} ${items.length === 1 ? 'record' : 'records'}</p>
+          <ul>
+${items.map(record => `            <li><a class="org" href="/org/${slugFor(record)}/">${esc(record.name)}</a>${note(record) ? ` <span class="pending">${note(record)}</span>` : ''}</li>`).join('\n')}
+          </ul>
+        </div>`).join('\n')}
+      </section>
+      <section class="section">
+        <h2>About this map</h2>
+        <div class="section-copy legend">
+          <p>Data: <a href="https://github.com/jtsgai/superintelligencesg-org/blob/main/data/entries.json">data/entries.json</a>, the Git-reviewed Navigator records. This page is generated by <code>scripts/build-org-pages.mjs</code>. Withdrawn records are not shown.</p>
+          <p>Inclusion does not imply endorsement or partnership. Listings affiliated with our founder get no special ranking; see the disclosure in the footer. To report an error or suggest a better source, use the <a href="${SOURCE_DESK}">Source Desk</a>.</p>
+          <p>Share this map: <a href="${SITE}/ecosystem.html">${SITE}/ecosystem.html</a></p>
+        </div>
+      </section>`;
+  const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Singapore AI ecosystem map', url: `${SITE}/ecosystem.html`, dateModified: latest, isPartOf: { '@type': 'WebSite', name: 'Superintelligence SG Commons', url: `${SITE}/` } };
+  return { path: '/ecosystem.html', file: 'ecosystem.html', html: page({ path: '/ecosystem.html', title: 'Singapore AI ecosystem map', description: `${records.length} Singapore AI organizations and programmes grouped by category, each with a public source.`, jsonld, body }) };
+}
+
+const data = JSON.parse(await readFile(resolve(root, 'data/entries.json'), 'utf8'));
+// Organization-shaped curated records only; person/event/etc. would need their own template.
+const records = data.records.filter(record => record.published !== false && (record.type ?? 'organization') === 'organization');
+const slugs = new Map();
+for (const record of records) {
+  const slug = slugFor(record);
+  if (slugs.has(slug)) throw Error(`Slug collision: ${record.id} and ${slugs.get(slug)}`);
+  slugs.set(slug, record.id);
+}
+const pages = [...records.map(orgPage), ecosystemPage(records)];
+
+const existing = await readdir(resolve(root, 'org')).catch(() => []);
+const stale = existing.filter(name => !slugs.has(name));
+const drift = [];
+for (const { file, html } of pages) {
+  const current = await readFile(resolve(root, file), 'utf8').catch(() => null);
+  if (current === html) continue;
+  if (check) { drift.push(file); continue; }
+  await mkdir(resolve(root, file, '..'), { recursive: true });
+  await writeFile(resolve(root, file), html);
+}
+if (check) {
+  if (drift.length || stale.length) {
+    console.error(`Organization pages are out of date (${drift.length} changed, ${stale.length} stale); run node scripts/build-org-pages.mjs`);
+    for (const file of [...drift, ...stale.map(name => `org/${name}/`)]) console.error(`  ${file}`);
+    process.exit(1);
+  }
+  console.log(`Organization pages are in sync (${records.length} profiles + ecosystem.html)`);
+} else {
+  for (const name of stale) await rm(resolve(root, 'org', name), { recursive: true, force: true });
+  console.log(`Wrote ${records.length} organization pages and ecosystem.html${stale.length ? `; removed ${stale.length} stale` : ''}`);
+}

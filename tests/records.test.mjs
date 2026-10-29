@@ -252,7 +252,7 @@ test('organization submissions accept source_url only, website_url only, or both
   assert.equal(edited.organization.source_url, 'https://example.org/new-source');
   assert.equal(edited.organization.website_url, 'https://example.org/site');
   const formSource = await readFile(new URL('../assets/product/commons.js', import.meta.url), 'utf8');
-  assert.match(formSource, /来源链接 \/ Source link/);
+  assert.match(formSource, /<label for="org-source">Source link<\/label>/);
   assert.match(formSource, /name="source_url"/);
   assert.match(formSource, /function requireSource/);
   assert.equal(formSource, await readFile(new URL('../static/assets/product/commons.js', import.meta.url), 'utf8'));
