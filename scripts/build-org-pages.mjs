@@ -1,0 +1,229 @@
+// Generates the static organization profile pages (org/<slug>/index.html) and
+// the shareable ecosystem map (ecosystem.html) from data/entries.json.
+// Only fields already in the record are shown; nothing is inferred or added.
+// Withdrawn records (published:false) get no page and are not listed.
+//   node scripts/build-org-pages.mjs          write the pages
+//   node scripts/build-org-pages.mjs --check  fail if the committed pages are out of date (npm test)
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const check = process.argv.includes('--check');
+const SITE = 'https://superintelligencesg.org';
+const SOURCE_DESK = 'https://superintelligencesg.com/source-desk.html';
+
+// Display labels for the existing `kind` categories, in the order they appear on the map.
+const KINDS = [
+  ['Ecosystem', '生态与国家项目'],
+  ['Governance', '治理'],
+  ['Public capability', '公共能力'],
+  ['Research', '研究'],
+  ['Applied research', '应用研究'],
+  ['Education & research', '教育与研究'],
+  ['Health AI', '医疗 AI'],
+  ['Company', '企业'],
+  ['Organization', '机构'],
+  ['Event', '活动'],
+  ['Funding', '资助'],
+  ['Government initiative', '政府计划'],
+  ['Person', '人物'],
+];
+const KIND_LABEL = Object.fromEntries(KINDS);
+const LENS_LABEL = { research: '研究', deployment: '部署', trust: '可信', public: '公共', 'trusted-deployment': '可信部署' };
+
+export const slugFor = record => record.id.replace(/^public-/, '').replace(/-+/g, '-').replace(/(^-|-$)/g, '');
+const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
+
+const terms = await readFile(resolve(root, 'terms/index.html'), 'utf8');
+const baseCSS = /<style>\n([\s\S]*?)\n\s*<\/style>/.exec(terms)?.[1];
+if (!baseCSS) throw Error('terms/index.html has no base stylesheet to reuse');
+const snippet = await readFile(resolve(root, 'assets/product/sisg-ecosystem-snippet.html'), 'utf8');
+const region = name => {
+  const body = new RegExp(`<!-- sisg-eco:${name} -->\\n([\\s\\S]*?)\\n<!-- /sisg-eco:${name} -->`).exec(snippet)?.[1];
+  if (!body) throw Error(`Snippet has no ${name} region`);
+  return `<!-- sisg-eco:${name} -->${body}<!-- /sisg-eco:${name} -->`;
+};
+
+const PAGE_CSS = `.kicker{margin:0 0 18px;color:var(--accent);font:700 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}.facts{margin:0;display:grid;grid-template-columns:minmax(120px,.35fr) minmax(0,1fr);gap:0}.facts dt,.facts dd{margin:0;padding:14px 0;border-top:1px solid var(--line)}.facts dt{color:var(--ink);font-weight:700}.facts dd{color:var(--muted);overflow-wrap:anywhere}.facts a,.map a.org{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.tag{display:inline-block;margin:0 6px 6px 0;padding:3px 9px;border:1px solid var(--line);border-radius:999px;font-size:13px}.status-ok{color:#3d6b2f}.status-wait{color:var(--accent)}.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px;padding:56px 0;border-bottom:1px solid var(--line)}.cluster h2{margin:0 0 4px;font:600 1.5rem/1.1 var(--display);letter-spacing:-.02em}.cluster .count{margin:0 0 14px;color:var(--muted);font:12px/1.4 var(--mono)}.cluster ul{margin:0;padding:0;list-style:none}.cluster li{padding:7px 0;border-top:1px solid var(--line);font-size:15px}.cluster li .pending{color:var(--muted);font-size:12px}.legend{color:var(--muted);font-size:14px;max-width:70ch}.legend p{margin:0 0 10px}@media(max-width:820px){.facts{grid-template-columns:1fr}.facts dt{padding-bottom:0}.facts dd{border-top:0;padding-top:4px}}`;
+
+function page({ path, title, description, jsonld, body }) {
+  const url = `${SITE}${path}`;
+  return `<!doctype html>
+<html lang="zh-Hans-SG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="${esc(description)}">
+  <link rel="canonical" href="${url}">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>${esc(title)} | Superintelligence SG Commons</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${esc(title)} | Superintelligence SG Commons">
+  <meta property="og:description" content="${esc(description)}">
+  <meta property="og:url" content="${url}">
+  <meta property="og:image" content="${SITE}/assets/og-commons.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="${SITE}/assets/og-commons.png">
+  <script type="application/ld+json">${json(jsonld)}</script>
+  <!-- Generated by scripts/build-org-pages.mjs from data/entries.json. Do not edit by hand. -->
+  <style>
+${baseCSS}
+  </style>
+  <style>.brand-logo{width:30px;height:30px;display:block;flex:0 0 auto}${PAGE_CSS}</style>
+  <link rel="stylesheet" href="/assets/product/si-mobile-nav.css">
+  ${region('style')}
+</head>
+<body>
+  ${region('bar')}
+  <header class="header">
+    <a class="brand" href="${SITE}" aria-label="Superintelligence SG Commons home"><img class="brand-logo" src="/assets/logo-org.svg" alt="Superintelligence SG Commons logo">SUPERINTELLIGENCE SG <span class="domain">.ORG</span></a>
+    <nav class="nav" aria-label="Site navigation"><a href="${SITE}">Home</a><a href="/ecosystem.html"${path === '/ecosystem.html' ? ' aria-current="page"' : ''}>生态图</a><a href="/organizations.html">Organizations</a><a href="/about.html">About</a></nav>
+  </header>
+  <main>
+    <div class="shell">
+${body}
+    </div>
+  </main>
+  <footer class="shell">
+    <span>Superintelligence SG</span>
+    <a href="mailto:superintelligencesg@gmail.com">superintelligencesg@gmail.com</a>
+    <a href="${SITE}">Back to Commons</a>
+    ${region('footer')}
+  </footer>
+</body>
+</html>
+`;
+}
+
+const status = record => record.evidence?.status === 'needs_review'
+  ? '<span class="status-wait">待逐条核查</span>（记录自 Navigator 迁移，尚未逐条核对来源）'
+  : `<span class="status-ok">已核查来源</span>${record.checked_at ? `（核查日期 ${esc(record.checked_at)}）` : ''}`;
+const link = url => `<a href="${esc(url)}" rel="noopener">${esc(url)}</a>`;
+
+function orgPage(record) {
+  const slug = slugFor(record);
+  const path = `/org/${slug}/`;
+  const kind = KIND_LABEL[record.kind] || record.kind;
+  const facts = [
+    ['类别', `${esc(kind)}（${esc(record.kind)}）`],
+    record.founder && ['背景', `${esc(record.founder)}`],
+    record.url && ['官网', link(record.url)],
+    ['来源', record.source_url ? link(record.source_url) : '待补'],
+    ['记录更新日期', esc(record.updated || '待补')],
+    ['核查状态', status(record)],
+    record.lenses?.length && ['视角', record.lenses.map(lens => `<span class="tag">${esc(LENS_LABEL[lens] || lens)}</span>`).join('')],
+  ].filter(Boolean);
+  const history = record.evidence?.history || [];
+  const body = `      <section class="lede">
+        <div>
+          <p class="kicker">机构档案 · ${esc(kind)}</p>
+          <h1>${esc(record.name)}</h1>
+        </div>
+        <div class="meta">
+          <p lang="en">${esc(record.description)}</p>
+          <p>以上简介为 Navigator 收录原文（英文），未经改写。</p>
+        </div>
+      </section>
+      <section class="section">
+        <h2>记录</h2>
+        <div class="section-copy">
+          <dl class="facts">
+${facts.map(([term, value]) => `            <dt>${term}</dt><dd>${value}</dd>`).join('\n')}
+          </dl>
+        </div>
+      </section>${record.evidence?.summary || history.length ? `
+      <section class="section">
+        <h2>来源核查</h2>
+        <div class="section-copy">${record.evidence?.summary ? `
+          <p lang="en">${esc(record.evidence.summary)}</p>` : ''}${history.length ? `
+          <ul>
+${history.map(item => `            <li><strong>${esc(item.at)}</strong> · <span lang="en">${esc(item.note)}</span></li>`).join('\n')}
+          </ul>` : ''}
+        </div>
+      </section>` : ''}
+      <section class="section">
+        <h2>认领与更正</h2>
+        <div class="section-copy">
+          <p>这是一条依据公开来源整理的编辑收录记录，不代表该机构认可、合作或授权。机构代表如需更正内容、补充更好的来源或申请认领，请通过 <a href="${SOURCE_DESK}">Source Desk</a> 提交并附上公开来源链接；所有请求先经人工审核，不会自动写入数据库。</p>
+          <p><a href="/ecosystem.html">← 返回新加坡 AI 生态图</a></p>
+        </div>
+      </section>`;
+  const jsonld = { '@context': 'https://schema.org', '@type': 'ProfilePage', name: record.name, url: `${SITE}${path}`, dateModified: record.updated, isPartOf: { '@type': 'WebSite', name: 'Superintelligence SG Commons', url: `${SITE}/` }, mainEntity: { '@type': 'Organization', name: record.name, ...(record.url ? { url: record.url } : {}), description: record.description } };
+  return { path, file: `org/${slug}/index.html`, html: page({ path, title: `${record.name} · 机构档案`, description: `${record.name}：Superintelligence SG Commons 依据公开来源整理的机构档案。`, jsonld, body }) };
+}
+
+function ecosystemPage(records) {
+  const groups = KINDS.map(([kind, label]) => [kind, label, records.filter(record => record.kind === kind).sort((a, b) => a.name.localeCompare(b.name, 'en'))]).filter(([, , items]) => items.length);
+  const unknown = records.filter(record => !KIND_LABEL[record.kind]);
+  if (unknown.length) throw Error(`Unmapped kind: ${unknown.map(record => record.kind).join(', ')}`);
+  const pending = records.filter(record => record.evidence?.status === 'needs_review').length;
+  const latest = records.map(record => record.updated).filter(Boolean).sort().at(-1);
+  const body = `      <section class="lede">
+        <div>
+          <p class="kicker">Singapore AI · 生态图</p>
+          <h1>新加坡 AI 生态图</h1>
+        </div>
+        <div class="meta">
+          <p>按数据库现有类别（kind）排列 ${records.length} 条公开收录记录，类别内按名称字母排序，不做任何排名。每个名称链接到该机构的档案页及其来源。</p>
+          <p>其中 ${pending} 条标注「待核查」，表示记录已有来源链接，但尚未逐条核对。最近一次记录更新：${esc(latest)}。</p>
+        </div>
+      </section>
+      <section class="map" aria-label="按类别分组的机构">
+${groups.map(([kind, label, items]) => `        <div class="cluster">
+          <h2>${esc(label)}</h2>
+          <p class="count">${esc(kind)} · ${items.length}</p>
+          <ul>
+${items.map(record => `            <li><a class="org" href="/org/${slugFor(record)}/">${esc(record.name)}</a>${record.evidence?.status === 'needs_review' ? ' <span class="pending">待核查</span>' : ''}</li>`).join('\n')}
+          </ul>
+        </div>`).join('\n')}
+      </section>
+      <section class="section">
+        <h2>说明</h2>
+        <div class="section-copy legend">
+          <p>数据来源：<a href="https://github.com/jtsgai/superintelligencesg-org/blob/main/data/entries.json">data/entries.json</a>（Git 审核的 Navigator 收录记录），本页由 <code>scripts/build-org-pages.mjs</code> 静态生成。已撤下的记录不显示。</p>
+          <p>收录不代表认可或合作；与创办人有关联的条目不获特殊排序，详见页脚披露。发现错误或有更好的来源，请通过 <a href="${SOURCE_DESK}">Source Desk</a> 提交。</p>
+          <p>分享本页：<a href="${SITE}/ecosystem.html">${SITE}/ecosystem.html</a></p>
+        </div>
+      </section>`;
+  const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: '新加坡 AI 生态图', url: `${SITE}/ecosystem.html`, dateModified: latest, isPartOf: { '@type': 'WebSite', name: 'Superintelligence SG Commons', url: `${SITE}/` } };
+  return { path: '/ecosystem.html', file: 'ecosystem.html', html: page({ path: '/ecosystem.html', title: '新加坡 AI 生态图', description: `按类别排列的 ${records.length} 个新加坡 AI 相关机构与项目，每条附公开来源。`, jsonld, body }) };
+}
+
+const data = JSON.parse(await readFile(resolve(root, 'data/entries.json'), 'utf8'));
+// Organization-shaped curated records only; person/event/etc. would need their own template.
+const records = data.records.filter(record => record.published !== false && (record.type ?? 'organization') === 'organization');
+const slugs = new Map();
+for (const record of records) {
+  const slug = slugFor(record);
+  if (slugs.has(slug)) throw Error(`Slug collision: ${record.id} and ${slugs.get(slug)}`);
+  slugs.set(slug, record.id);
+}
+const pages = [...records.map(orgPage), ecosystemPage(records)];
+
+const existing = await readdir(resolve(root, 'org')).catch(() => []);
+const stale = existing.filter(name => !slugs.has(name));
+const drift = [];
+for (const { file, html } of pages) {
+  const current = await readFile(resolve(root, file), 'utf8').catch(() => null);
+  if (current === html) continue;
+  if (check) { drift.push(file); continue; }
+  await mkdir(resolve(root, file, '..'), { recursive: true });
+  await writeFile(resolve(root, file), html);
+}
+if (check) {
+  if (drift.length || stale.length) {
+    console.error(`Organization pages are out of date (${drift.length} changed, ${stale.length} stale); run node scripts/build-org-pages.mjs`);
+    for (const file of [...drift, ...stale.map(name => `org/${name}/`)]) console.error(`  ${file}`);
+    process.exit(1);
+  }
+  console.log(`Organization pages are in sync (${records.length} profiles + ecosystem.html)`);
+} else {
+  for (const name of stale) await rm(resolve(root, 'org', name), { recursive: true, force: true });
+  console.log(`Wrote ${records.length} organization pages and ecosystem.html${stale.length ? `; removed ${stale.length} stale` : ''}`);
+}
