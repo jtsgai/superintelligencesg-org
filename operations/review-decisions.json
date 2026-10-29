@@ -251,6 +251,14 @@
       "at": "2026-10-27T03:02:14.918Z",
       "note": "Read the current official AI Singapore 100E application FAQ. It remains updated 5 January 2024 and continues to state that AISG supplies proposal templates and evaluates AI use case, business value, availability of off-the-shelf alternatives, technical feasibility, development timeframe, data, and a Singapore IT, R&D or engineering team. This supports the existing Field Note wording; no new programme update or correction warrants publication.",
       "public_url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/"
+    },
+    {
+      "id": "reference_review:5004ddf6c120990dee65",
+      "revision": "9663d265ae04ffd7f45067d15dbeb33336fd48cfcb703a05e7074e382519ec51",
+      "status": "reviewed",
+      "at": "2026-10-29T05:17:03Z",
+      "note": "Opened the cited EDB source and confirmed it redirects to the current official canonical page. Its Oracle section says the Singapore AI Centre of Excellence launched in March 2025 and provides training in cloud and AI technology plus support for experimentation and implementation. This matches the Navigator entry; the working official redirect needs no public record correction or new publication.",
+      "public_url": "https://www.edb.gov.sg/en/news-and-insights/from-google-to-alibaba-ai-investments-in-singapore-over-the-last-12-months"
     }
   ]
 }
