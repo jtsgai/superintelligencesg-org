@@ -71,6 +71,14 @@ footer.shell .sisg-foot{flex:0 0 100%;max-width:none;padding:14px 16px 8px;backg
 .fold .nodi{max-width:400px;cursor:grab;touch-action:pan-y;user-select:none}.fold .nodi.dragging{cursor:grabbing}.fold .nodi.dragging .nodi-rig{transition:none}
 @media(max-width:820px){.hero.fold{grid-template-columns:1fr 128px;gap:10px;align-items:start;padding-top:16px}.fold .hero-copy{display:contents}.fold .tagline,.fold h1,.fold .lede{grid-column:1}.fold .nodi{grid-column:2;grid-row:1/span 3;max-width:128px;aspect-ratio:4/5.4}.fold .nodi-tag{display:none}.fold .nodi figcaption{display:block;bottom:-18px;font-size:9px}.fold .drag-hint{display:none}.fold .perks,.fold .signup,.fold .fine{grid-column:1/-1}.fold h1{font-size:2.5rem}.fold .lede{font-size:15px;margin-top:8px}.perks{margin-top:12px;gap:5px}.perks li{font-size:14px}.fold .signup{margin:14px 0 6px;padding:10px}.signup-row input{padding:11px}.signup-row button{padding:11px 16px}}
 </style>
+<style id="seek-demo">
+.fold .nodi{opacity:var(--enter,0);transform:translateY(calc((1 - var(--enter,0))*40px)) scale(calc(.92 + var(--enter,0)*.08))}
+.fold .hero-copy>.tagline,.fold .hero-copy>h1,.fold .hero-copy>.lede{opacity:var(--e,0);transform:translateY(calc((1 - var(--e,0))*18px))}
+.fold .hero-copy{--e:0}.fold .perks li,.fold .signup,.fold .fine{opacity:var(--e,0);transform:translateY(calc((1 - var(--e,0))*14px))}
+.fold .nodi-tag{opacity:calc(var(--e,0) * (1 - var(--scroll,0)*.6));transform:translateY(calc((1 - var(--e,0))*10px + var(--scroll,0)*-14px))}
+.nodi:not(.x){pointer-events:none}.entered .nodi{pointer-events:auto}
+@media(prefers-reduced-motion:reduce){.fold .nodi,.fold .hero-copy>*,.fold .perks li,.fold .signup,.fold .fine,.fold .nodi-tag{opacity:1!important;transform:none!important}}
+</style>
 </head>
 <body><!-- sisg-eco:bar --><nav class="sisg-eco" aria-label="Superintelligence SG sites"><span class="sisg-eco__label">Singapore's open SI ecosystem</span><ul class="sisg-eco__list"><li><a href="https://superintelligencesg.si">Gateway<span>.si</span></a></li><li><a href="https://superintelligencesg.com">Navigator<span>.com</span></a></li><li><a href="https://superintelligencesg.org" aria-current="page">Commons<span>.org</span></a></li><li><a href="https://superintelligencesg.ai">Lab<span>.ai</span></a></li></ul></nav><!-- /sisg-eco:bar -->
   <header class="header"><a class="brand" href="https://superintelligencesg.org" aria-label="Superintelligence SG Commons home"><img class="brand-logo" src="/assets/logo-org.svg" alt="Superintelligence SG Commons logo">SUPERINTELLIGENCE SG <span class="domain">.ORG</span></a><nav class="nav" aria-label="Site navigation"><a href="https://superintelligencesg.org">Home</a><a href="https://superintelligencesg.com">Overview</a><a href="https://superintelligencesg.ai">Lab</a><a href="/about.html">About</a></nav></header>
@@ -111,6 +119,6 @@ footer.shell .sisg-foot{flex:0 0 100%;max-width:none;padding:14px 16px 8px;backg
   </main>
   <footer class="shell"><span>Superintelligence SG Commons</span><a href="mailto:superintelligencesg@gmail.com">superintelligencesg@gmail.com</a><a href="#top">Back to top</a><!-- sisg-eco:footer --><div class="sisg-foot"><p class="sisg-foot__label">Superintelligence SG · Singapore's open SI ecosystem</p><p class="sisg-foot__disclosure">Disclosure: Superintelligence SG is founded by Jerry Tuo, who also founded <a href="https://www.jt-sgai.com" rel="noopener">www.jt-sgai.com</a> and co-founded <a href="https://www.redfunplanet.com" rel="noopener">www.redfunplanet.com</a>. Listings affiliated with our founder get no special ranking.</p><p><a href="https://superintelligencesg.org/about.html">Read the full disclosure on the Commons About page</a></p></div><!-- /sisg-eco:footer -->
   </footer>
-<script src="/assets/product/mascot/nodi-alive.js" defer></script>
+<script src="/assets/product/mascot/seek-hero.js" defer></script>
 </body>
 </html>

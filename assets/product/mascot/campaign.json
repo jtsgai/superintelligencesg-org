@@ -1,0 +1,11 @@
+{
+  "_note": "改这里即可，不必改动画代码。文案须来自线上订阅页，禁编造 claim。",
+  "colors": { "primary": "#d84f37", "sage": "#c6d6a3" },
+  "copy": {
+    "tagline": "Weekly · sourced · free",
+    "titleHtml": "SG AI <strong>Weekly.</strong>",
+    "lede": "Singapore AI news worth your inbox, every item linked to its source."
+  },
+  "timing": { "duration": 2.4, "nodi": [0.0, 1.1], "copy": [0.15, 0.9], "tags": [0.9, 1.6], "perks": [0.8, 2.2], "form": [1.4, 2.4] },
+  "scroll": { "tagsRevealPx": 160 }
+}
