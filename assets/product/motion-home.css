@@ -1,0 +1,93 @@
+/* Homepage motion polish. Soft brand glow on ::before only.
+   Never set position on .hero-media — the page keeps
+   position:absolute; inset:0; z-index:-2 so copy stays over the photo.
+   The original cream ::after readability gradient is unchanged. */
+
+.hero-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 72% 40%, rgb(216 79 55 / .14), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 18% 78%, rgb(198 214 163 / .18), transparent 70%);
+  opacity: .85;
+  animation: home-glow 14s ease-in-out infinite alternate;
+}
+
+@keyframes home-glow {
+  to { opacity: .4; transform: translate3d(-1.5%, 1%, 0); }
+}
+
+.hero-media { overflow: hidden; }
+.hero-media img {
+  transform-origin: 70% 45%;
+  animation: home-kenburns 28s ease-in-out infinite alternate;
+}
+
+@keyframes home-kenburns {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.08) translate3d(-1%, -.5%, 0); }
+}
+
+.hero h1 { letter-spacing: -.035em; line-height: .98; }
+.hero h1 strong { font-weight: 600; }
+.hero-copy > p:not(.tagline) { max-width: 42ch; line-height: 1.55; color: #4a565b; }
+.hero-copy .tagline { margin-top: 14px !important; }
+.hero-copy .button {
+  margin-right: 12px;
+  vertical-align: top;
+  box-shadow: 0 6px 18px -10px rgb(216 79 55 / .55);
+}
+.hero-copy .button[style] { box-shadow: none; margin-top: 34px !important; }
+.hero-copy .button:focus-visible { outline: 2px solid #1d2a37; outline-offset: 3px; }
+.scroll-cue { transition: opacity .2s, transform .2s; letter-spacing: .04em; }
+.scroll-cue svg { animation: home-cue 2.4s ease-in-out infinite; }
+
+@keyframes home-cue {
+  50% { transform: translateY(4px); }
+}
+
+.section h2 { letter-spacing: -.025em; line-height: 1.08; text-wrap: balance; }
+.section p { line-height: 1.6; }
+.principle h3, .guide-item h3 { letter-spacing: -.01em; line-height: 1.2; }
+.principle p, .guide-item p, .intro p, .join-intro p { max-width: 60ch; color: #4f5b60; }
+.guide-item { transition: transform .25s ease, box-shadow .25s ease; }
+.guide-item:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -20px rgb(29 42 55 / .35); }
+
+@media (max-width: 520px) {
+  .hero-copy .button { margin-right: 0; width: 100%; }
+  .hero-copy .button[style] { margin-top: 12px !important; }
+  .hero-copy > p:not(.tagline) { color: #31424a; }
+}
+
+/* Desktop dark hero sits on a dark gradient. At ≤900px the page keeps the cream
+   overlay, so hero copy stays dark there. */
+@media (prefers-color-scheme: dark) {
+  .principle p, .guide-item p, .intro p, .join-intro p { color: var(--muted); }
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 901px) {
+  .hero-copy > p:not(.tagline) { color: var(--muted); }
+  .hero-copy .button:focus-visible { outline-color: var(--ink); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media::before { display: none; animation: none; }
+  .hero-media img, .scroll-cue svg { animation: none; }
+  .guide-item:hover { transform: none; }
+}
+
+/* Pre-hide entrance targets only after JS opts in. No JS, reduced motion,
+   and ?done=1 leave content visible. Form fields and the org list are not targets. */
+.js-motion .hero-copy > *,
+.js-motion .scroll-cue,
+.js-motion .principles > h2,
+.js-motion .principle-list > .principle,
+.js-motion #learn .shell.intro > *,
+.js-motion #learn .guide-item,
+.js-motion #participate .join-intro,
+.js-motion #participate .product-actions {
+  visibility: hidden;
+}
