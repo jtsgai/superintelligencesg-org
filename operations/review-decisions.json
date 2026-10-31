@@ -267,6 +267,14 @@
       "at": "2026-10-29T05:40:17Z",
       "note": "Read MDDI's original 18 September 2026 release. It says the Institute of Digital Government, launched with the Civil Service College, will equip more than 150,000 public officers with practical digital, data and AI capabilities by end-2028, using structured pathways and AI Sprints. This is a material public-service capability update, so the Singapore AI Ecosystem Field Note was updated to version 1.2 while retaining its original 28 September 2026 publication date.",
       "public_url": "https://superintelligencesg.ai/field-notes/singapore-ai-ecosystem.html"
+    },
+    {
+      "id": "official_source_discovery:50fb6b199a1b0ad46eea",
+      "revision": "417a885912abe41742e9f1a852ecc17f9885fdb255fafa2fdc248d40e957bcf5",
+      "status": "reviewed",
+      "at": "2026-10-31T04:17:53Z",
+      "note": "Read the original MDDI speech. It is dated 7 June 2023; the 2026 site update is a migration notice, not a new announcement. The speech describes government AI experimentation, AI Verify and the planned AI Verify Foundation, which are historic context already reflected or superseded by current public research. No new programme outcome or correction warrants publication.",
+      "public_url": "https://www.mddi.gov.sg/newsroom/speech-by-minister-josephine-teo-at-the-asia-tech-x-ai-conference/"
     }
   ]
 }
