@@ -283,6 +283,14 @@
       "at": "2026-11-01T03:03:42.589Z",
       "note": "Read the current official AI Singapore 100E application FAQ, updated 5 January 2024. It continues to say AISG supplies proposal templates and evaluates the use case, substantial business value, off-the-shelf alternatives, technical feasibility, development timeframe and sufficient annotated data; it limits consideration to companies with Singapore IT, R&D or engineering teams. The current Field Note and programme links remain accurate, so no public update is warranted.",
       "public_url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/"
+    },
+    {
+      "id": "reference_review:5c1dd72e5b6c6a989de8",
+      "revision": "cdaee6ca7f3d94e18dd3d308afec5d353d7fe9acafdc7ff008fc9c4b5dfc7a36",
+      "status": "published",
+      "at": "2026-11-01T16:37:52Z",
+      "note": "Independently opened EDB's canonical page, dated 4 August 2025. Its Grab section confirms the Grab AI Centre of Excellence launched at the one-north headquarters in May 2025 with Digital Industry Singapore support, to accelerate AI-driven solutions in Southeast Asia across product, engineering, data science and analytics. The Navigator description remained accurate; the public record and its evidence link were corrected from EDB's legacy path to the live canonical URL and read back after deployment.",
+      "public_url": "https://superintelligencesg.com/directory.html?q=Grab%20AI%20Centre%20of%20Excellence"
     }
   ]
 }
