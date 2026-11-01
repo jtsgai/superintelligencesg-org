@@ -275,6 +275,14 @@
       "at": "2026-10-31T04:17:53Z",
       "note": "Read the original MDDI speech. It is dated 7 June 2023; the 2026 site update is a migration notice, not a new announcement. The speech describes government AI experimentation, AI Verify and the planned AI Verify Foundation, which are historic context already reflected or superseded by current public research. No new programme outcome or correction warrants publication.",
       "public_url": "https://www.mddi.gov.sg/newsroom/speech-by-minister-josephine-teo-at-the-asia-tech-x-ai-conference/"
+    },
+    {
+      "id": "cited_source_review:5008a282677deeda62d8",
+      "revision": "d38a234b0043504c24dd1a357bed285506745b60b831fa209938b7fe61e2b606",
+      "status": "reviewed",
+      "at": "2026-11-01T03:03:42.589Z",
+      "note": "Read the current official AI Singapore 100E application FAQ, updated 5 January 2024. It continues to say AISG supplies proposal templates and evaluates the use case, substantial business value, off-the-shelf alternatives, technical feasibility, development timeframe and sufficient annotated data; it limits consideration to companies with Singapore IT, R&D or engineering teams. The current Field Note and programme links remain accurate, so no public update is warranted.",
+      "public_url": "https://aisingapore.org/faq/how-does-an-organisation-apply-for-the-100-experiments-100e/"
     }
   ]
 }
