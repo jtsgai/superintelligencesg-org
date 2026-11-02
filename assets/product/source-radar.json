@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-01T09:42:53.875Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/41294299934",
+  "checked_at": "2026-11-02T09:31:24.950Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/41421300167",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -28,6 +28,33 @@
   "items": [
     {
       "provider": "MDDI",
+      "title": "Minister Josephine Teo's Opening Address at NCS AI Mission Centre | Ministry of Digital Development and Information",
+      "url": "https://www.mddi.gov.sg/newsroom/minister-josephine-teo-opening-address-at-ncs-ai-mission-centre/",
+      "published_at": null,
+      "source_updated_at": "2026-11-02T04:42:53.207Z",
+      "discovered_at": "2026-11-02T09:31:24.950Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "AI Singapore",
+      "title": "Home - AI Singapore",
+      "url": "https://aisingapore.org/",
+      "published_at": null,
+      "source_updated_at": null,
+      "discovered_at": "2026-11-02T09:31:24.950Z",
+      "status": "cited_source"
+    },
+    {
+      "provider": "Smart Nation",
+      "title": "National AI Strategy | Smart Nation Singapore",
+      "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
+      "published_at": null,
+      "source_updated_at": null,
+      "discovered_at": "2026-11-02T09:31:24.950Z",
+      "status": "cited_source"
+    },
+    {
+      "provider": "MDDI",
       "title": "MDDI's Response to PQ on Adequacy of AI Computing Resources for Local Enterprises Through Domestic Facilities and Overseas Cloud Services…",
       "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-adequacy-of-ai-computing-resources-for-local-enterprises-through-domestic-facilities-and-overseas-cloud-services/",
       "published_at": null,
@@ -37,38 +64,11 @@
     },
     {
       "provider": "AI Singapore",
-      "title": "Home - AI Singapore",
-      "url": "https://aisingapore.org/",
-      "published_at": null,
-      "source_updated_at": null,
-      "discovered_at": "2026-11-01T09:42:53.875Z",
-      "status": "cited_source"
-    },
-    {
-      "provider": "Smart Nation",
-      "title": "National AI Strategy | Smart Nation Singapore",
-      "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
-      "published_at": null,
-      "source_updated_at": null,
-      "discovered_at": "2026-11-01T09:42:53.875Z",
-      "status": "cited_source"
-    },
-    {
-      "provider": "MDDI",
-      "title": "MDDI's Response to PQ on Impact of Foreign AI Chip Export Controls and Remote Computing Access Restrictions on Singapore's Data…",
-      "url": "https://www.mddi.gov.sg/newsroom/mddi-response-to-pq-on-impact-of-foreign-ai-chip-export-controls-and-remote-computing-access-restrictions-on-singapore-data-centre-and-cloud-services-sectors-and-mitigation-measures/",
-      "published_at": null,
-      "source_updated_at": "2026-10-08T07:31:08.500Z",
-      "discovered_at": "2026-10-07T18:24:05.382Z",
-      "status": "source_reviewed"
-    },
-    {
-      "provider": "AI Singapore",
       "title": "100 Experiments - AI Singapore",
       "url": "https://aisingapore.org/innovation/100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-01T09:42:53.875Z",
+      "discovered_at": "2026-11-02T09:31:24.950Z",
       "status": "cited_source"
     }
   ]
