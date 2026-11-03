@@ -291,6 +291,14 @@
       "at": "2026-11-01T16:37:52Z",
       "note": "Independently opened EDB's canonical page, dated 4 August 2025. Its Grab section confirms the Grab AI Centre of Excellence launched at the one-north headquarters in May 2025 with Digital Industry Singapore support, to accelerate AI-driven solutions in Southeast Asia across product, engineering, data science and analytics. The Navigator description remained accurate; the public record and its evidence link were corrected from EDB's legacy path to the live canonical URL and read back after deployment.",
       "public_url": "https://superintelligencesg.com/directory.html?q=Grab%20AI%20Centre%20of%20Excellence"
+    },
+    {
+      "id": "official_source_discovery:fd8a3d68ecb6beacce34",
+      "revision": "43593de34e965fd20d029b50d2df05ffc27ee23b2726aaf6c578e52beac20cc9",
+      "status": "reviewed",
+      "at": "2026-11-03T03:03:00Z",
+      "note": "Read IMDA's original release, dated 7 June 2023. It announced the AI Verify Foundation to support the open-source AI Verify testing framework, with seven premier members and more than 60 general members at launch. The page's 2026 update date reflects site maintenance rather than a new programme announcement; this is historic context already covered by current AI governance research, so no public content change is warranted.",
+      "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/singapore-launches-ai-verify-foundation"
     }
   ]
 }
