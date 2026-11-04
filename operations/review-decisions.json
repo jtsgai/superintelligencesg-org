@@ -299,6 +299,14 @@
       "at": "2026-11-03T03:03:00Z",
       "note": "Read IMDA's original release, dated 7 June 2023. It announced the AI Verify Foundation to support the open-source AI Verify testing framework, with seven premier members and more than 60 general members at launch. The page's 2026 update date reflects site maintenance rather than a new programme announcement; this is historic context already covered by current AI governance research, so no public content change is warranted.",
       "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/singapore-launches-ai-verify-foundation"
+    },
+    {
+      "id": "reference_review:96b7fd65cbff63275105",
+      "revision": "382faf521bc2f80e26b534b2665e14fdebcdf1af4dbb0ec16bb0d04d232098fb",
+      "status": "reviewed",
+      "at": "2026-11-04T03:04:38Z",
+      "note": "Read EDB's current canonical insight, dated 4 June 2026. Its Singtel section confirms the Singtel-NVIDIA centre of excellence for applied AI tests AI solutions in real-world settings and uses NVIDIA infrastructure plus Singtel's AI cloud to help organisations and government agencies progress from trials to larger-scale deployments. This supports the existing Navigator description; the cited legacy URL redirects to the canonical page, so no public content correction is warranted.",
+      "public_url": "https://www.edb.gov.sg/en/news-and-insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore"
     }
   ]
 }
