@@ -315,6 +315,14 @@
       "at": "2026-11-05T04:31:17Z",
       "note": "Read EDB's current canonical insight, dated 4 June 2026. Its Japfa section says the agriculture and food company launched an AI and quantum computing centre of excellence in October 2025, working with tertiary institutions and startups on livestock-farming and food-production challenges. This supports the existing Navigator description; the cited legacy URL redirects to the canonical page, so no public content correction is warranted.",
       "public_url": "https://www.edb.gov.sg/en/news-and-insights/openai-nvidia-and-kpmg-among-major-firms-that-have-set-up-ai-centres-labs-in-singapore"
+    },
+    {
+      "id": "official_source_discovery:4ae7c533c5553f526700",
+      "revision": "d822be32576cf9595d58bca2a77c1b2a287b2e9cdadcc2aad7add2948c835cdb",
+      "status": "reviewed",
+      "at": "2026-11-06T03:00:03Z",
+      "note": "Read IMDA's original 14 October 2026 announcement. It launched a Starter Kit for Testing Agentic Systems for Safety and Reliability, the AI Tester Accreditation Programme with five initial accredited firms, and the FAIRS taskforce. This is a substantive assurance-development signal, but it is not a correction to an existing cited record; a public Field Note needs coordinated source, page and PDF work, so no partial publication was made in this daily review.",
+      "public_url": "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/new-initiatives-to-strengthen-ai-safety-and-resilience"
     }
   ]
 }
