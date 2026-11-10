@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-09T10:20:19.544Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/42600122122",
+  "checked_at": "2026-11-10T09:51:48.553Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/42794221383",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -41,7 +41,7 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-09T10:20:19.544Z",
+      "discovered_at": "2026-11-10T09:51:48.553Z",
       "status": "cited_source"
     },
     {
@@ -50,7 +50,7 @@
       "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-09T10:20:19.544Z",
+      "discovered_at": "2026-11-10T09:51:48.553Z",
       "status": "cited_source"
     },
     {
@@ -68,7 +68,7 @@
       "url": "https://aisingapore.org/innovation/100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-09T10:20:19.544Z",
+      "discovered_at": "2026-11-10T09:51:48.553Z",
       "status": "cited_source"
     }
   ]
