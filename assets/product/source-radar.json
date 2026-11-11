@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-10T10:24:53.028Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/42798894063",
+  "checked_at": "2026-11-11T09:27:09.930Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/42995254559",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -16,7 +16,7 @@
     },
     {
       "provider": "AI Singapore",
-      "state": "unavailable",
+      "state": "checked",
       "listed": 2
     },
     {
@@ -41,17 +41,17 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-10T10:24:53.028Z",
+      "discovered_at": "2026-11-11T09:27:09.930Z",
       "status": "cited_source"
     },
     {
       "provider": "Smart Nation",
-      "title": "National AI Strategy | Smart Nation Singapore",
-      "url": "https://www.smartnation.gov.sg/initiatives/national-ai-strategy/",
+      "title": "National AI Missions | Smart Nation Singapore",
+      "url": "https://www.smartnation.gov.sg/initiatives/national-ai-missions/",
       "published_at": null,
-      "source_updated_at": null,
-      "discovered_at": "2026-11-10T10:24:53.028Z",
-      "status": "cited_source"
+      "source_updated_at": "2026-11-11T03:24:27.778Z",
+      "discovered_at": "2026-11-11T09:27:09.930Z",
+      "status": "automatically_discovered"
     },
     {
       "provider": "MDDI",
@@ -68,7 +68,7 @@
       "url": "https://aisingapore.org/innovation/100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-10T10:24:53.028Z",
+      "discovered_at": "2026-11-11T09:27:09.930Z",
       "status": "cited_source"
     }
   ]
