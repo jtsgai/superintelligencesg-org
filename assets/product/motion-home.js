@@ -1,6 +1,10 @@
 // Homepage only. GSAP + ScrollTrigger replace si-motion.js here so the old
-// IntersectionObserver opacity does not fight these tweens. Other pages still
-// use si-motion. commons.js owns the join form and directory; do not intercept submit.
+// IntersectionObserver opacity does not fight these tweens. commons.js owns the
+// join form and directory; do not intercept submit.
+// Every entrance tween ends with clearProps on the transform family, so no inline
+// transform/translate is left behind to override the CSS Hover Lift
+// (motion-lift.css uses the individual `translate` property). Opacity/visibility
+// stay inline on purpose: they keep targets visible over the .js-motion pre-hide.
 (function () {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
@@ -16,14 +20,16 @@
     ["#participate", "#participate .join-intro, #participate .product-actions", 0.18]
   ];
 
+  var CLEAR = "transform,translate,rotate,scale";
+
   var mm = gsap.matchMedia();
   mm.add("(prefers-reduced-motion: no-preference)", function () {
     if (done) return;
     document.documentElement.classList.add("js-motion");
     var ease = "power3.out";
     gsap.timeline({ defaults: { ease: ease, duration: 1 } })
-      .fromTo(".hero-copy > *", { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, stagger: 0.12 })
-      .fromTo(".scroll-cue", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0 }, "-=0.4");
+      .fromTo(".hero-copy > *", { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, stagger: 0.12, clearProps: CLEAR })
+      .fromTo(".scroll-cue", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, clearProps: CLEAR }, "-=0.4");
     SCROLL.forEach(function (row, i) {
       var trigger = row[0];
       var targets = row[1];
@@ -36,6 +42,7 @@
         ease: ease,
         stagger: stagger,
         immediateRender: false,
+        clearProps: CLEAR,
         scrollTrigger: { trigger: trigger, start: "top 85%", once: true }
       });
     });
