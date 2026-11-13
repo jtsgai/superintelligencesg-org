@@ -39,7 +39,15 @@ const region = name => {
 
 const PAGE_CSS = `.kicker{margin:0 0 18px;color:var(--accent);font:700 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}.facts{margin:0;display:grid;grid-template-columns:minmax(120px,.35fr) minmax(0,1fr);gap:0}.facts dt,.facts dd{margin:0;padding:14px 0;border-top:1px solid var(--line)}.facts dt{color:var(--ink);font-weight:700}.facts dd{color:var(--muted);overflow-wrap:anywhere}.facts a,.map a.org{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.tag{display:inline-block;margin:0 6px 6px 0;padding:3px 9px;border:1px solid var(--line);border-radius:999px;font-size:13px}.status-ok{color:#3d6b2f}.status-wait{color:var(--accent)}.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px;padding:56px 0;border-bottom:1px solid var(--line)}.cluster h2{margin:0 0 4px;font:600 1.5rem/1.1 var(--display);letter-spacing:-.02em}.cluster .count{margin:0 0 14px;color:var(--muted);font:12px/1.4 var(--mono)}.cluster ul{margin:0;padding:0;list-style:none}.cluster li{padding:7px 0;border-top:1px solid var(--line);font-size:15px}.cluster li .pending{color:var(--muted);font-size:12px}.legend{color:var(--muted);font-size:14px;max-width:70ch}.legend p{margin:0 0 10px}@media(max-width:820px){.facts{grid-template-columns:1fr}.facts dt{padding-bottom:0}.facts dd{border-top:0;padding-top:4px}}`;
 
-function page({ path, title, description, jsonld, body }) {
+// Ecosystem map only: Hover Lift + one staggered entrance for the .cluster cards.
+// The inline script opts in before first paint (no JS / reduced motion / ?done=1 keep cards visible).
+// org/* profile pages are fact sheets and get no card motion.
+const ECOSYSTEM_HEAD = `
+  <link rel="stylesheet" href="/assets/product/motion-lift.css">
+  <link rel="stylesheet" href="/assets/product/motion-ecosystem.css">
+  <script>!function(d,q){if(!/[?&](done=1|motion=done)(&|$)/.test(q)&&window.matchMedia&&matchMedia("(prefers-reduced-motion: no-preference)").matches)d.documentElement.classList.add("si-cluster-motion")}(document,location.search)</script>`;
+
+function page({ path, title, description, jsonld, body, head = '' }) {
   const url = `${SITE}${path}`;
   return `<!doctype html>
 <html lang="en">
@@ -67,7 +75,7 @@ function page({ path, title, description, jsonld, body }) {
 ${baseCSS}
   </style>
   <style>.brand-logo{width:30px;height:30px;display:block;flex:0 0 auto}${PAGE_CSS}</style>
-  <link rel="stylesheet" href="/assets/product/si-mobile-nav.css">
+  <link rel="stylesheet" href="/assets/product/si-mobile-nav.css">${head}
   ${region('style')}
 </head>
 <body>
@@ -187,7 +195,7 @@ ${items.map(record => `            <li><a class="org" href="/org/${slugFor(recor
         </div>
       </section>`;
   const jsonld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Singapore AI ecosystem map', url: `${SITE}/ecosystem.html`, dateModified: latest, isPartOf: { '@type': 'WebSite', name: 'Superintelligence SG Commons', url: `${SITE}/` } };
-  return { path: '/ecosystem.html', file: 'ecosystem.html', html: page({ path: '/ecosystem.html', title: 'Singapore AI ecosystem map', description: `${records.length} Singapore AI organizations and programmes grouped by category, each with a public source.`, jsonld, body }) };
+  return { path: '/ecosystem.html', file: 'ecosystem.html', html: page({ path: '/ecosystem.html', head: ECOSYSTEM_HEAD, title: 'Singapore AI ecosystem map', description: `${records.length} Singapore AI organizations and programmes grouped by category, each with a public source.`, jsonld, body }) };
 }
 
 const data = JSON.parse(await readFile(resolve(root, 'data/entries.json'), 'utf8'));
