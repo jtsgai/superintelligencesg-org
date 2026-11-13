@@ -1,0 +1,33 @@
+/* Ripple: restrained click feedback for the few solid primary actions on .org only.
+   Opt in with data-si-ripple. The ink is a child span with its own transform, so it never
+   touches the host's transform/translate (Hover Lift in motion-lift.css, GSAP entrance).
+   Ink uses currentColor, which is the light --accent-ink on the solid accent .button.
+   Reduced motion shows nothing. */
+
+[data-si-ripple] {
+  position: relative;
+  overflow: hidden;
+}
+
+.si-ripple {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .si-ripple { animation: si-ripple .5s ease-out forwards; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .si-ripple { display: none !important; animation: none !important; }
+}
+
+@keyframes si-ripple {
+  from { opacity: .22; transform: scale(0); }
+  to { opacity: 0; transform: scale(1); }
+}
