@@ -65,3 +65,33 @@ test('org/* profile pages carry no card motion', async () => {
     assert.doesNotMatch(html, /motion-lift|motion-ecosystem|si-cluster-motion|si-ripple/, dir);
   }
 });
+
+test('homepage pre-hide never reaches .product-actions rendered inside directory cards', async () => {
+  const css = stripComments(await read('assets/product/motion-home.css'));
+  const js = await read('assets/product/motion-home.js');
+  const preHide = /([^{}]*)\{\s*visibility:\s*hidden;?\s*\}/.exec(css.slice(css.indexOf('.js-motion .hero-copy')));
+  assert.ok(preHide, 'pre-hide rule found');
+  const sels = preHide[1].split(',').map(s => s.trim()).filter(Boolean);
+  const actions = sels.filter(s => s.includes('.product-actions'));
+  assert.deepEqual(actions, ['.js-motion #participate > .shell > .product-actions']);
+  assert.doesNotMatch(css, /#participate\s+\.product-actions/, 'descendant form would hide commons.js card actions');
+  assert.doesNotMatch(css, /\.org-card|\.org-list|\[data-org-list\]/, 'directory cards are never pre-hidden');
+  // GSAP targets the same direct-child group, so CSS and JS stay in step.
+  assert.ok(js.includes('"#participate .join-intro, #participate > .shell > .product-actions"'));
+  assert.doesNotMatch(js, /#participate \.product-actions/);
+  // The static group is a direct child of #participate > .shell in index.html; card actions are created by commons.js.
+  const html = await read('index.html');
+  assert.match(html, /id="participate"><div class="shell"><div class="join-intro">[\s\S]*?<\/div><div class="product-actions">/);
+  const commons = await read('assets/product/commons.js');
+  assert.match(commons, /el\('div',undefined,'product-actions'\)/);
+});
+
+test('ecosystem opt-in parses the query with URLSearchParams (no regex)', async () => {
+  const gen = await read('scripts/build-org-pages.mjs');
+  const eco = await read('ecosystem.html');
+  for (const src of [gen, eco]) {
+    assert.match(src, /new URLSearchParams\(location\.search\)/);
+    assert.match(src, /q\.get\("done"\)!=="1"&&q\.get\("motion"\)!=="done"/);
+    assert.doesNotMatch(src, /\(done=1\|motion=done\)/);
+  }
+});

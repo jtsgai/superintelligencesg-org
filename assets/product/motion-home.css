@@ -78,7 +78,9 @@
 }
 
 /* Pre-hide entrance targets only after JS opts in. No JS, reduced motion,
-   and ?done=1 leave content visible. Form fields and the org list are not targets. */
+   and ?done=1 leave content visible. Form fields and the org list are not targets: the
+   participate selector is direct-child only so the .product-actions that commons.js renders
+   inside directory cards (and the key panel) are never pre-hidden. */
 .js-motion .hero-copy > *,
 .js-motion .scroll-cue,
 .js-motion .principles > h2,
@@ -86,6 +88,6 @@
 .js-motion #learn .shell.intro > *,
 .js-motion #learn .guide-item,
 .js-motion #participate .join-intro,
-.js-motion #participate .product-actions {
+.js-motion #participate > .shell > .product-actions {
   visibility: hidden;
 }
