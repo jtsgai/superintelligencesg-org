@@ -40,12 +40,13 @@ const region = name => {
 const PAGE_CSS = `.kicker{margin:0 0 18px;color:var(--accent);font:700 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}.facts{margin:0;display:grid;grid-template-columns:minmax(120px,.35fr) minmax(0,1fr);gap:0}.facts dt,.facts dd{margin:0;padding:14px 0;border-top:1px solid var(--line)}.facts dt{color:var(--ink);font-weight:700}.facts dd{color:var(--muted);overflow-wrap:anywhere}.facts a,.map a.org{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.tag{display:inline-block;margin:0 6px 6px 0;padding:3px 9px;border:1px solid var(--line);border-radius:999px;font-size:13px}.status-ok{color:#3d6b2f}.status-wait{color:var(--accent)}.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px;padding:56px 0;border-bottom:1px solid var(--line)}.cluster h2{margin:0 0 4px;font:600 1.5rem/1.1 var(--display);letter-spacing:-.02em}.cluster .count{margin:0 0 14px;color:var(--muted);font:12px/1.4 var(--mono)}.cluster ul{margin:0;padding:0;list-style:none}.cluster li{padding:7px 0;border-top:1px solid var(--line);font-size:15px}.cluster li .pending{color:var(--muted);font-size:12px}.legend{color:var(--muted);font-size:14px;max-width:70ch}.legend p{margin:0 0 10px}@media(max-width:820px){.facts{grid-template-columns:1fr}.facts dt{padding-bottom:0}.facts dd{border-top:0;padding-top:4px}}`;
 
 // Ecosystem map only: Hover Lift + one staggered entrance for the .cluster cards.
-// The inline script opts in before first paint (no JS / reduced motion / ?done=1 keep cards visible).
+// The inline script opts in before first paint (no JS / reduced motion / ?done=1 / ?motion=done keep cards visible).
+// Query parsed with URLSearchParams (same rule as motion-home.js), so nested unencoded values cannot fake ?done=1.
 // org/* profile pages are fact sheets and get no card motion.
 const ECOSYSTEM_HEAD = `
   <link rel="stylesheet" href="/assets/product/motion-lift.css">
   <link rel="stylesheet" href="/assets/product/motion-ecosystem.css">
-  <script>!function(d,q){if(!/[?&](done=1|motion=done)(&|$)/.test(q)&&window.matchMedia&&matchMedia("(prefers-reduced-motion: no-preference)").matches)d.documentElement.classList.add("si-cluster-motion")}(document,location.search)</script>`;
+  <script>!function(d){var q=window.URLSearchParams&&new URLSearchParams(location.search);if(q&&q.get("done")!=="1"&&q.get("motion")!=="done"&&window.matchMedia&&matchMedia("(prefers-reduced-motion: no-preference)").matches)d.documentElement.classList.add("si-cluster-motion")}(document)</script>`;
 
 function page({ path, title, description, jsonld, body, head = '' }) {
   const url = `${SITE}${path}`;
