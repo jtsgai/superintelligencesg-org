@@ -17,7 +17,8 @@
     [".principle-list", ".principle-list > .principle", 0.28],
     ["#learn", "#learn .shell.intro > *", 0.2],
     ["#learn .guide", "#learn .guide-item", 0.28],
-    ["#participate", "#participate .join-intro, #participate .product-actions", 0.18]
+    // Direct child only: must match motion-home.css; card actions rendered by commons.js are not targets.
+    ["#participate", "#participate .join-intro, #participate > .shell > .product-actions", 0.18]
   ];
 
   var CLEAR = "transform,translate,rotate,scale";
