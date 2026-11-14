@@ -1,0 +1,25 @@
+/* Card Hover Lift (.org). Hover / keyboard-focus feedback for pointer devices that allow motion.
+   Uses the CSS individual property `translate` only and never sets the transform property, so it
+   composes with the homepage GSAP entrance (motion-home.js clears its inline transform when done),
+   the ecosystem cluster entrance (motion-ecosystem.css) and the Ripple ink (si-ripple.css).
+   Pure CSS: safe on the JS-rendered, search/sort re-rendered .org-card directory rows.
+   Touch-only devices and prefers-reduced-motion: reduce get nothing from this file. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  /* Bordered cards: homepage guide */
+  .guide-item { transition: translate .22s ease-out, box-shadow .22s ease-out, border-color .2s ease; }
+  .guide-item:hover,
+  .guide-item:focus-within { translate: 0 -3px; border-color: var(--accent); box-shadow: 0 14px 30px -20px rgb(29 42 55 / .35); }
+
+  /* Row-style items: homepage principles, directory rows (home + organizations.html), about status rows */
+  .principle,
+  .org-card,
+  .item { transition: translate .22s ease-out, box-shadow .22s ease-out; }
+  .principle:hover, .principle:focus-within,
+  .org-card:hover, .org-card:focus-within,
+  .item:hover, .item:focus-within { translate: 0 -3px; box-shadow: 0 12px 24px -22px rgb(29 42 55 / .5); }
+
+  /* Ecosystem map category cards (ecosystem.html only; linked from the build-org-pages.mjs template) */
+  .cluster { transition: translate .22s ease-out, box-shadow .22s ease-out; }
+  .cluster:hover,
+  .cluster:focus-within { translate: 0 -3px; box-shadow: 0 16px 28px -26px rgb(29 42 55 / .45); }
+}

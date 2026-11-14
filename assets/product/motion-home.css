@@ -53,8 +53,7 @@
 .section p { line-height: 1.6; }
 .principle h3, .guide-item h3 { letter-spacing: -.01em; line-height: 1.2; }
 .principle p, .guide-item p, .intro p, .join-intro p { max-width: 60ch; color: #4f5b60; }
-.guide-item { transition: transform .25s ease, box-shadow .25s ease; }
-.guide-item:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -20px rgb(29 42 55 / .35); }
+/* Card hover lift lives in motion-lift.css (individual `translate`, never `transform`). */
 
 @media (max-width: 520px) {
   .hero-copy .button { margin-right: 0; width: 100%; }
@@ -76,7 +75,6 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-media::before { display: none; animation: none; }
   .hero-media img, .scroll-cue svg { animation: none; }
-  .guide-item:hover { transform: none; }
 }
 
 /* Pre-hide entrance targets only after JS opts in. No JS, reduced motion,

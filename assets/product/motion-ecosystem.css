@@ -1,0 +1,27 @@
+/* Ecosystem map: one short, staggered entrance for the category cards (.cluster).
+   Progressive enhancement: the animation only runs while <html> carries .si-cluster-motion,
+   which an inline script in the ecosystem.html <head> adds only when JS runs, the user has
+   no reduced-motion preference and the URL has no ?done=1 / ?motion=done. Without JS, with
+   reduced motion, or with ?done=1 every card is simply visible.
+   fill-mode `backwards` holds only the hidden "from" frame during the delay; once a card's
+   animation ends nothing stays applied, so the Hover Lift `translate` in motion-lift.css
+   works normally. Animates `translate`/opacity, never the transform property. */
+@media (prefers-reduced-motion: no-preference) {
+  .si-cluster-motion .map > .cluster {
+    animation: si-cluster-in .6s cubic-bezier(.22, .61, .36, 1) backwards;
+    animation-delay: calc(var(--si-i, 0) * 70ms);
+  }
+  .si-cluster-motion .map > .cluster:nth-child(2) { --si-i: 1; }
+  .si-cluster-motion .map > .cluster:nth-child(3) { --si-i: 2; }
+  .si-cluster-motion .map > .cluster:nth-child(4) { --si-i: 3; }
+  .si-cluster-motion .map > .cluster:nth-child(5) { --si-i: 4; }
+  .si-cluster-motion .map > .cluster:nth-child(6) { --si-i: 5; }
+  .si-cluster-motion .map > .cluster:nth-child(7) { --si-i: 6; }
+  .si-cluster-motion .map > .cluster:nth-child(8) { --si-i: 7; }
+  .si-cluster-motion .map > .cluster:nth-child(n+9) { --si-i: 8; }
+}
+
+@keyframes si-cluster-in {
+  from { opacity: 0; translate: 0 16px; }
+  to { opacity: 1; translate: none; }
+}
