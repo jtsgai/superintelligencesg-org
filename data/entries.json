@@ -3061,6 +3061,232 @@
       "checked_at": "2026-10-28",
       "conclusion": null,
       "action": null
+    },
+    {
+      "id": "public-marvel-ai",
+      "name": "MARVEL-AI",
+      "founder": "A*STAR",
+      "description": "An A*STAR-led materials platform that will combine advanced AI models with self-driving laboratories to identify, synthesise and test new materials, announced on 27 October 2026 with an initial S$150 million Government investment.",
+      "kind": "Applied research",
+      "source": "public",
+      "url": "https://www.a-star.edu.sg/imre/marvel-ai",
+      "updated": "2026-11-14",
+      "lenses": [
+        "research"
+      ],
+      "source_url": "https://www.meti.gov.sg/newsroom/delivered-speech-by-deputy-prime-minister-and-minister-for-energy--trade-and-industry--trade--gan-kim-yong-at-switch-2026-opening-ceremony/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.meti.gov.sg/newsroom/delivered-speech-by-deputy-prime-minister-and-minister-for-energy--trade-and-industry--trade--gan-kim-yong-at-switch-2026-opening-ceremony/",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "METI's 27 October 2026 SWITCH speech announces MARVEL-AI, led by A*STAR, with a S$150 million Government investment; A*STAR's MARVEL-AI page describes its capabilities.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "METI speech and A*STAR MARVEL-AI page opened on 2026-11-14; both support the entry text."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "public-champions-of-ai",
+      "name": "Champions of AI",
+      "founder": "National AI Council",
+      "description": "A national initiative supporting a first cohort of 24 Singapore-based companies, announced on 27 October 2026, in making AI a core driver of growth through enterprise-wide transformation; the companies are committed to developing their workforce and supporting smaller suppliers.",
+      "kind": "Public capability",
+      "source": "public",
+      "url": "https://www.meti.gov.sg/newsroom/delivered-speech-by-deputy-prime-minister-and-minister-for-energy--trade-and-industry--trade--gan-kim-yong-at-switch-2026-opening-ceremony/",
+      "updated": "2026-11-14",
+      "lenses": [
+        "public",
+        "deployment"
+      ],
+      "source_url": "https://www.meti.gov.sg/newsroom/delivered-speech-by-deputy-prime-minister-and-minister-for-energy--trade-and-industry--trade--gan-kim-yong-at-switch-2026-opening-ceremony/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.meti.gov.sg/newsroom/delivered-speech-by-deputy-prime-minister-and-minister-for-energy--trade-and-industry--trade--gan-kim-yong-at-switch-2026-opening-ceremony/",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "METI's 27 October 2026 SWITCH speech announces the first cohort of 24 companies under the Champions of AI initiative; MDDI's 29 October 2026 NCS AI Mission Centre address refers to the first 24 Champions of AI recognised by the National AI Council.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "METI speech and MDDI 29 October 2026 address opened on 2026-11-14; both support the entry text."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "public-antiscam-pango",
+      "name": "AntiScam Pango",
+      "founder": "GovTech Singapore",
+      "description": "A beta Android app that analyses incoming message notifications on the device to flag conversations with common scam characteristics, supported by a GovTech–Google DeepMind collaboration.",
+      "kind": "Public capability",
+      "source": "public",
+      "url": "https://www.tech.gov.sg/media/govtech-launches-antiscam-pango-beta-to-help-users-spot-suspicious-scam-messages-/",
+      "updated": "2026-11-14",
+      "lenses": [
+        "public",
+        "trust"
+      ],
+      "source_url": "https://www.tech.gov.sg/media/govtech-launches-antiscam-pango-beta-to-help-users-spot-suspicious-scam-messages-/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.tech.gov.sg/media/govtech-launches-antiscam-pango-beta-to-help-users-spot-suspicious-scam-messages-/",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "GovTech's 4 November 2026 media release announces the AntiScam Pango beta on Google Play, with on-device analysis and Google DeepMind collaboration.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "GovTech media release opened on 2026-11-14; it supports the entry text."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "public-dassault-asean-industrial-ai-virtual-twin-lab",
+      "name": "Dassault Systèmes ASEAN Industrial AI Virtual Twin Lab",
+      "founder": "Dassault Systèmes",
+      "description": "A planned regional lab in Singapore, under an MOU with EDB, for developing, validating and deploying industrial AI and virtual twin solutions across ASEAN.",
+      "kind": "Company",
+      "source": "public",
+      "url": "https://www.edb.gov.sg/en/news-and-insights/dassault-systemes-to-set-up-asean-industrial-ai-virtual-twin-lab-in-singapore",
+      "updated": "2026-11-14",
+      "lenses": [
+        "deployment"
+      ],
+      "source_url": "https://www.edb.gov.sg/en/news-and-insights/dassault-systemes-to-set-up-asean-industrial-ai-virtual-twin-lab-in-singapore",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "company_release_via_official_site",
+        "source_url": "https://www.edb.gov.sg/en/news-and-insights/dassault-systemes-to-set-up-asean-industrial-ai-virtual-twin-lab-in-singapore",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "Dassault Systèmes press release published on EDB's site on 11 November 2026 describes the MOU and the planned lab.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "EDB-hosted press release opened on 2026-11-14; it supports the entry text."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "public-ailytics",
+      "name": "Ailytics",
+      "founder": "Lenard Tan and Prateek Manocha",
+      "description": "According to a company announcement, Ailytics is a Singapore vision AI company that turns existing industrial CCTV into a real-time safety and operations layer, and raised a US$7.4 million Series A led by Tin Men Capital, with SEEDS participating, on 26 October 2026.",
+      "kind": "Company",
+      "source": "public",
+      "url": "https://www.ailytics.ai/",
+      "updated": "2026-11-14",
+      "lenses": [
+        "deployment"
+      ],
+      "source_url": "https://www.ailytics.ai/blog/ailytics-series-a-announcement",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "company_release",
+        "source_url": "https://www.ailytics.ai/blog/ailytics-series-a-announcement",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "Ailytics' own 26 October 2026 release states the US$7.4 million Series A led by Tin Men Capital, with SEEDS participating.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "Company release opened on 2026-11-14; it supports the entry text. First-party company source only; the description is labelled as a company announcement."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "public-ntu-canaan-green-intelligent-compute",
+      "name": "NTU–Canaan Green Intelligent Compute Collaboration",
+      "founder": "NTU Singapore and Canaan",
+      "description": "A S$7 million, four-year joint research initiative on energy-aware computing, privacy-preserving edge AI and cloud-edge inference, hosted by NTU's Centre in Computational Technologies for Finance.",
+      "kind": "Research",
+      "source": "public",
+      "url": "https://www.ntu.edu.sg/news/detail/s-7-million-ntu-canaan-partnership-to-drive-advances-in-sustainable-computing-and-edge-ai",
+      "updated": "2026-11-14",
+      "lenses": [
+        "research"
+      ],
+      "source_url": "https://www.ntu.edu.sg/news/detail/s-7-million-ntu-canaan-partnership-to-drive-advances-in-sustainable-computing-and-edge-ai",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.ntu.edu.sg/news/detail/s-7-million-ntu-canaan-partnership-to-drive-advances-in-sustainable-computing-and-edge-ai",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "NTU's 13 November 2026 news release announces the S$7 million NTU-Canaan Green Intelligent Compute Collaboration.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "NTU news release opened on 2026-11-14; it supports the entry text."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "public-sutd-colab",
+      "name": "SUTD CoLab",
+      "founder": "Singapore University of Technology and Design",
+      "description": "An SUTD initiative at the Lifelong Learning Institute using a Learn, Build, Deploy model, aiming to train 2,000 working professionals and help more than 100 enterprises apply AI in its first year.",
+      "kind": "Education & research",
+      "source": "public",
+      "url": "https://www.sutd.edu.sg/news-listing/sutd-launches-colab-aims-to-train-2000-people-in-ai-applications-in-its-first-year/",
+      "updated": "2026-11-14",
+      "lenses": [
+        "deployment"
+      ],
+      "source_url": "https://www.sutd.edu.sg/news-listing/sutd-launches-colab-aims-to-train-2000-people-in-ai-applications-in-its-first-year/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.sutd.edu.sg/news-listing/sutd-launches-colab-aims-to-train-2000-people-in-ai-applications-in-its-first-year/",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "SUTD's 26 October 2026 news listing (summarised translation of a Lianhe Zaobao report) describes the CoLab launch and first-year targets.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "SUTD news page opened on 2026-11-14; it supports the entry text."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
     }
   ]
 }
