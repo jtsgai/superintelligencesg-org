@@ -4,6 +4,36 @@
   "provenance": "Moved from the published Change Brief, superintelligencesg-com changelog.html (2026-10-27).",
   "records": [
     {
+      "id": "change-2026-11-14-seven-source-checked-references-added",
+      "date": "2026-11-14",
+      "label": "Evidence ledger",
+      "title": "Seven source-checked references added.",
+      "summary": "Navigator adds seven references, each checked against its source on 14 November 2026: MARVEL-AI, Champions of AI, AntiScam Pango, the Dassault Systèmes ASEAN Industrial AI Virtual Twin Lab, Ailytics, the NTU–Canaan Green Intelligent Compute Collaboration and SUTD CoLab. Ailytics is described from the company's own announcement. The homepage signal is updated with METI's 27 October 2026 SWITCH speech, MDDI's 4 November 2026 parliamentary replies and the 5 November 2026 GovTech STACK address.",
+      "tags": [
+        "Official source linked",
+        "Review date visible"
+      ],
+      "links": [
+        {
+          "label": "Browse the evidence records",
+          "url": "https://superintelligencesg.com/directory.html?source=public"
+        },
+        {
+          "label": "Read the homepage signal",
+          "url": "https://superintelligencesg.com/#october-signal"
+        }
+      ],
+      "url": "https://superintelligencesg.com/directory.html?source=public",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://superintelligencesg.com/directory.html?source=public",
+      "evidence": {
+        "status": "needs_review"
+      },
+      "checked_at": null,
+      "conclusion": null,
+      "action": null
+    },
+    {
       "id": "change-2026-10-16-a-public-route-for-evidence-intelligence",
       "date": "2026-10-16",
       "label": "Research brief",

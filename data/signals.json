@@ -4,6 +4,51 @@
   "provenance": "Moved from the Signals block on superintelligencesg-com index.html (2026-10-27).",
   "records": [
     {
+      "id": "signal-2026-11-14-from-pilots-to-enterprise-wide-ai",
+      "date": "2026-11-14",
+      "label": "Signals from Singapore · updated 14 November 2026",
+      "title": "From pilots to enterprise-wide AI, with guardrails.",
+      "summary": "Recent public signals pair wider AI adoption with testing and safeguards. On 27 October 2026 the Government announced a first cohort of 24 companies under the Champions of AI initiative, which supports enterprise-wide AI transformation. In 4 November 2026 parliamentary replies, MDDI said IMDA and CSA are studying how to strengthen the reporting of serious AI-related incidents, and pointed to the AI Verify Foundation's AI Tester Accreditation Programme and Singapore's proposal for ISO/IEC 42119-8 on testing methodologies for Generative AI systems. At the GovTech STACK Conference on 5 November, Senior Minister of State Tan Kiat How said GovTech's Agentic Risk and Capability (ARC) Framework connects an agent's capabilities to appropriate safeguards, with stronger controls such as human approval for higher-risk actions; that GovTech is developing GovHarness as shared infrastructure for building and operating AI agents across Government; and that Rabbit Deploy supports over 8,000 users across 90 agencies. These are studies, stated plans and platform descriptions; outcomes remain to be tracked.",
+      "sources": [
+        {
+          "label": "METI, 27 October 2026: Champions of AI first cohort",
+          "url": "https://www.meti.gov.sg/newsroom/delivered-speech-by-deputy-prime-minister-and-minister-for-energy--trade-and-industry--trade--gan-kim-yong-at-switch-2026-opening-ceremony/"
+        },
+        {
+          "label": "MDDI, 4 November 2026: reporting of serious AI-related incidents",
+          "url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-reporting-of-serious-and-near-miss-incidents-involving-autonomous-ai-systems/"
+        },
+        {
+          "label": "MDDI, 4 November 2026: AI Tester Accreditation and ISO/IEC 42119-8",
+          "url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-establishing-singapore-as-global-leader-in-agentic-ai-security-and-assurance/"
+        },
+        {
+          "label": "MDDI, 5 November 2026: STACK 2026 address on ARC, GovHarness and Rabbit Deploy",
+          "url": "https://www.mddi.gov.sg/newsroom/opening-address-by-sms-mr-tan-kiat-how-at-govtech-stack-conference-2026-on-5-nov/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "source_url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-reporting-of-serious-and-near-miss-incidents-involving-autonomous-ai-systems/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-reporting-of-serious-and-near-miss-incidents-involving-autonomous-ai-systems/",
+        "record_updated_at": "2026-11-14",
+        "checked_at": "2026-11-14",
+        "summary": "MDDI's 4 November 2026 parliamentary replies (AI incident reporting; AI Tester Accreditation and ISO/IEC 42119-8), MDDI's 5 November 2026 STACK address (ARC, GovHarness, Rabbit Deploy) and METI's 27 October 2026 SWITCH speech (Champions of AI) support the summary.",
+        "history": [
+          {
+            "at": "2026-11-14",
+            "kind": "individual_source_review",
+            "note": "All four linked official pages opened on 2026-11-14; each sentence in the summary is drawn from them."
+          }
+        ]
+      },
+      "checked_at": "2026-11-14",
+      "conclusion": null,
+      "action": null
+    },
+    {
       "id": "signal-2026-10-06-from-ai-capacity-to-real-world-value",
       "date": "2026-10-06",
       "label": "Signals from Singapore · updated 6 October 2026",
