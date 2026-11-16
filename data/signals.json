@@ -4,6 +4,47 @@
   "provenance": "Moved from the Signals block on superintelligencesg-com index.html (2026-10-27).",
   "records": [
     {
+      "id": "signal-2026-11-16-from-individual-ai-use-to-enterprise-adoption",
+      "date": "2026-11-16",
+      "label": "Signals from Singapore · updated 16 November 2026",
+      "title": "From individual AI use to enterprise adoption, with assurance.",
+      "summary": "In opening remarks in Washington DC on 13 November 2026, Minister Josephine Teo said individual AI usage in Singapore is among the highest in the world on a per capita basis, and that for companies like OpenAI, “the next opportunity is to translate this strong individual adoption into enterprise use.” She said OpenAI is building up a sizeable team of forward-deployed engineers in Singapore, and that Anthropic decided it would grow a significant presence in Singapore and is very interested in working with Singapore on strengthening AI assurance. She also said Singapore, which becomes ASEAN Chair in 2027, is setting up a programme called ASEAN AI for All, with themes of AI adoption, AI assurance, innovative uses of AI and data foundations. In a 4 November 2026 written parliamentary answer, MDDI said IMDA is studying, in a workgroup with SWDA and industry partners, how AI adoption is reshaping tech jobs, hiring trends and skills requirements, and that IMDA will assess Bridge2Tech through students' participation and employment outcomes. These are stated plans, studies and company intentions; outcomes remain to be tracked.",
+      "sources": [
+        {
+          "label": "MDDI, 13 November 2026: Minister Teo's remarks at the USABC and USCC roundtable",
+          "url": "https://www.mddi.gov.sg/newsroom/opening-remarks-by-minister-josephine-teo-at-us-asean-business-council--usabc--and-us-chamber-of-commerce--uscc--roundtable-in-washington-dc/"
+        },
+        {
+          "label": "MDDI, 13 November 2026: Minister Teo's meetings in Washington D.C.",
+          "url": "https://www.mddi.gov.sg/newsroom/minister-josephine-teo-meetings-with-senior-u-s-government-officials-in-washington-d-c--from-12-to-13-november-2026/"
+        },
+        {
+          "label": "MDDI, 4 November 2026: entry-level tech hiring and Bridge2Tech",
+          "url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-changes-in-entry-level-hiring-for-software-engineering-and-other-technology-role-arising-from-ai-adoption/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "source_url": "https://www.mddi.gov.sg/newsroom/opening-remarks-by-minister-josephine-teo-at-us-asean-business-council--usabc--and-us-chamber-of-commerce--uscc--roundtable-in-washington-dc/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.mddi.gov.sg/newsroom/opening-remarks-by-minister-josephine-teo-at-us-asean-business-council--usabc--and-us-chamber-of-commerce--uscc--roundtable-in-washington-dc/",
+        "record_updated_at": "2026-11-16",
+        "checked_at": "2026-11-16",
+        "summary": "MDDI's transcript of Minister Teo's 13 November 2026 USABC/USCC roundtable remarks (OpenAI, Anthropic, ASEAN AI for All), MDDI's 13 November 2026 release on her Washington meetings (2027 ASEAN Chairmanship) and MDDI's 4 November 2026 written answer on entry-level tech hiring (workgroup, Bridge2Tech) support the summary.",
+        "history": [
+          {
+            "at": "2026-11-16",
+            "kind": "individual_source_review",
+            "note": "All three linked official pages opened on 2026-11-16; each sentence in the summary is drawn from them. Plans are described as plans."
+          }
+        ]
+      },
+      "checked_at": "2026-11-16",
+      "conclusion": null,
+      "action": null
+    },
+    {
       "id": "signal-2026-11-14-from-pilots-to-enterprise-wide-ai",
       "date": "2026-11-14",
       "label": "Signals from Singapore · updated 14 November 2026",
