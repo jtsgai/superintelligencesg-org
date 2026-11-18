@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-17T11:08:27.207Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/44071249669",
+  "checked_at": "2026-11-18T10:11:37.269Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/44283005103",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -28,11 +28,11 @@
   "items": [
     {
       "provider": "MDDI",
-      "title": "MDDI's Response to PQ on Changes in Entry-level Hiring for Software Engineering and Other Technology Role Arising from AI Adoption…",
-      "url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-changes-in-entry-level-hiring-for-software-engineering-and-other-technology-role-arising-from-ai-adoption/",
+      "title": "Keynote Address by SMS Tan Kiat How at the Unveiling of StableX Agentic Network | Ministry of Digital Development and…",
+      "url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-unveiling-of-stablex-agentic-network/",
       "published_at": null,
-      "source_updated_at": "2026-11-05T04:25:02.970Z",
-      "discovered_at": "2026-11-05T09:30:15.810Z",
+      "source_updated_at": "2026-11-18T02:09:08.187Z",
+      "discovered_at": "2026-11-18T10:11:37.269Z",
       "status": "automatically_discovered"
     },
     {
@@ -41,7 +41,7 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-17T11:08:27.207Z",
+      "discovered_at": "2026-11-18T10:11:37.269Z",
       "status": "cited_source"
     },
     {
@@ -55,10 +55,10 @@
     },
     {
       "provider": "MDDI",
-      "title": "MDDI's Response to PQ on Reporting of Serious and Near-miss Incidents Involving Autonomous AI Systems | Ministry of Digital Development…",
-      "url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-reporting-of-serious-and-near-miss-incidents-involving-autonomous-ai-systems/",
+      "title": "MDDI's Response to PQ on Changes in Entry-level Hiring for Software Engineering and Other Technology Role Arising from AI Adoption…",
+      "url": "https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-changes-in-entry-level-hiring-for-software-engineering-and-other-technology-role-arising-from-ai-adoption/",
       "published_at": null,
-      "source_updated_at": "2026-11-05T04:20:14.189Z",
+      "source_updated_at": "2026-11-05T04:25:02.970Z",
       "discovered_at": "2026-11-05T09:30:15.810Z",
       "status": "automatically_discovered"
     },
@@ -68,7 +68,7 @@
       "url": "https://aisingapore.org/innovation/100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-17T11:08:27.207Z",
+      "discovered_at": "2026-11-18T10:11:37.269Z",
       "status": "cited_source"
     }
   ]
