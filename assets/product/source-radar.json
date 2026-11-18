@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-18T10:11:37.269Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/44283005103",
+  "checked_at": "2026-11-18T10:43:30.847Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/44288049713",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -41,7 +41,7 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-18T10:11:37.269Z",
+      "discovered_at": "2026-11-18T10:43:30.847Z",
       "status": "cited_source"
     },
     {
@@ -68,7 +68,7 @@
       "url": "https://aisingapore.org/innovation/100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-18T10:11:37.269Z",
+      "discovered_at": "2026-11-18T10:43:30.847Z",
       "status": "cited_source"
     }
   ]
