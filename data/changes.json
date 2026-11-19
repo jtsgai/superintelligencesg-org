@@ -4,6 +4,41 @@
   "provenance": "Moved from the published Change Brief, superintelligencesg-com changelog.html (2026-10-27).",
   "records": [
     {
+      "id": "change-2026-11-19-homepage-signal-interoperable-agent-trust",
+      "date": "2026-11-19",
+      "label": "Signal update",
+      "title": "Homepage signal: making trust interoperable for AI agents.",
+      "summary": "The homepage signal is updated with MDDI's transcript of Senior Minister of State Tan Kiat How's 17 November 2026 keynote at the unveiling of the StableX Agentic Network, on verifiable agent identity, mandates, continuous assurance and interoperable trust across systems. No Navigator references were added or changed.",
+      "tags": [
+        "Official source linked",
+        "Review date visible"
+      ],
+      "links": [
+        {
+          "label": "Read the homepage signal",
+          "url": "https://superintelligencesg.com/#october-signal"
+        },
+        {
+          "label": "Read the MDDI keynote",
+          "url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-unveiling-of-stablex-agentic-network/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-unveiling-of-stablex-agentic-network/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-unveiling-of-stablex-agentic-network/",
+        "record_updated_at": "2026-11-19",
+        "checked_at": "2026-11-19",
+        "summary": "MDDI's transcript of SMS Tan Kiat How's 17 November 2026 keynote at the unveiling of the StableX Agentic Network supports the summary."
+      },
+      "checked_at": "2026-11-19",
+      "conclusion": null,
+      "action": null
+    },
+    {
       "id": "change-2026-11-16-homepage-signal-enterprise-ai-adoption",
       "date": "2026-11-16",
       "label": "Signal update",
