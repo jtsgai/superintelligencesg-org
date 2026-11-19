@@ -4,6 +4,39 @@
   "provenance": "Moved from the Signals block on superintelligencesg-com index.html (2026-10-27).",
   "records": [
     {
+      "id": "signal-2026-11-19-interoperable-trust-for-ai-agents",
+      "date": "2026-11-19",
+      "label": "Signals from Singapore · updated 19 November 2026",
+      "title": "Making trust interoperable for AI agents.",
+      "summary": "On 17 November 2026, at the unveiling of the StableX Agentic Network, Senior Minister of State Tan Kiat How said AI agents need a verifiable identity, a clear mandate and continuous assurance, and that trust must work across systems and borders through open, interoperable approaches. He pointed to MetaComp's Know Your Agent (KYA) framework under the industry-led StableX network, MAS's work with financial institutions and AI firms on Safeguards for Agentic Finance at Runtime (SAFR), GovTech's Whole-of-Government Agentic Risk & Capability Framework and its GovHarness infrastructure, which is in development, and IMDA's work with industry partners to explore whether existing internet infrastructure such as the Domain Name System could support agent identification. He invited industry to collaborate on interoperable KYA arrangements, continuous assurance and trusted transactions in real-world environments. These are stated approaches, early-stage work and invitations; outcomes remain to be tracked.",
+      "sources": [
+        {
+          "label": "MDDI, 17 November 2026: SMS Tan Kiat How's keynote at the unveiling of the StableX Agentic Network",
+          "url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-unveiling-of-stablex-agentic-network/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "source_url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-unveiling-of-stablex-agentic-network/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-unveiling-of-stablex-agentic-network/",
+        "record_updated_at": "2026-11-19",
+        "checked_at": "2026-11-19",
+        "summary": "MDDI's transcript of SMS Tan Kiat How's 17 November 2026 keynote at the unveiling of the StableX Agentic Network supports the summary.",
+        "history": [
+          {
+            "at": "2026-11-19",
+            "kind": "individual_source_review",
+            "note": "The linked official page was opened on 2026-11-19; each sentence in the summary is drawn from it. Programmes in development and early-stage work are described as such."
+          }
+        ]
+      },
+      "checked_at": "2026-11-19",
+      "conclusion": null,
+      "action": null
+    },
+    {
       "id": "signal-2026-11-16-from-individual-ai-use-to-enterprise-adoption",
       "date": "2026-11-16",
       "label": "Signals from Singapore · updated 16 November 2026",
