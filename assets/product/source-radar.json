@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-23T10:47:40.980Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/45159275978",
+  "checked_at": "2026-11-23T11:16:17.513Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/45163595030",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -11,7 +11,7 @@
     },
     {
       "provider": "IMDA",
-      "state": "unavailable",
+      "state": "checked",
       "listed": 0
     },
     {
@@ -41,7 +41,7 @@
       "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-23T10:47:40.980Z",
+      "discovered_at": "2026-11-23T11:16:17.513Z",
       "status": "cited_source"
     },
     {
@@ -68,8 +68,26 @@
       "url": "https://aisingapore.org/innovation/100e/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-23T10:47:40.980Z",
+      "discovered_at": "2026-11-23T11:16:17.513Z",
       "status": "cited_source"
+    },
+    {
+      "provider": "A*STAR",
+      "title": "UOB to deploy A*STAR’s multilingual AI-powered solution to enhance customer engagement across ASEAN",
+      "url": "https://www.a-star.edu.sg/iaic/news/press-release/iaic-ffi-bridge-ai-research",
+      "published_at": null,
+      "source_updated_at": "2026-11-19T01:11:34.789Z",
+      "discovered_at": "2026-11-23T11:16:17.513Z",
+      "status": "automatically_discovered"
+    },
+    {
+      "provider": "A*STAR",
+      "title": "A*STAR IAIC AND FUTURE OF FINANCE INSTITUTE BRIDGE AI RESEARCH AND REAL-WORLD FINANCIAL INNOVATION",
+      "url": "https://www.a-star.edu.sg/iaic/news/press-release/uob-deploy-multilingual-ai-powered-solution-for-customer-engagement",
+      "published_at": null,
+      "source_updated_at": "2026-11-18T19:44:00.884Z",
+      "discovered_at": "2026-11-23T11:16:17.513Z",
+      "status": "automatically_discovered"
     }
   ]
 }
