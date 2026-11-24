@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-23T11:16:17.513Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/45163595030",
+  "checked_at": "2026-11-24T12:31:06.249Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/45394239744",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -11,7 +11,7 @@
     },
     {
       "provider": "IMDA",
-      "state": "checked",
+      "state": "unavailable",
       "listed": 0
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "provider": "AI Singapore",
-      "title": "Home - AI Singapore",
-      "url": "https://aisingapore.org/",
-      "published_at": null,
-      "source_updated_at": null,
-      "discovered_at": "2026-11-23T11:16:17.513Z",
-      "status": "cited_source"
+      "title": "AI Singapore Partners ASEAN Foundation to Build a Scam-Ready ASEAN - AI Singapore",
+      "url": "https://aisingapore.org/ai-singapore-partners-asean-foundation-to-build-a-scam-ready-asean/",
+      "published_at": "2026-11-24T08:06:19.000Z",
+      "source_updated_at": "2026-11-24T08:06:25.000Z",
+      "discovered_at": "2026-11-24T12:31:06.249Z",
+      "status": "automatically_discovered"
     },
     {
       "provider": "Smart Nation",
@@ -64,11 +64,11 @@
     },
     {
       "provider": "AI Singapore",
-      "title": "100 Experiments - AI Singapore",
-      "url": "https://aisingapore.org/innovation/100e/",
+      "title": "Home - AI Singapore",
+      "url": "https://aisingapore.org/",
       "published_at": null,
       "source_updated_at": null,
-      "discovered_at": "2026-11-23T11:16:17.513Z",
+      "discovered_at": "2026-11-24T12:31:06.249Z",
       "status": "cited_source"
     },
     {
