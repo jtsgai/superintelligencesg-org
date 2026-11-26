@@ -4,6 +4,41 @@
   "provenance": "Moved from the published Change Brief, superintelligencesg-com changelog.html (2026-10-27).",
   "records": [
     {
+      "id": "change-2026-11-26-homepage-signal-aisg-scam-ready-asean",
+      "date": "2026-11-26",
+      "label": "Signal update",
+      "title": "Homepage signal: from AI skills to AI-era scam safety.",
+      "summary": "The homepage signal is updated with AI Singapore's 24 November 2026 announcement that it is the Local Implementing Partner of Scam Ready ASEAN in Singapore, with the ASEAN Foundation and support from Google.org. No Navigator references were added or changed.",
+      "tags": [
+        "Official source linked",
+        "Review date visible"
+      ],
+      "links": [
+        {
+          "label": "Read the homepage signal",
+          "url": "https://superintelligencesg.com/#october-signal"
+        },
+        {
+          "label": "Read the AI Singapore announcement",
+          "url": "https://aisingapore.org/ai-singapore-partners-asean-foundation-to-build-a-scam-ready-asean/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "brief_url": "https://superintelligencesg.com/changelog.html",
+      "source_url": "https://aisingapore.org/ai-singapore-partners-asean-foundation-to-build-a-scam-ready-asean/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://aisingapore.org/ai-singapore-partners-asean-foundation-to-build-a-scam-ready-asean/",
+        "record_updated_at": "2026-11-26",
+        "checked_at": "2026-11-26",
+        "summary": "AI Singapore's 24 November 2026 announcement on Scam Ready ASEAN supports the summary."
+      },
+      "checked_at": "2026-11-26",
+      "conclusion": null,
+      "action": null
+    },
+    {
       "id": "change-2026-11-24-homepage-signal-singapore-china-ai-governance-mapping",
       "date": "2026-11-24",
       "label": "Signal update",
