@@ -4,6 +4,72 @@
   "provenance": "Moved from the Signals block on superintelligencesg-com index.html (2026-10-27).",
   "records": [
     {
+      "id": "signal-2026-11-26-aisg-scam-ready-asean",
+      "date": "2026-11-26",
+      "label": "Signals from Singapore · updated 26 November 2026",
+      "title": "From AI skills to AI-era scam safety.",
+      "summary": "On 24 November 2026, AI Singapore (AISG) said it has partnered the ASEAN Foundation as a Local Implementing Partner of Scam Ready ASEAN, a regional programme supported by Google.org, and will deliver the programme in Singapore till 2027. AISG says the programme is implemented by the ASEAN Foundation with USD 5 million in funding from Google.org, runs from 2025 to 2027 and aims to equip 3 million people across ASEAN to recognise and respond to online scams, including emerging AI-driven threats. By Q4 2027, AISG says it will train Master Trainers on how AI-enabled scams work, including deepfakes and AI-generated phishing, localise the Scam Ready ASEAN modules for Singapore, reach learners through Master Trainer-led sessions, run community awareness campaigns and organise a national convening in Singapore. The figures are programme targets stated by AISG, not reported results.",
+      "sources": [
+        {
+          "label": "AI Singapore, 24 November 2026: AI Singapore Partners ASEAN Foundation to Build a Scam-Ready ASEAN",
+          "url": "https://aisingapore.org/ai-singapore-partners-asean-foundation-to-build-a-scam-ready-asean/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "source_url": "https://aisingapore.org/ai-singapore-partners-asean-foundation-to-build-a-scam-ready-asean/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://aisingapore.org/ai-singapore-partners-asean-foundation-to-build-a-scam-ready-asean/",
+        "record_updated_at": "2026-11-26",
+        "checked_at": "2026-11-26",
+        "summary": "AI Singapore's 24 November 2026 announcement on Scam Ready ASEAN supports the summary.",
+        "history": [
+          {
+            "at": "2026-11-26",
+            "kind": "individual_source_review",
+            "note": "The linked official page was opened on 2026-11-26; each sentence in the summary is drawn from it. Participant and trainer numbers are programme targets, not outcomes."
+          }
+        ]
+      },
+      "checked_at": "2026-11-26",
+      "conclusion": null,
+      "action": null
+    },
+    {
+      "id": "signal-2026-11-24-singapore-china-ai-governance-mapping",
+      "date": "2026-11-24",
+      "label": "Signals from Singapore · updated 24 November 2026",
+      "title": "Mapping AI governance frameworks across borders.",
+      "summary": "At the 3rd Singapore-China Digital Policy Dialogue in Singapore on 22 November 2026, co-chaired by Senior Minister of State Tan Kiat How and National Data Administration Administrator Liu Liehong, MDDI said IMDA and the China Academy of Information and Communications Technology (CAICT) had completed a joint mapping of Singapore's AI Verify Testing Framework against CAICT's AI - Safety and Governance - Capability Requirements for System Risk Management Standard. The mapping, announced during Prime Minister Lawrence Wong's meeting with Premier Li Qiang on 21 November, is meant to help businesses navigate both frameworks by identifying corresponding safeguards and avoiding duplicative efforts. MDDI also said IMDA and the Cyberspace Administration of China held a technical meeting on AI governance and safety on 18 November and agreed to explore further cooperation. The mapping is a framework cross-reference, not mutual recognition or a single standard; further cooperation is stated as exploratory.",
+      "sources": [
+        {
+          "label": "MDDI, 22 November 2026: Singapore and China Advance Digital Cooperation at 3rd Singapore-China Digital Policy Dialogue",
+          "url": "https://www.mddi.gov.sg/newsroom/singapore-and-china-advance-digital-cooperation-at-3rd-singapore-china-digital-policy-dialogue/"
+        }
+      ],
+      "url": "https://superintelligencesg.com/#october-signal",
+      "source_url": "https://www.mddi.gov.sg/newsroom/singapore-and-china-advance-digital-cooperation-at-3rd-singapore-china-digital-policy-dialogue/",
+      "evidence": {
+        "status": "source_verified",
+        "source_type": "official_publication",
+        "source_url": "https://www.mddi.gov.sg/newsroom/singapore-and-china-advance-digital-cooperation-at-3rd-singapore-china-digital-policy-dialogue/",
+        "record_updated_at": "2026-11-24",
+        "checked_at": "2026-11-24",
+        "summary": "MDDI's 22 November 2026 press release on the 3rd Singapore-China Digital Policy Dialogue supports the summary.",
+        "history": [
+          {
+            "at": "2026-11-24",
+            "kind": "individual_source_review",
+            "note": "The linked official page was opened on 2026-11-24; each sentence in the summary is drawn from it. Further AI cooperation is described as exploratory."
+          }
+        ]
+      },
+      "checked_at": "2026-11-24",
+      "conclusion": null,
+      "action": null
+    },
+    {
       "id": "signal-2026-11-19-interoperable-trust-for-ai-agents",
       "date": "2026-11-19",
       "label": "Signals from Singapore · updated 19 November 2026",
