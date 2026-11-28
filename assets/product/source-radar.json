@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "checked_at": "2026-11-27T11:25:09.893Z",
-  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/45990268566",
+  "checked_at": "2026-11-28T10:28:29.709Z",
+  "run_url": "https://github.com/jtsgai/superintelligencesg-org/actions/runs/46135327437",
   "notice": "Official source links collected automatically from publisher discovery and cited-source checks. Discovery is not editorial verification; page modification is not publication.",
   "coverage": [
     {
@@ -11,13 +11,13 @@
     },
     {
       "provider": "IMDA",
-      "state": "checked",
+      "state": "unavailable",
       "listed": 0
     },
     {
       "provider": "AI Singapore",
-      "state": "unavailable",
-      "listed": 1
+      "state": "checked",
+      "listed": 2
     },
     {
       "provider": "Smart Nation",
@@ -61,6 +61,15 @@
       "source_updated_at": "2026-11-05T04:25:02.970Z",
       "discovered_at": "2026-11-05T09:30:15.810Z",
       "status": "automatically_discovered"
+    },
+    {
+      "provider": "AI Singapore",
+      "title": "Home - AI Singapore",
+      "url": "https://aisingapore.org/",
+      "published_at": null,
+      "source_updated_at": null,
+      "discovered_at": "2026-11-28T10:28:29.709Z",
+      "status": "cited_source"
     },
     {
       "provider": "A*STAR",
